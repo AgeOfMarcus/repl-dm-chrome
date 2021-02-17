@@ -9,8 +9,8 @@
     "content_scripts": [
         {
             "matches": ["*://repl.it/*"],
-            "js": ["./socket.io.js", "./jquery.min.js", "./foreground.js"],
-            "css": ["./repldm.css"]
+            "js": ["./fontawesome.js", "./socket.io.js", "./jquery.min.js", "./foreground.js"],
+            "css": ["./fontawesome.css", "./repldm.css"]
         }
     ],
     "options_page": "./options.html",

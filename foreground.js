@@ -9,7 +9,7 @@ $('html').on('DOMSubtreeModified', 'body', function(){
 
 
 var html = `
-<div>
+<div class='repldmBtn'>
     <i class="fas fa-paper-plane"></i>
     <i class="far fa-paper-plane"></i>
 </div>`;
