@@ -1,14 +1,14 @@
 // execute script as soon as extension is installed or refreshed
 
 chrome.tabs.onActivated.addListener(tab => {
-    addScripts();
+    addScripts(tab);
 })
 
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
-    addScripts();
+    addScripts(tab);
 });
 
-function addScripts() {
+function addScripts(tab) {
     chrome.tabs.get(tab.tabId, currentTabInfo => {
         if (/^https:\/\/repl\.it/.test(currentTabInfo.url)) {
             chrome.tabs.insertCSS(null, {file: './repldm.css'});
