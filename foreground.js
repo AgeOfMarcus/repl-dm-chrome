@@ -3,6 +3,9 @@ console.log('foreground baby');
 $('.user-label').hover((event) => {
     var href = $(event.target).attr('href');
     console.log(href)
+    console.log(event.target)
+    console.log(this)
+    console.log(event)
     setTimeout(() => {
         console.log($(`.user-label[href='${href}']`))
         var ele = $(`.user-label[href='${href}'] + .user-hover-card-anchor`).find('.user-info-card-header');
