@@ -16,6 +16,12 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
+    // add message button to profile page
+    if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
+        $('<button class="message-btn">message</button>').insertAfter('.profile-username-label');
+    }
+
+    // add repldm button 
     if ($('.repldmBtn').length == 0) {
         function check(codePage=false) {
             setTimeout(() => {
@@ -51,6 +57,7 @@ function setup() {
         check();
     }
 
+    // add repldm page
     if ($('.cont').length == 0) {
         var pageHtml = `<div class='cont' style='display: none;'>
                     <div class='dmWrapper'>
@@ -230,4 +237,5 @@ function newMessageTo(name) {
     $('.new-msg-cont').show();
     $('.new-msg-cont .to input').val(name);
     $('.new-msg-cont .message input').focus();
+    $('.repldmBtn .fa-paper-plane').toggle()
 }
