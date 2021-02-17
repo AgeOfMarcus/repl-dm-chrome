@@ -155,12 +155,12 @@ $('body').append($(pageHtml));
 $('.repldmBtn').click(() => {
     var open = $('.cont').is(':visible');
     if (!open) { // open
-        $('.cont').open();
+        $('.cont').show();
         $('.repldmBtn fas').hide();
         $('.repldmBtn far').show();
     }
     else { // close
-        $('.cont').close();
+        $('.cont').hide();
         $('.repldmBtn far').hide();
         $('.repldmBtn fas').show();
     }
