@@ -232,8 +232,7 @@ $('.write-msg-btn').bind('click', () => {
 })
 
 $('.message-btn').bind('click', (event) => {
-    console.log($(event.target).prev('.profile-username-label').text())
-    newMessageTo('name');
+    newMessageTo($(event.target).prev('.profile-username-label').text().split(" ")[0]);
 })
 
 function newMessageTo(name) {
