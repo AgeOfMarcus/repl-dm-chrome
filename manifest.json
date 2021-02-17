@@ -9,7 +9,7 @@
     "content_scripts": [
         {
             "matches": ["*://repl.it/*"],
-            "js": ["./background.js"]
+            "js": ["./foreground.js", "./jquery.min.js"]
         }
     ],
     "options_page": "./options.html",
