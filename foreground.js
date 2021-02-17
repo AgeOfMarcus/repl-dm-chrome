@@ -29,7 +29,7 @@ function setup() {
                         <i class="fas fa-paper-plane" style='display: none;'></i>
                         <i class="far fa-paper-plane"></i>
                     </div>`;
-                    $(html).insertBefore('header .center');
+                    $(html).insertAfter('header .center');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
