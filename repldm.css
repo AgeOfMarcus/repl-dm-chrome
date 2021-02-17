@@ -9,7 +9,7 @@
     border-radius: 2px;
 }
 
-.jsx-2106077415:before {
+.user-hover-card .paper::before {
     content: 'message';
     position: absolute;
     left: 0;
