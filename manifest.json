@@ -8,6 +8,7 @@
     },
     "content_scripts": [
         {
+            "matches": ["*://repl.it/*"],
             "js": "./background.js"
         }
     ],
@@ -17,6 +18,6 @@
     },
     "permissions": [
         "tabs",
-        "https://repl.it/*"
+        "*://repl.it/*"
     ]
 }
