@@ -21,14 +21,16 @@ function setup() {
             setTimeout(() => {
                 console.log($('header .left'))
                 if ($('header .left').length == 0) {
-                    if ($('.repldmBtn').length == 0) {
-                        check(true);
-                    }
+                    check(true);
                 }
                 else if ($('.repldmBtn').length == 0) {
-                    var maybe = '';
+                    var maybe;
+                    console.log(codePage)
                     if (codePage) {
                         maybe = 'transform: translateX(-300%)';
+                    }
+                    else {
+                        maybe = '';
                     }
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
