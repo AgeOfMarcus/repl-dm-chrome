@@ -169,4 +169,4 @@ function setup() {
     }
 }
 
-setup();
+window.onload = setup();
