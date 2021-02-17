@@ -1,7 +1,7 @@
 .cont {
     width: calc(100% - 240px);
     height: calc(100% - 60px);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     background-color: #f6f6f6;

@@ -21,8 +21,8 @@ function setup() {
         console.log(1)
         var html = `
         <div class='repldmBtn'>
-            <i class="fas fa-paper-plane"></i>
-            <i class="far fa-paper-plane" style='display: none;'></i>
+            <i class="fas fa-paper-plane" style='display: none;'></i>
+            <i class="far fa-paper-plane"></i>
         </div>`;
         $(html).insertAfter('header .left');
 
