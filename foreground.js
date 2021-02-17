@@ -14,10 +14,10 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
-    console.log('lesse')
-    if (!$('body').hasClass('added')) {
-        console.log('add')
-        $('body').addClass('added');
+    try {
+        $('.repldmBtn');
+    }
+    catch(err) {
         var html = `
         <div class='repldmBtn'>
             <i class="fas fa-paper-plane"></i>
