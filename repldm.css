@@ -23,11 +23,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FF6347;
+    background-color: #25D366;
     border-radius: 6px;
     cursor: pointer;
+    color: white;
 }
 
 .repldmBtn:hover {
-    background-color: #e36049;
+    background-color: #27c261;
+}
+
+.repldmBtn::after {
+    content: '1';
+    background-color: #c72628;
+    width: 14px;
+    height: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: -7px;
+    right: -7px;
 }
