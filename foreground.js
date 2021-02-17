@@ -4,11 +4,9 @@ var path = window.location.pathname;
 $('html').on('DOMSubtreeModified', 'body', () => {
     if (window.location.pathname !== path) {
         setTimeout(() => {
-            window.addEventListener('load', (event) => {
-                console.log('path changed')
-                setup();
-                path = window.location.pathname;
-            });
+            console.log('path changed')
+            setup();
+            path = window.location.pathname;
         }, 100)
     }
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
