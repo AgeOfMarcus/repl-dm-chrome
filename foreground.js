@@ -4,7 +4,7 @@ var path = window.location.pathname;
 $('html').on('DOMSubtreeModified', 'body', () => {
     if (window.location.pathname !== path) {
         console.log('path changed')
-        var path = window.location.pathname;
+        path = window.location.pathname;
         setup();
     }
     console.log('html changed nice :>')
