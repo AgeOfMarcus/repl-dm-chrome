@@ -39,6 +39,7 @@ function setup() {
                 }
             }, 100)
         }
+        check();
 
         var pageHtml = `<div class='cont' style='display: none;'>
                     <div class='dmWrapper'>
