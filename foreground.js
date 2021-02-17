@@ -137,9 +137,9 @@ var pageHtml = `<div class='cont' style='display: none;'>
                 <!-- right -->
                 <div class='right'> 
                     <div class='no-msg'>
-                        <img style='width: 100px; height: auto; margin-top: -30px;' src='./repl-colored.png' />
-                        <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Your messages</span>
-                        <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Made by the developers at dupl</span>
+                        <img style='width: 100px; height: auto; margin-top: -30px;' src='./dupl.png' />
+                        <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
+                        <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit directly, here on repl.it</span>
                     </div>
 
                     <!-- chat -->
@@ -156,12 +156,12 @@ $('.repldmBtn').click(() => {
     var open = $('.cont').is(':visible');
     if (!open) { // open
         $('.cont').show();
-        $('.repldmBtn fas').hide();
-        $('.repldmBtn far').show();
+        $('.repldmBtn .fas').hide();
+        $('.repldmBtn .far').show();
     }
     else { // close
         $('.cont').hide();
-        $('.repldmBtn far').hide();
-        $('.repldmBtn fas').show();
+        $('.repldmBtn .far').hide();
+        $('.repldmBtn .fas').show();
     }
 })
