@@ -4,11 +4,8 @@ var path = window.location.pathname;
 $('html').on('DOMSubtreeModified', 'body', () => {
     if (window.location.pathname !== path) {
         console.log('path changed')
+        setup();
         path = window.location.pathname;
-        window.addEventListener('load', function () {
-            setup();
-            console.log('loaded')
-        })
     }
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
         var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
