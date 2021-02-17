@@ -28,7 +28,7 @@ function setup() {
                 else if ($('.repldmBtn').length == 0) {
                     var maybe;
                     console.log(codePage)
-                    if (codePage) {
+                    if (codePage || $('.ws-header-cta-label').length == 1) {
                         maybe = 'transform: translateX(-300%)';
                     }
                     else {
