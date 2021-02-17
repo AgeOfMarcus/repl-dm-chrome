@@ -7,7 +7,7 @@
 
     },
     "background": {
-        "scripts": ["./background.js", "//code.jquery.com/jquery.min.js"]
+        "scripts": ["./background.js", "./jquery.min.js"]
     },
     "options_page": "./options.html",
     "browser_action": {
