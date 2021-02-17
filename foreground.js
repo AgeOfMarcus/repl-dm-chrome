@@ -9,6 +9,10 @@ $('html').on('DOMSubtreeModified', 'body', () => {
             path = window.location.pathname;
         }, 100)
     }
+    $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
+        var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
+        console.log(username);
+    })
 });
 
 function setup() {
@@ -36,6 +40,12 @@ function setup() {
                         <i class="far fa-paper-plane"></i>
                     </div>`;
                     $(html).insertAfter('header .left');
+
+                    $('.repldmBtn').click(() => {
+                        var open = $('.cont').is(':visible');
+                        $('.cont').toggle();
+                        $('.repldmBtn .fa-paper-plane').toggle();
+                    })
                 }
             }, 100)
         }
@@ -182,17 +192,6 @@ function setup() {
 }
 
 window.onload = setup();
-
-$('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().bind('click', () => {
-    var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
-    console.log(username);
-})
-
-$('.repldmBtn').bind('click', () => {
-    var open = $('.cont').is(':visible');
-    $('.cont').toggle();
-    $('.repldmBtn .fa-paper-plane').toggle();
-})
 
 $('.settings-btn').bind('click', () => {
     $('.dmWrapper .settings').toggleClass('open');
