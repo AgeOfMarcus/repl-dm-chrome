@@ -1,0 +1,10 @@
+.dmBtn {
+    margin-left: 5px;
+    background-color: #4183c4;
+    border: 1px solid transparent;
+    color: white;
+    padding: 4px;
+    transition: color 0.5s;
+    cursor: pointer;
+    border-radius: 2px;
+}
