@@ -1,9 +1,9 @@
 .cont {
-    width: 100%;
+    width: calc(100% - 240px);
     height: calc(100% - 60px);
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
     background-color: #f6f6f6;
     display: flex;
     justify-content: center;
@@ -20,6 +20,7 @@
     background-color: white;
     display: flex;
     overflow: hidden;
+    z-index: 1000;
 }
 
 /* left */
