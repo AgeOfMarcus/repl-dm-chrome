@@ -10,7 +10,7 @@
         {
             "matches": ["*://repl.it/*"],
             "js": ["./fontawesome.js", "./socket.io.js", "./jquery.min.js", "./foreground.js"],
-            "css": ["./fontawesome.css", "./repldm.css"]
+            "css": ["./fontawesome.css", "./repldm.css", "./repldm-page.css"]
         }
     ],
     "options_page": "./options.html",

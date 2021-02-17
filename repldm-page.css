@@ -1,0 +1,198 @@
+.cont {
+    width: 100%;
+    height: calc(100% - 60px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'IBM Plex Sans',sans-serif;
+}
+
+.dmWrapper {
+    width: 70%;
+    height: 90%;
+    border-radius: 3px;
+    border: 1px solid rgb(219,219,219);
+    background-color: white;
+    display: flex;
+    overflow: hidden;
+}
+
+/* left */
+.dmWrapper .left {
+    border-right: 1px solid rgb(219,219,219);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.dmWrapper .left .left-top {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgb(219,219,219);
+    font-weight: 600;
+    color: #19191a;
+    flex-shrink: 0;
+}
+.dmWrapper .left .left-top .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left-top .settings-btn {
+    width: 32px;
+    height: 32px;
+    color: #19191a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+}
+.left-top .write-msg-btn {
+    width: 32px;
+    height: 32px;
+    color: #19191a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+.left-msgs {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    padding-top: 8px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.left-msgs .node {
+    padding: 2px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.left-msgs .node:hover {
+    background-color: rgba(200,200,200,0.1);
+}
+
+.left-msgs .node .pfp {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+.left-msgs .node .pfp img {
+    width: 70px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.left-msgs .mid {
+    margin-left: 12px;
+}
+.left-msgs .name {
+    color: #262626;
+    font-weight: 600;
+}
+.left-msgs .description {
+    color: #262626;
+    font-weight: 600;
+}
+.left-msgs .node.seen .description {
+    color: rgb(142,142,142);
+}
+
+.left-msgs .circle {
+    background-color: #0095f6;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.left-msgs .node.seen .circle {
+    display: none;
+}
+
+/* right */
+.dmWrapper .right {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background-color: #25d366
+}
+
+.dmWrapper .right .no-msg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+/* settings */
+.settings {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.2s, height 0.125s;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+.settings.open {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.settings-body {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-body .option {
+    display: flex;
+    padding: 3px 12px;
+    align-items: center;
+    justify-content: center;
+}
+.settings-body .option .change-color {
+    width: 30px;
+    height: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+}
