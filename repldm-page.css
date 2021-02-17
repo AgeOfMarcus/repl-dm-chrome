@@ -16,7 +16,7 @@
 .dmWrapper {
     width: 85%;
     height: 90%;
-    border-radius: 3px;
+    border-radius: 6px;
     border: 1px solid rgb(219,219,219);
     background-color: white;
     display: flex;

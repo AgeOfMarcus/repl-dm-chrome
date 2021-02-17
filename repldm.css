@@ -24,7 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #25D366;
+    background-color: #21953e;
     border-radius: 6px;
     cursor: pointer;
     color: white;
@@ -32,12 +32,12 @@
 }
 
 .repldmBtn:hover {
-    background-color: #27c261;
+    background-color: #228037;
 }
 
 .repldmBtn::after {
     content: '1';
-    background-color: #c72628;
+    background-color: #ff491c;
     width: 14px;
     height: 14px;
     color: white;
