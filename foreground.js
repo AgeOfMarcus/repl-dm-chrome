@@ -231,8 +231,8 @@ $('.write-msg-btn').bind('click', () => {
     $('.new-msg-cont').show();
 })
 
-$('.message-btn').bind('click', () => {
-    console.log()
+$('.message-btn').bind('click', (event) => {
+    console.log($(event.target).prev('.profile-username-label').text())
     newMessageTo('name');
 })
 
