@@ -18,5 +18,11 @@
 
 
 .repldmBtn {
-    
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF6347;
+    border-radius: 6px;
 }

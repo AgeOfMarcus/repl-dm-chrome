@@ -13,5 +13,4 @@ var html = `
     <i class="fas fa-paper-plane"></i>
     <i class="far fa-paper-plane"></i>
 </div>`;
-$('header .right').before(html);
 $(html).insertBefore('header .right');
