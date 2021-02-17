@@ -19,7 +19,7 @@ function setup() {
     if ($('.repldmBtn').length == 0) {
         function check() {
             setTimeout(() => {
-                console.log($('header .left'), wait)
+                console.log($('header .left'))
                 if ($('header .left').length == 0) {
                     check();
                 }
