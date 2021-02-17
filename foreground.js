@@ -1,7 +1,7 @@
 console.log('foreground baby');
 
-$('.user-label').hover(() => {
-    var href = $(this).attr('href');
+$('.user-label').hover((event) => {
+    var href = $(event.target).attr('href');
     console.log(href)
     setTimeout(() => {
         console.log($(`.user-label[href='${href}']`))
