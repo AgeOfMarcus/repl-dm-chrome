@@ -14,11 +14,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
-    try {
-        $('.repldmBtn');
-        console.log(2)
-    }
-    catch(err) {
+    if ($('.repldmBtn') == null) {
         console.log(1)
         var html = `
         <div class='repldmBtn'>
