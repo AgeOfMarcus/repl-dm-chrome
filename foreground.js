@@ -7,6 +7,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
         path = window.location.pathname;
         window.addEventListener('load', function () {
             setup();
+            console.log('loaded')
         })
     }
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
