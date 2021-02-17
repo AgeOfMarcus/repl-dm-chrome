@@ -7,12 +7,12 @@
     color: white;
     padding: 2px;
     transition: color 0.5s;
-    cursor: pointer;
+    cursor: default;
     border-radius: 5px;
     font-size: 14px;
     transition: all 0.3s;
 }
-.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)::after:hover {
+.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name):hover::after {
     background-color: #3c74ab;
 }
 
@@ -25,4 +25,9 @@
     align-items: center;
     background-color: #FF6347;
     border-radius: 6px;
+    cursor: pointer;
+}
+
+.repldmBtn:hover {
+    background-color: #e36049;
 }
