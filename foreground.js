@@ -26,7 +26,7 @@ function setup() {
                 else {
                     var maybe = '';
                     if (codePage) {
-                        maybe = 'transform: translateX(-110%)';
+                        maybe = 'transform: translateX(-300%)';
                     }
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
