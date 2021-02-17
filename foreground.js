@@ -150,7 +150,7 @@ function setup() {
                             </div>
 
                             <!-- settings -->
-                            <div class='settings'>
+                            <div class='settings' onclick='console.log(1)'>
                                 <div class='left-top'>
                                     <div class='settings-btn' style='color: #eb4634;' onclick="$('.dmWrapper .settings').toggleClass('open');"> 
                                         <i class="fas fa-cog fa-lg"></i>
