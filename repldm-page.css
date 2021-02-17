@@ -213,11 +213,11 @@
 /* new msg */
 .new-msg-cont {
     position: absolute;
-    top: 60px;
+    top: 0;
     left: 0;
     z-index: 1001;
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
     background-color: rgba(0,0,0,0.5);
     font-family: 'IBM Plex Sans',sans-serif;
 }
