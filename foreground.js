@@ -17,7 +17,6 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 
 function setup() {
     if ($('.repldmBtn').length == 0) {
-        if (path == )
         if ($('header .left').length == 0) {
             setTimeout(() => {
                 var html = `
