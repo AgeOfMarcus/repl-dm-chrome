@@ -3,6 +3,7 @@ console.log('foreground baby');
 var path = window.location.pathname;
 $('html').on('DOMSubtreeModified', 'body', () => {
     if (window.location.pathname !== path) {
+        $('.cont').hide();
         setTimeout(() => {
             console.log('path changed')
             setup();
