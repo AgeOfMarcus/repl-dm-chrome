@@ -1,5 +1,5 @@
 .cont {
-    width: calc(100% - 240px);
+    width: 100%;
     height: calc(100% - 60px);
     position: fixed;
     bottom: 0;
