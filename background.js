@@ -4,9 +4,9 @@ chrome.tabs.onActivated.addListener(tab => {
     addScripts(tab);
 })
 
-chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+chrome.tabs.onUpdated.addListener(tab => {
     addScripts(tab);
-});
+})
 
 function addScripts(tab) {
     chrome.tabs.get(tab.tabId, currentTabInfo => {
