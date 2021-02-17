@@ -71,7 +71,7 @@ function setup() {
 
                             <!-- messages -->
                             <div class='left-msgs'> 
-                                <div class='node'>
+                                <div class='node' onclick='console.log(1)'>
                                     <div class='pfp'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                     </div>
@@ -150,7 +150,7 @@ function setup() {
                             </div>
 
                             <!-- settings -->
-                            <div class='settings' onclick='console.log(1)'>
+                            <div class='settings'>
                                 <div class='left-top'>
                                     <div class='settings-btn' style='color: #eb4634;' onclick="$('.dmWrapper .settings').toggleClass('open');"> 
                                         <i class="fas fa-cog fa-lg"></i>
