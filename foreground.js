@@ -12,6 +12,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
         var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
         newMessageTo(username);
+        console.log(username)
     })
 });
 
@@ -228,6 +229,7 @@ $('.write-msg-btn').bind('click', () => {
 
 
 function newMessageTo(name) {
+    console.log('cmon pls')
     $('.cont').hide();
     $('.new-msg-cont').show();
     $('.new-msg-cont .to input').val(name);
