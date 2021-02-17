@@ -4,10 +4,6 @@ chrome.tabs.onActivated.addListener(tab => {
     addScripts(tab);
 })
 
-chrome.tabs.onUpdated.addListener(tab => {
-    addScripts(tab);
-})
-
 function addScripts(tab) {
     chrome.tabs.get(tab.tabId, currentTabInfo => {
         if (/^https:\/\/repl\.it/.test(currentTabInfo.url)) {
