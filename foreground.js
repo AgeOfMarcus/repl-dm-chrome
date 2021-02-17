@@ -19,8 +19,8 @@ function setup() {
     if ($('.repldmBtn').length == 0) {
         function check() {
             setTimeout(() => {
-                console.log($('header .left'))
-                if ($('header .left').length == 0) {
+                console.log($('header .center'))
+                if ($('header .center').length == 0) {
                     check();
                 }
                 else {
@@ -29,7 +29,7 @@ function setup() {
                         <i class="fas fa-paper-plane" style='display: none;'></i>
                         <i class="far fa-paper-plane"></i>
                     </div>`;
-                    $(html).insertAfter('header .left');
+                    $(html).insertBefore('header .center');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
