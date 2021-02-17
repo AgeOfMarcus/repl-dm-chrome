@@ -21,7 +21,9 @@ function setup() {
             setTimeout(() => {
                 console.log($('header .left'))
                 if ($('header .left').length == 0) {
-                    check(true);
+                    if ($('.repldmBtn').length == 0) {
+                        check(true);
+                    }
                 }
                 else {
                     var maybe = '';
