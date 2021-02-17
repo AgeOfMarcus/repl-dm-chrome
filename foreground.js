@@ -192,7 +192,7 @@ function setup() {
         $('.settings-btn').click(() => {
             $('.dmWrapper .settings').toggleClass('open');
         })
-        $('.change-color').click(() => {
+        $('.change-color').bind('click', () => {
             $('.dmWrapper .right').css('background-color', $(this).css('background-color'));
         })
     }
