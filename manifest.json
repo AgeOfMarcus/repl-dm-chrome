@@ -6,8 +6,8 @@
     "icons": {
 
     },
-    "background": {
-        "scripts": ["./background.js", "./jquery.min.js"]
+    "content_scripts": {
+        "js": "./background.js"
     },
     "options_page": "./options.html",
     "browser_action": {
