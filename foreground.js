@@ -47,7 +47,6 @@ function setup() {
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
-                        $('.cont').toggle();
                         $('.repldmBtn .fa-paper-plane').toggle();
                         $('.new-msg-cont').hide();
                         if (!open) { // open
@@ -56,7 +55,7 @@ function setup() {
                             $('.cont').animate({
                                 backgroundColor: 'rgb(246, 246, 246)'
                             }, 300);
-                            
+
                             $('.dmWrapper').css({
                                 transform: 'translateY(-50%)',
                                 opacity: '0.2'
