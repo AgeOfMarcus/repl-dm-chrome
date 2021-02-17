@@ -17,19 +17,23 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 
 function setup() {
     if ($('.repldmBtn').length == 0) {
-        console.log($('header .left'))
-        var html = `
-        <div class='repldmBtn'>
-            <i class="fas fa-paper-plane" style='display: none;'></i>
-            <i class="far fa-paper-plane"></i>
-        </div>`;
-        $(html).insertAfter('header .left');
+        if (path == )
+        if ($('header .left').length == 0) {
+            setTimeout(() => {
+                var html = `
+                <div class='repldmBtn'>
+                    <i class="fas fa-paper-plane" style='display: none;'></i>
+                    <i class="far fa-paper-plane"></i>
+                </div>`;
+                $(html).insertAfter('header .left');
 
-        $('.repldmBtn').click(() => {
-            var open = $('.cont').is(':visible');
-            $('.cont').toggle();
-            $('.repldmBtn .fa-paper-plane').toggle();
-        })
+                $('.repldmBtn').click(() => {
+                    var open = $('.cont').is(':visible');
+                    $('.cont').toggle();
+                    $('.repldmBtn .fa-paper-plane').toggle();
+                })
+            }, 1000)
+        }
 
         var pageHtml = `<div class='cont' style='display: none;'>
                     <div class='dmWrapper'>
