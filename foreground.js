@@ -19,7 +19,7 @@ function setup() {
     if ($('.repldmBtn').length == 0) {
         var wait;
         if ($('header .left').length == 0) {
-            wait = 1000;
+            wait = 3000;
         }
         else {
             wait = 1;
