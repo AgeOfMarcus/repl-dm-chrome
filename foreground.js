@@ -5,7 +5,6 @@ $('html').on('DOMSubtreeModified', 'body', () => {
     if (window.location.pathname !== path) {
         $('.cont').hide();
         setTimeout(() => {
-            console.log('path changed')
             setup();
             path = window.location.pathname;
         }, 100)
@@ -17,9 +16,8 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
-    console.log($('.repldmBtn'))
     if ($('.repldmBtn').length == 0) {
-        console.log(1)
+        console.log($('header .left'))
         var html = `
         <div class='repldmBtn'>
             <i class="fas fa-paper-plane" style='display: none;'></i>
