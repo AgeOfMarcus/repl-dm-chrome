@@ -7,4 +7,4 @@ $('.user-label').hover(() => {
     if (!html.includes('</button>')) { // doesnt place multiple buttons
         ele.innerHTML = html + '<button class="dmBtn">Message</button>';
     };
-})
+}) 
