@@ -9,10 +9,6 @@ $('html').on('DOMSubtreeModified', 'body', () => {
             path = window.location.pathname;
         }, 100)
     }
-    $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
-        var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
-        console.log(username);
-    }) 
 });
 
 function setup() {
@@ -40,12 +36,6 @@ function setup() {
                         <i class="far fa-paper-plane"></i>
                     </div>`;
                     $(html).insertAfter('header .left');
-
-                    $('.repldmBtn').click(() => {
-                        var open = $('.cont').is(':visible');
-                        $('.cont').toggle();
-                        $('.repldmBtn .fa-paper-plane').toggle();
-                    })
                 }
             }, 100)
         }
@@ -152,7 +142,7 @@ function setup() {
                             <!-- settings -->
                             <div class='settings'>
                                 <div class='left-top'>
-                                    <div class='settings-btn' style='color: #eb4634;' onclick="$('.dmWrapper .settings').toggleClass('open');"> 
+                                    <div class='settings-btn' style='color: #eb4634;'> 
                                         <i class="fas fa-cog fa-lg"></i>
                                     </div>
                                     <div class='title'>
@@ -188,15 +178,25 @@ function setup() {
                 </div>`;
 
         $('body').append($(pageHtml));
-
-        $('.settings-btn').click(() => {
-            $('.dmWrapper .settings').toggleClass('open');
-        })
     }
 }
 
 window.onload = setup();
 
+$('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().bind('click', () => {
+    var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
+    console.log(username);
+})
+
+$('.repldmBtn').bind('click', () => {
+    var open = $('.cont').is(':visible');
+    $('.cont').toggle();
+    $('.repldmBtn .fa-paper-plane').toggle();
+})
+
+$('.settings-btn').bind('click', () => {
+    $('.dmWrapper .settings').toggleClass('open');
+})
 $('.change-color').bind('click', (event) => {
     $('.dmWrapper .right').css('background-color', $(event.target).css('background-color'));
 })
