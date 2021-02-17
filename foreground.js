@@ -14,7 +14,9 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
+    console.log('lesse')
     if (!$('body').hasClass('added')) {
+        console.log('add')
         $('body').addClass('added');
         var html = `
         <div class='repldmBtn'>
