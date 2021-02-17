@@ -3,10 +3,15 @@
     background-color: #4183c4;
     border: 1px solid transparent;
     color: white;
-    padding: 4px;
+    padding: 2px;
     transition: color 0.5s;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.dmBtn:hover {
+    background-color: #3c74ab;
 }
 
 .user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)::after {

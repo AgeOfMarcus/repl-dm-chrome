@@ -1,7 +1,7 @@
 {
-    "name": "repl DM extension",
+    "name": "repl.it DMs",
     "description": "Adds direct messaging functionality to replit.",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "manifest_version": 2,
     "icons": {
 
