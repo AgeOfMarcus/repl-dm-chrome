@@ -58,7 +58,7 @@ function setup() {
                         <!-- left -->
                         <div class='left'>
                             <div class='left-top'>
-                                <div class='settings-btn' onclick="$('.dmWrapper .settings').toggleClass('open');"> 
+                                <div class='settings-btn'> 
                                     <i class="fas fa-cog fa-lg"></i>
                                 </div>
                                 <div class='title'>
@@ -71,7 +71,7 @@ function setup() {
 
                             <!-- messages -->
                             <div class='left-msgs'> 
-                                <div class='node' onclick='func()'>
+                                <div class='node'>
                                     <div class='pfp'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                     </div>
@@ -162,10 +162,10 @@ function setup() {
                                 <div class='settings-body'> 
                                     <div class='option'> 
                                         Chat color
-                                        <div class='change-color' style='background-color: #25D;' onclick="$('.dmWrapper .right').css('background-color', $(this).css('background-color'));"></div>
-                                        <div class='change-color' style='background-color: #25D366;' onclick="$('.dmWrapper .right').css('background-color', $(this).css('background-color'));"></div>
-                                        <div class='change-color' style='background-color: #de6052;' onclick="$('.dmWrapper .right').css('background-color', $(this).css('background-color'));"></div>
-                                        <div class='change-color' style='background-color: #f2ec3a;' onclick="$('.dmWrapper .right').css('background-color', $(this).css('background-color'));"></div>
+                                        <div class='change-color' style='background-color: #25D;'></div>
+                                        <div class='change-color' style='background-color: #25D366;'></div>
+                                        <div class='change-color' style='background-color: #de6052;'></div>
+                                        <div class='change-color' style='background-color: #f2ec3a;'></div>
                                     </div>
                                 </div>
                             </div>
@@ -188,11 +188,14 @@ function setup() {
                 </div>`;
 
         $('body').append($(pageHtml));
+
+        $('.settings-btn').click(() => {
+            $('.dmWrapper .settings').toggleClass('open');
+        })
+        $('.change-color').click(() => {
+            $('.dmWrapper .right').css('background-color', $(this).css('background-color'));
+        })
     }
 }
 
 window.onload = setup();
-
-function func() {
-    console.log(1)
-}
