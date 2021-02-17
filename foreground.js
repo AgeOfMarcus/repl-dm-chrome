@@ -189,13 +189,41 @@ function setup() {
 
         $('body').append($(pageHtml));
     }
+
+    if ($('.new-msg-cont').length == 0) {
+        var sendMsgHtml = `<div class='new-msg-cont' style='display: none;'>
+            <div class='new-msg'>
+                <div class='top'>
+                    <div class='close-new-msg'><i class="fas fa-times"></i></div>
+                    New Message
+                    <div class='send-new-msg'>send</div>
+                </div>
+                <div class='to'>To: <input type='text' placeholder='Search' /></div>
+                <div class='message'><input type='text' placeholder="Message body" /></div>
+            </div>
+        </div>`;
+
+        $('body').append($(sendMsgHtml));
+    }
 }
 
 window.onload = setup();
 
+// toggle settings
 $('.settings-btn').bind('click', () => {
     $('.dmWrapper .settings').toggleClass('open');
 })
+
+// change bg color
 $('.change-color').bind('click', (event) => {
     $('.dmWrapper .right').css('background-color', $(event.target).css('background-color'));
+})
+
+// close new message
+$('.close-new-msg').bind('click', () => {
+    $('.new-msg-cont').hide();
+})
+// open new message 
+$('.write-msg-btn').bind('click', () => {
+    $('.new-msg-cont').show();
 })
