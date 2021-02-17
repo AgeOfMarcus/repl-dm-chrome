@@ -17,19 +17,23 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 
 function setup() {
     if ($('.repldmBtn').length == 0) {
-        function check() {
+        function check(codePage=false) {
             setTimeout(() => {
-                console.log($('header .right'))
-                if ($('header .right').length == 0) {
-                    check();
+                console.log($('header .left'))
+                if ($('header .left').length == 0) {
+                    check(true);
                 }
                 else {
+                    var maybe = '';
+                    if (codePage) {
+                        maybe = 'transform: translateX(-110%)';
+                    }
                     var html = `
-                    <div class='repldmBtn'>
+                    <div class='repldmBtn' style='${maybe}'>
                         <i class="fas fa-paper-plane" style='display: none;'></i>
                         <i class="far fa-paper-plane"></i>
                     </div>`;
-                    $(html).insertBefore('header .right');
+                    $(html).insertAfter('header .left');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
