@@ -25,7 +25,7 @@ function setup() {
                         check(true);
                     }
                 }
-                else {
+                else if ($('.repldmBtn').length == 0) {
                     var maybe = '';
                     if (codePage) {
                         maybe = 'transform: translateX(-300%)';
