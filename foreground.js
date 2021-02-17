@@ -11,7 +11,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
     }
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
         var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
-        console.log(username);
+        newMessageTo(username);
     })
 });
 
@@ -45,6 +45,7 @@ function setup() {
                         var open = $('.cont').is(':visible');
                         $('.cont').toggle();
                         $('.repldmBtn .fa-paper-plane').toggle();
+                        $('.new-msg-cont').hide();
                     })
                 }
             }, 100)
@@ -185,25 +186,22 @@ function setup() {
                             </div>
                         </div>
                     </div>
+
+                    <!-- new message -->
+                    <div class='new-msg-cont' style='display: none;'>
+                        <div class='new-msg'>
+                            <div class='top'>
+                                <div class='close-new-msg'><i class="fas fa-times"></i></div>
+                                New Message
+                                <div class='send-new-msg'>send</div>
+                            </div>
+                            <div class='to'>To: <input type='text' placeholder='Search' /></div>
+                            <div class='message'><input type='text' placeholder="Message body" /></div>
+                        </div>
+                    </div>
                 </div>`;
 
         $('body').append($(pageHtml));
-    }
-
-    if ($('.new-msg-cont').length == 0) {
-        var sendMsgHtml = `<div class='new-msg-cont' style='display: none;'>
-            <div class='new-msg'>
-                <div class='top'>
-                    <div class='close-new-msg'><i class="fas fa-times"></i></div>
-                    New Message
-                    <div class='send-new-msg'>send</div>
-                </div>
-                <div class='to'>To: <input type='text' placeholder='Search' /></div>
-                <div class='message'><input type='text' placeholder="Message body" /></div>
-            </div>
-        </div>`;
-
-        $('body').append($(sendMsgHtml));
     }
 }
 
@@ -227,3 +225,11 @@ $('.close-new-msg').bind('click', () => {
 $('.write-msg-btn').bind('click', () => {
     $('.new-msg-cont').show();
 })
+
+
+function newMessageTo(name) {
+    $('.cont').hide();
+    $('.new-msg-cont').show();
+    $('.new-msg-cont .to input').val(name);
+    $('.new-msg-cont .message input').focus();
+}
