@@ -71,7 +71,7 @@ function setup() {
 
                             <!-- messages -->
                             <div class='left-msgs'> 
-                                <div class='node' onclick='console.log(1)'>
+                                <div class='node' onclick='func()'>
                                     <div class='pfp'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                     </div>
@@ -192,3 +192,7 @@ function setup() {
 }
 
 window.onload = setup();
+
+function func() {
+    console.log(1)
+}
