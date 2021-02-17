@@ -2,12 +2,12 @@ console.log('foreground baby');
 
 var path = window.location.pathname;
 $('html').on('DOMSubtreeModified', 'body', () => {
+    console.log(path, window.location.pathname)
     if (window.location.pathname !== path) {
         console.log('path changed')
         path = window.location.pathname;
         setup();
     }
-    console.log('html changed nice :>')
     $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
         var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
         console.log(username);
