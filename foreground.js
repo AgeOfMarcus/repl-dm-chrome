@@ -46,7 +46,9 @@ function setup() {
             }, 100)
         }
         check();
+    }
 
+    if ($('.cont').length == 0) {
         var pageHtml = `<div class='cont' style='display: none;'>
                     <div class='dmWrapper'>
                         <!-- left -->
