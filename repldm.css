@@ -9,11 +9,8 @@
     border-radius: 2px;
 }
 
-.user-hover-card .paper::before {
+.user-hover-card .user-info-card-header span::after {
     content: 'message';
-    position: absolute;
-    left: 0;
-    top: 0;
     background-color: #4183c4;
     border: 1px solid transparent;
     color: white;
