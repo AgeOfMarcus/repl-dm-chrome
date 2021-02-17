@@ -18,7 +18,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 function setup() {
     // add message button to profile page
     if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
-        $('<button class="message-btn">message</button>').insertAfter('.profile-username-label');
+        $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
     }
 
     // add repldm button 
@@ -231,6 +231,10 @@ $('.write-msg-btn').bind('click', () => {
     $('.new-msg-cont').show();
 })
 
+$('.message-btn').bind('click', () => {
+    console.log()
+    newMessageTo('name');
+})
 
 function newMessageTo(name) {
     $('.cont').show();
