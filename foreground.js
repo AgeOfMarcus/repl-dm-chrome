@@ -154,14 +154,7 @@ $('body').append($(pageHtml));
 
 $('.repldmBtn').click(() => {
     var open = $('.cont').is(':visible');
-    if (!open) { // open
-        $('.cont').show();
-        $('.repldmBtn .fas').hide();
-        $('.repldmBtn .far').show();
-    }
-    else { // close
-        $('.cont').hide();
-        $('.repldmBtn .far').hide();
-        $('.repldmBtn .fas').show();
-    }
+    $('.cont').toggle();
+    $('.repldmBtn .fa-paper-plane').toggle();
+    
 })
