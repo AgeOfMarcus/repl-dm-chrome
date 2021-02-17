@@ -14,6 +14,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 function setup() {
+    console.log($('.repldmBtn'))
     if ($('.repldmBtn') == null) {
         console.log(1)
         var html = `
