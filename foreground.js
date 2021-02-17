@@ -50,6 +50,25 @@ function setup() {
                         $('.cont').toggle();
                         $('.repldmBtn .fa-paper-plane').toggle();
                         $('.new-msg-cont').hide();
+                        if (!open) { // open
+                            $('.cont').css('background-color', 'rgba(246, 246, 246, 0)');
+                            $('.cont').show();
+                            $('.cont').animate({
+                                backgroundColor: 'rgb(246, 246, 246)'
+                            }, 300);
+                            
+                            $('.dmWrapper').css({
+                                transform: 'translateY(-50%)',
+                                opacity: '0.2'
+                            });
+                            $('.dmWrapper').animate({
+                                transform: 'translateY(0%)',
+                                opacity: '1'
+                            }, 300);
+                        }
+                        else { // close
+
+                        }
                     })
                 }
             }, 100)
