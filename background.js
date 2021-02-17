@@ -4,7 +4,9 @@ chrome.tabs.onActivated.addListener(tab => {
     chrome.tabs.get(tab.tabId, currentTabInfo => {
         if (/^https:\/\/repl\.it/.test(currentTabInfo.url)) {
             chrome.tabs.insertCSS(null, {file: './repldm.css'});
-            chrome.tabs.executeScript(null, {file: './foreground.js'}, () => console.log('i injected'));
+            chrome.tabs.executeScript(null, {file: './jquery.min.js'}, () => {
+                chrome.tabs.executeScript(null, {file: './foreground.js'}, () => console.log('i injected'));  
+            })
         }
     })
 })
