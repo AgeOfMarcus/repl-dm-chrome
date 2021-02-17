@@ -88,7 +88,7 @@
     padding: 2px 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 90px;
     cursor: pointer;
     flex-shrink: 0;
@@ -100,6 +100,8 @@
 .left-msgs .node .pfp {
     width: 70px;
     height: 70px;
+    min-width: 70px;
+    min-height: 70px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -115,6 +117,7 @@
 
 .left-msgs .mid {
     margin-left: 12px;
+    flex-grow: 1;
 }
 .left-msgs .name {
     color: #262626;
