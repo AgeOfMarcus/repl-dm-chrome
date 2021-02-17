@@ -9,7 +9,7 @@ $('html').on('DOMSubtreeModified', 'body', function(){
 
 
 var html = `
-<div class='repldmBtn' onclick='togglePage();'>
+<div class='repldmBtn'>
     <i class="fas fa-paper-plane"></i>
     <i class="far fa-paper-plane" style='display: none;'></i>
 </div>`;
@@ -152,7 +152,7 @@ var pageHtml = `<div class='cont' style='display: none;'>
 
 $('body').append($(pageHtml));
 
-function togglePage() {
+$('.repldmBtn').click(() => {
     var open = $('.cont').is(':visible');
     if (!open) { // open
         $('.cont').open();
@@ -164,4 +164,4 @@ function togglePage() {
         $('.repldmBtn far').hide();
         $('.repldmBtn fas').show();
     }
-}
+})
