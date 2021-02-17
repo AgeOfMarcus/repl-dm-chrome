@@ -13,7 +13,7 @@ var html = `
     <i class="fas fa-paper-plane"></i>
     <i class="far fa-paper-plane" style='display: none;'></i>
 </div>`;
-$(html).insertBefore('header .right');
+$(html).insertAfter('header .left');
 
 
 var pageHtml = `<div class='cont' style='display: none;'>
