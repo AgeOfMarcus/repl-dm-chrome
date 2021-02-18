@@ -51,20 +51,20 @@ function setup() {
                         if (!open) { // open
                             $('.cont').show();
                             $('.dmWrapper').css({
-                                marginTop: '-300px',
+                                marginTop: '-400px',
                                 opacity: '0.2'
                             });
                             $('.dmWrapper').animate({
                                 marginTop: '0',
                                 opacity: '1'
-                            }, 150);
+                            }, 100);
                         }
                         else { // close
                             $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
-                                marginTop: '-300px',
+                                marginTop: '-400px',
                                 opacity: '0.1'
-                            }, 150, () => {
+                            }, 100, () => {
                                 $('.cont').hide();
                             });
                         }
@@ -255,9 +255,16 @@ $('.message-btn').bind('click', (event) => {
 
 function newMessageTo(name) {
     $('.cont').show();
-    $('.new-msg-cont').show();
-    $('.new-msg-cont .to input').val(name);
-    $('.new-msg-cont .message input').focus();
+    
+    $('.dmWrapper').animate({
+        marginTop: '0',
+        opacity: '1'
+    }, 100, () => {
+        $('.new-msg-cont').show();
+        $('.new-msg-cont .to input').val(name);
+        $('.new-msg-cont .message input').focus();
+    });
+
     $('.repldmBtn .fa-paper-plane').toggle();
 
     // delete the profile prompt thingy
