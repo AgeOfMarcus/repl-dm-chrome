@@ -83,13 +83,13 @@ function setup() {
                         <div class='left'>
                             <div class='left-top'>
                                 <div class='settings-btn'> 
-                                    <i class="fas fa-cog fa-lg"></i>
+                                    <i class="fas fa-cog"></i>
                                 </div>
                                 <div class='title'>
                                     Direct
                                 </div>
                                 <div class='write-msg-btn'>
-                                    <i class="far fa-edit fa-lg"></i>
+                                    <i class="far fa-edit"></i>
                                 </div>
                             </div>
 
