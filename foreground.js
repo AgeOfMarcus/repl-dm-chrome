@@ -57,16 +57,21 @@ function setup() {
                             }, 100);
 
                             $('.dmWrapper').css({
-                                top: '-200px',
+                                marginTop: '-200px',
                                 opacity: '0.2'
                             });
                             $('.dmWrapper').animate({
-                                top: '0',
+                                marginTop: '0',
                                 opacity: '1'
-                            }, 300);
+                            }, 250);
                         }
                         else { // close
-
+                            $('.dmWrapper').animate({
+                                marginTop: '-200px',
+                                opacity: '0.2'
+                            }, 250, () => {
+                                $('.cont').hide();
+                            });
                         }
                     })
                 }
@@ -258,5 +263,8 @@ function newMessageTo(name) {
     $('.new-msg-cont').show();
     $('.new-msg-cont .to input').val(name);
     $('.new-msg-cont .message input').focus();
-    $('.repldmBtn .fa-paper-plane').toggle()
+    $('.repldmBtn .fa-paper-plane').toggle();
+
+    // delete the profile prompt thingy
+    $('.user-hover-card-anchor').remove();
 }
