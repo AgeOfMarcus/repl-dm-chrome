@@ -48,28 +48,23 @@ function setup() {
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
                         $('.repldmBtn .fa-paper-plane').toggle();
-                        $('.new-msg-cont').hide();
                         if (!open) { // open
-                            $('.cont').css('opacity', '0.4');
                             $('.cont').show();
-                            $('.cont').animate({
-                                opacity: '1'
-                            }, 100);
-
                             $('.dmWrapper').css({
-                                marginTop: '-200px',
+                                marginTop: '-300px',
                                 opacity: '0.2'
                             });
                             $('.dmWrapper').animate({
                                 marginTop: '0',
                                 opacity: '1'
-                            }, 250);
+                            }, 150);
                         }
                         else { // close
+                            $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
-                                marginTop: '-200px',
-                                opacity: '0.2'
-                            }, 250, () => {
+                                marginTop: '-300px',
+                                opacity: '0.1'
+                            }, 150, () => {
                                 $('.cont').hide();
                             });
                         }
