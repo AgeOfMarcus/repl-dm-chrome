@@ -255,7 +255,7 @@ $('.message-btn').bind('click', (event) => {
 
 function newMessageTo(name) {
     $('.cont').show();
-    
+
     $('.dmWrapper').animate({
         marginTop: '0',
         opacity: '1'
@@ -268,5 +268,7 @@ function newMessageTo(name) {
     $('.repldmBtn .fa-paper-plane').toggle();
 
     // delete the profile prompt thingy
-    $('.user-hover-card-anchor').remove();
+    if ($('.user-hover-card-anchor').length !== 0) {
+        $('.user-hover-card-anchor').remove();
+    }
 }
