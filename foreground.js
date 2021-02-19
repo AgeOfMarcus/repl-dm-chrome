@@ -250,6 +250,7 @@ for (i=0; i<els.length; i++) {
 var els = document.getElementsByClassName('change-color');
 for (i=0; i<els.length; i++) {
     els[i].addEventListener((event) => {
+        console.log(event.target.style.backgroundColor)
         document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
     })
 }
