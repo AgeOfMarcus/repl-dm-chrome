@@ -51,8 +51,8 @@
     align-items: center;
 }
 .left-top .settings-btn {
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     color: #19191a;
     display: flex;
     justify-content: center;
@@ -62,8 +62,8 @@
     left: 10px;
 }
 .left-top .write-msg-btn {
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     color: #19191a;
     display: flex;
     justify-content: center;
