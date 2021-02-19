@@ -40,8 +40,15 @@ function setup() {
 
     // add repldm button 
     if ($('.repldmBtn').length == 0) {
+        var dark;
+        if (__REPLIT_REDUX_STORE__.getState().user.userInfo.editorPreferences.theme == 'replitDark') {
+            dark = 'darktheme';
+        }
+        else {
+            dark = '';
+        }
         var html = `
-        <div class='repldmBtn'>
+        <div class='repldmBtn ${dark}'>
             <i class="fas fa-paper-plane" style='display: none;'></i>
             <i class="far fa-paper-plane"></i>
             <div class='label'>repl DM</div>
