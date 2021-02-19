@@ -139,6 +139,7 @@ function setup() {
                                         <div class='change-color' style='background-color: #25D366;'></div>
                                         <div class='change-color' style='background-color: #de6052;'></div>
                                         <div class='change-color' style='background-color: #f2ec3a;'></div>
+                                        <div class='change-color' style='background-color: white; border: 1px solid rgb(219,219,219);'></div>
                                     </div>
                                 </div>
                             </div>
@@ -146,29 +147,62 @@ function setup() {
 
                         <!-- right -->
                         <div class='right'> 
-                            <div class='no-msg'>
-                                <img style='width: 100px; height: auto; margin-top: -30px;' src='https://chrome-extension.rafrafraf.repl.co/dupl.png' />
+                            <div class='no-msg' style='display: none;'>
+                                <img style='width: 100px; height: auto; margin-top: -30px;' src='./dupl.png' />
                                 <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                 <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit directly, here on repl.it</span>
                             </div>
 
                             <!-- chat -->
                             <div class='chat'> 
-                            
+                                <div class='top'>
+                                    <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
+                                    <span>Name</span>
+                                </div>
+                                <div class='wrapper'>
+                                    <div class='box'>
+                                        <div class='msg-node recieved'>
+                                            ayo wys B ;)
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            wagwan piffting send me your bbn pin
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            ewgSDGSEG WEWEG WEGWE AG GEZZGEG 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
+                                        </div>
+                                        <div class='msg-node recieved'>
+                                            E\SGGSE\ 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGG\ 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
+                                        </div>
+                                        <div class='msg-node recieved'>
+                                            E\SGGSE\ 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGG\ 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
+                                        </div>
+                                        <div class='msg-node recieved'>
+                                            E\SGGSE\ 
+                                        </div>
+                                        <div class='msg-node sent'>
+                                            \ ESGG\ 
+                                        </div>
+                                    </div>
+                                    <div class='msg-wrapper'>
+                                        <input class='msg' placeholder='message...' />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- new message -->
-                    <div class='new-msg-cont' style='display: none;'>
-                        <div class='new-msg'>
-                            <div class='top'>
-                                <div class='close-new-msg'><i class="fas fa-times"></i></div>
-                                New Message
-                                <div class='send-new-msg'>Send</div>
-                            </div>
-                            <div class='to'>To: <input type='text' placeholder='Search' /></div>
-                            <div class='message'><input type='text' placeholder="Message body" /></div>
                         </div>
                     </div>
                 </div>`;
@@ -205,6 +239,13 @@ var els = document.getElementsByClassName('change-color');
 for (i=0; i<els.length; i++) {
     els[i].addEventListener('click', (event) => {
         document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
+        console.log(event.target.style.backgroundColor)
+        if (event.target.style.backgroundColor == 'white') {
+            document.querySelector('.dmWrapper .right').classList.add('white-bg');
+        }
+        else {
+            document.querySelector('.dmWrapper .right').classList.remove('white-bg');
+        }
     })
 }
 
