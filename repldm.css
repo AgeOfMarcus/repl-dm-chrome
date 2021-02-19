@@ -57,6 +57,26 @@
     width: 50% !important;
 }
 
+.repldmBtn::before {
+    content: 'repl DM - by dupl';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    opacity: 0;
+    transition-delay: 0.5s;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    word-break: keep-all;
+    z-index: 2000;
+    white-space: nowrap;
+}
+.repldmBtn:hover::before {
+    opacity: 1;
+}
+
 
 .message-btn {
     width: fit-content;
