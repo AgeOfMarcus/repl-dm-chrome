@@ -231,7 +231,7 @@ window.onload = setup();
     //$('.dmWrapper .settings').toggleClass('open');
 //})
 
-window.toggleOpen = () => {
+let toggleOpen = () => {
     var ele = document.querySelector('.dmWrapper .settings');
     if (ele.classList.contains('open')) {
         ele.classList.remove('open');
