@@ -28,9 +28,9 @@ function doAuth() {
 
 function setup() {
     console.log('setup')
+    console.log($('.profile-username-label').length)
     // add message button to profile page
     if ($('.profile-username-label').length !== 0) {
-        console.log($('.profile-username-label').length)
         $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
         document.querySelector('.message-btn').addEventListener('click', (event) => {
