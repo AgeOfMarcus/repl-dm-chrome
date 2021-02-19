@@ -34,67 +34,48 @@ function setup() {
 
     // add repldm button 
     if ($('.repldmBtn').length == 0) {
-        function check(codePage=false) {
-            setTimeout(() => {
-                if ($('header .left').length == 0) {
-                    if ($('.repldmBtn').length == 0) {
-                        check(true);
-                    }
-                }
-                else if ($('.repldmBtn').length == 0) {
-                    var maybe;
-                    if (codePage || $('.ws-header-cta-label').length == 1) {
-                        maybe = 'transform: translateX(-300%)';
-                    }
-                    else {
-                        maybe = '';
-                    }
-                    var html = `
-                    <div class='repldmBtn' style='${maybe}'>
-                        <i class="fas fa-paper-plane" style='display: none;'></i>
-                        <i class="far fa-paper-plane"></i>
-                        <div class='label'>repl DM</div>
-                    </div>`;
-                    $(html).insertAfter('.scroll-container .new-repl-cta');
+        var html = `
+        <div class='repldmBtn'>
+            <i class="fas fa-paper-plane" style='display: none;'></i>
+            <i class="far fa-paper-plane"></i>
+            <div class='label'>repl DM</div>
+        </div>`;
+        $(html).insertAfter('.scroll-container .new-repl-cta');
 
-                    $('.repldmBtn').click(() => {
-                        var open = $('.cont').is(':visible');
-                        $('.repldmBtn .fa-paper-plane').toggle();
-                        if (!open) { // open
-                            $('.repldmBtn').css({
-                                borderRight: '3px solid #3485e4',
-                                backgroundColor: 'rgba(52,133,228,0.12)'    
-                            });
-                            $('body').css('overflow', 'hidden'); // stops page scrolling
-                            $('.cont').show();
-                            $('.dmWrapper').css({
-                                marginTop: '-400px',
-                                opacity: '0.2'
-                            });
-                            $('.dmWrapper').animate({
-                                marginTop: '0',
-                                opacity: '1'
-                            }, 100);
-                        }
-                        else { // close
-                        $('body').css('overflow', 'scroll');
-                            $('.repldmBtn').css({
-                                borderRight: '3px solid transparent',
-                                backgroundColor: ''    
-                            });
-                            $('.new-msg-cont').hide();
-                            $('.dmWrapper').animate({
-                                marginTop: '-400px',
-                                opacity: '0.1'
-                            }, 100, () => {
-                                $('.cont').hide();
-                            });
-                        }
-                    })
-                }
-            }, 100)
-        }
-        check();
+        $('.repldmBtn').click(() => {
+            var open = $('.cont').is(':visible');
+            $('.repldmBtn .fa-paper-plane').toggle();
+            if (!open) { // open
+                $('.repldmBtn').css({
+                    borderRight: '3px solid #3485e4',
+                    backgroundColor: 'rgba(52,133,228,0.12)'    
+                });
+                $('body').css('overflow', 'hidden'); // stops page scrolling
+                $('.cont').show();
+                $('.dmWrapper').css({
+                    marginTop: '-400px',
+                    opacity: '0.2'
+                });
+                $('.dmWrapper').animate({
+                    marginTop: '0',
+                    opacity: '1'
+                }, 100);
+            }
+            else { // close
+            $('body').css('overflow', 'scroll');
+                $('.repldmBtn').css({
+                    borderRight: '3px solid transparent',
+                    backgroundColor: ''    
+                });
+                $('.new-msg-cont').hide();
+                $('.dmWrapper').animate({
+                    marginTop: '-400px',
+                    opacity: '0.1'
+                }, 100, () => {
+                    $('.cont').hide();
+                });
+            }
+        })
     }
 
     // add repldm page
