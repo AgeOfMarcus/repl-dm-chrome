@@ -297,10 +297,10 @@
 
 /* chat */
 .white-bg .no-msg img {
-    -webkit-filter: drop-shadow(1px 1px 0 rgb(219,219,219))
-                  drop-shadow(-1px -1px 0 rgb(219,219,219));
-    filter: drop-shadow(1px 1px 0 rgb(219,219,219)) 
-          drop-shadow(-1px -1px 0 rgb(219,219,219));
+    -webkit-filter: drop-shadow(1px 1px 0 black)
+                  drop-shadow(-1px -1px 0 black);
+    filter: drop-shadow(1px 1px 0 black) 
+          drop-shadow(-1px -1px 0 black);
 }
 .white-bg .no-msg * {
     color: #19191a !important;
