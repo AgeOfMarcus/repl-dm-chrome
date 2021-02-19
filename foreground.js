@@ -78,7 +78,7 @@ function setup() {
                         <!-- left -->
                         <div class='left'>
                             <div class='left-top'>
-                                <div class='settings-btn'> 
+                                <div class='settings-btn' onclick='toggleOpen();'> 
                                     <i class="fas fa-cog"></i>
                                 </div>
                                 <div class='title'>
@@ -172,7 +172,7 @@ function setup() {
                             <!-- settings -->
                             <div class='settings'>
                                 <div class='left-top'>
-                                    <div class='settings-btn' style='color: #eb4634;'> 
+                                    <div class='settings-btn' onclick='toggleOpen();' style='color: #eb4634;'> 
                                         <i class="fas fa-cog fa-lg"></i>
                                     </div>
                                     <div class='title'>
@@ -230,17 +230,15 @@ window.onload = setup();
 //$('.settings-btn').bind('click', () => {
     //$('.dmWrapper .settings').toggleClass('open');
 //})
-var els = document.getElementsByClassName('settings-btn');
-for (i=0; i<els.length; i++) {
-    els[i].addEventListener('click', () => {
-        var ele = document.querySelector('.dmWrapper .settings');
-        if (ele.classList.contains('open')) {
-            ele.classList.remove('open');
-        }
-        else {
-            ele.classList.add('open');
-        }
-    })
+
+var toggleOpen = () => {
+    var ele = document.querySelector('.dmWrapper .settings');
+    if (ele.classList.contains('open')) {
+        ele.classList.remove('open');
+    }
+    else {
+        ele.classList.add('open');
+    }
 }
 
 // change bg color
