@@ -146,7 +146,7 @@ function setup() {
                         </div>
 
                         <!-- right -->
-                        <div class='right'> 
+                        <div class='right white-bg'> 
                             <div class='no-msg' style='display: none;'>
                                 <img style='width: 100px; height: auto; margin-top: -30px;' src='./dupl.png' />
                                 <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
