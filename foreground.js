@@ -80,7 +80,7 @@ function setup() {
                         $('body').css('overflow', 'scroll');
                             $('.repldmBtn').css({
                                 borderRight: '3px solid transparent',
-                                backgroundColor: 'unset'    
+                                backgroundColor: ''    
                             });
                             $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
