@@ -28,8 +28,13 @@ function doAuth() {
 
 function setup() {
     // add message button to profile page
-    if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
+    if ($('.profile-username-label').length !== 0) {
+        console.log($('.profile-username-label').length)
         $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
+
+        document.querySelector('.message-btn').addEventListener('click', (event) => {
+            newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
+        })
     }
 
     // add repldm button 
@@ -268,13 +273,6 @@ document.querySelector('.close-new-msg').addEventListener('click', () => {
 //})
 document.querySelector('.write-msg-btn').addEventListener('click', () => {
     document.querySelector('.new-msg-cont').style.display = '';
-})
-
-//$('.message-btn').bind('click', (event) => {
-    //newMessageTo($(event.target).prev('.profile-username-label').text().split(" ")[0]);
-//})
-document.querySelector('.message-btn').addEventListener('click', (event) => {
-    newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
 })
 
 function newMessageTo(name) {
