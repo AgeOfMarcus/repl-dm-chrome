@@ -296,12 +296,16 @@
 
 
 /* chat */
-.white-bg .no-msg * {
+.white-bg .no-msg img {
     -webkit-filter: drop-shadow(1px 1px 0 rgb(219,219,219))
                   drop-shadow(-1px -1px 0 rgb(219,219,219));
     filter: drop-shadow(1px 1px 0 rgb(219,219,219)) 
           drop-shadow(-1px -1px 0 rgb(219,219,219));
 }
+.white-bg {
+    color: #19191a;
+}
+
 .right .chat {
     width: 100%;
     height: 100%;

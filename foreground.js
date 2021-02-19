@@ -147,7 +147,7 @@ function setup() {
 
                         <!-- right -->
                         <div class='right white-bg'> 
-                            <div class='no-msg' style='display: none;'>
+                            <div class='no-msg'>
                                 <img style='width: 100px; height: auto; margin-top: -30px;' src='./dupl.png' />
                                 <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                 <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit directly, here on repl.it</span>
@@ -262,6 +262,11 @@ document.querySelector('.close-new-msg').addEventListener('click', () => {
 //})
 document.querySelector('.write-msg-btn').addEventListener('click', () => {
     document.querySelector('.new-msg-cont').style.display = '';
+})
+
+// open message
+$('.node-radio').bind('click', () => {
+    document.querySelector('.right .no-msg').style.display = 'none';
 })
 
 function newMessageTo(name) {
