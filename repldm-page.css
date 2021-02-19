@@ -92,6 +92,7 @@
     height: 90px;
     cursor: pointer;
     flex-shrink: 0;
+    border-right: 3px solid transparent;
 }
 .left-msgs .node:hover {
     background-color: rgba(200,200,200,0.1);
@@ -114,6 +115,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+
+.node-radio {
+    display: none;
+}
+.node-radio:checked + .node {
+    border-right: 3px solid #3485e4;
+}
+
+
 
 .left-msgs .mid {
     margin-left: 12px;

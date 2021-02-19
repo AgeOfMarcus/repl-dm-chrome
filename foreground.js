@@ -29,7 +29,6 @@ function doAuth() {
 function setup() {
     // add message button to profile page
     setTimeout(() => {
-        console.log($('.profile-username-label').length)
         if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
             $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
@@ -98,7 +97,8 @@ function setup() {
 
                             <!-- messages -->
                             <div class='left-msgs'> 
-                                <div class='node'>
+                                <input type='radio' class='node-radio' id='msg-0' name='msg' />
+                                <label class='node' for='msg-0'>
                                     <div class='pfp'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                     </div>
@@ -107,9 +107,10 @@ function setup() {
                                         <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
                                     </div>
                                     <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
+                                </label>
+                                
+                                <input type='radio' class='node-radio' id='msg-1' name='msg' />
+                                <label class='node seen' for='msg-1'>
                                     <div class='pfp'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                     </div>
@@ -118,62 +119,7 @@ function setup() {
                                         <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
                                     </div>
                                     <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
-                                    <div class='pfp'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                    </div>
-                                    <div class='mid'> 
-                                        <div class='name'>someone else</div>
-                                        <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                    </div>
-                                    <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
-                                    <div class='pfp'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                    </div>
-                                    <div class='mid'> 
-                                        <div class='name'>someone else</div>
-                                        <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                    </div>
-                                    <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
-                                    <div class='pfp'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                    </div>
-                                    <div class='mid'> 
-                                        <div class='name'>someone else</div>
-                                        <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                    </div>
-                                    <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
-                                    <div class='pfp'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                    </div>
-                                    <div class='mid'> 
-                                        <div class='name'>someone else</div>
-                                        <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                    </div>
-                                    <div class='circle'></div>
-                                </div>
-
-                                <div class='node seen'>
-                                    <div class='pfp'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                    </div>
-                                    <div class='mid'> 
-                                        <div class='name'>someone else</div>
-                                        <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                    </div>
-                                    <div class='circle'></div>
-                                </div>
+                                </label>
                             </div>
 
                             <!-- settings -->
