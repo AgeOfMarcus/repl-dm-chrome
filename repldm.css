@@ -24,11 +24,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     position: relative;
+    border-right: 3px solid transparent;
 }
-
+.repldmBtn:hover {
+    background-color: #f3f3f3;
+}
 .repldmBtn::after {
     content: '1';
     background-color: #ff491c;
@@ -46,34 +49,14 @@
 }
 
 .repldmBtn .fa-paper-plane {
-    width: 50% !important;
-}
-
-.repldmBtn::before {
-    content: 'repl DM by dupl';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 30%);
-    opacity: 0;
-    transition-delay: 0.5s;
-    background-color: rgba(0,0,0,0.6);
-    color: white;
-    padding: 4px;
-    border-radius: 4px;
-    word-break: keep-all;
-    z-index: 2000;
-    white-space: nowrap;
-}
-.repldmBtn:hover::before {
-    opacity: 1;
-}
-
-.repldmBtn img {
     position: absolute;
     left: 8px;
-    height: 50px;
+    height: 16px;
+    width: 16px;
     width: auto;
+}
+.repldmBtn .label {
+    color: #363636;
 }
 
 

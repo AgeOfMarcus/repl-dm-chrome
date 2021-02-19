@@ -51,15 +51,17 @@ function setup() {
                     }
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
-                        <img src='https://i.imgur.com/9xLqobG.png?1' />
-                        <div>repl DM</div>
+                        <i class="fas fa-paper-plane"></i>
+                        <i class="far fa-paper-plane" style='display: none;'></i>
+                        <div class='label'>repl DM</div>
                     </div>`;
                     $(html).insertAfter('.scroll-container .new-repl-cta');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
-                        //$('.repldmBtn .fa-paper-plane').toggle();
+                        $('.repldmBtn .fa-paper-plane').toggle();
                         if (!open) { // open
+                            $('.repldmBtn').css('border-right', '3px solid #3485e4');
                             $('body').css('overflow', 'hidden'); // stops page scrolling
                             $('.cont').show();
                             $('.dmWrapper').css({
@@ -73,6 +75,7 @@ function setup() {
                         }
                         else { // close
                         $('body').css('overflow', 'scroll');
+                            $('.repldmBtn').css('border-right', '3px solid transparent');
                             $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
                                 marginTop: '-400px',
