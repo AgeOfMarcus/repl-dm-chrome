@@ -61,7 +61,10 @@ function setup() {
                         var open = $('.cont').is(':visible');
                         $('.repldmBtn .fa-paper-plane').toggle();
                         if (!open) { // open
-                            $('.repldmBtn').css('border-right', '3px solid #3485e4');
+                            $('.repldmBtn').css({
+                                borderRight: '3px solid #3485e4',
+                                backgroundColor: 'rgba(52,133,228,0.12)'    
+                            });
                             $('body').css('overflow', 'hidden'); // stops page scrolling
                             $('.cont').show();
                             $('.dmWrapper').css({
@@ -75,7 +78,10 @@ function setup() {
                         }
                         else { // close
                         $('body').css('overflow', 'scroll');
-                            $('.repldmBtn').css('border-right', '3px solid transparent');
+                            $('.repldmBtn').css({
+                                borderRight: '3px solid transparent',
+                                backgroundColor: 'unset'    
+                            });
                             $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
                                 marginTop: '-400px',
