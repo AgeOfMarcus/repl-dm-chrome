@@ -29,6 +29,7 @@ function doAuth() {
 function setup() {
     // add message button to profile page
     setTimeout(() => {
+        console.log($('.profile-username-label').length)
         if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
             $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
@@ -36,7 +37,7 @@ function setup() {
                 newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
             })
         }
-    }, 100)
+    }, 200)
 
     // add repldm button 
     if ($('.repldmBtn').length == 0) {
