@@ -274,7 +274,7 @@ document.querySelector('.write-msg-btn').addEventListener('click', () => {
     //newMessageTo($(event.target).prev('.profile-username-label').text().split(" ")[0]);
 //})
 document.querySelector('.message-btn').addEventListener('click', (event) => {
-    newMessageTo(event.targetpreviousElementSibling.innerText.split(" ")[0]);
+    newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
 })
 
 function newMessageTo(name) {
