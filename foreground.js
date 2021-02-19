@@ -60,6 +60,7 @@ function setup() {
                         var open = $('.cont').is(':visible');
                         $('.repldmBtn .fa-paper-plane').toggle();
                         if (!open) { // open
+                            $('body').css('overflow', 'hidden'); // stops page scrolling
                             $('.cont').show();
                             $('.dmWrapper').css({
                                 marginTop: '-400px',
@@ -71,6 +72,7 @@ function setup() {
                             }, 100);
                         }
                         else { // close
+                        $('body').css('overflow', 'scroll');
                             $('.new-msg-cont').hide();
                             $('.dmWrapper').animate({
                                 marginTop: '-400px',
