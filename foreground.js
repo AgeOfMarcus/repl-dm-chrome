@@ -53,7 +53,7 @@ function setup() {
                     <div class='repldmBtn' style='${maybe}'>
                         <img src='https://i.imgur.com/9xLqobG.png?1' />
                     </div>`;
-                    $(html).insertAfter('header .left');
+                    $(html).insertBefore('.scroll-container .new-repl-cta');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
