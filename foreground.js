@@ -51,8 +51,8 @@ function setup() {
                     }
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
-                        <i class="fas fa-paper-plane"></i>
-                        <i class="far fa-paper-plane" style='display: none;'></i>
+                        <i class="fas fa-paper-plane" style='display: none;'></i>
+                        <i class="far fa-paper-plane"></i>
                         <div class='label'>repl DM</div>
                     </div>`;
                     $(html).insertAfter('.scroll-container .new-repl-cta');
