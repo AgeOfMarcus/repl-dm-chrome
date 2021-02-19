@@ -51,14 +51,13 @@ function setup() {
                     }
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
-                        <i class="fas fa-paper-plane" style='display: none;'></i>
-                        <i class="far fa-paper-plane"></i>
+                        <img src='https://i.imgur.com/9xLqobG.png?1' />
                     </div>`;
                     $(html).insertAfter('header .left');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
-                        $('.repldmBtn .fa-paper-plane').toggle();
+                        //$('.repldmBtn .fa-paper-plane').toggle();
                         if (!open) { // open
                             $('body').css('overflow', 'hidden'); // stops page scrolling
                             $('.cont').show();

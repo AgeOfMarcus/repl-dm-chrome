@@ -24,15 +24,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #21953e;
+    
     border-radius: 6px;
     cursor: pointer;
     color: white;
     position: relative;
-}
-
-.repldmBtn:hover {
-    background-color: #228037;
 }
 
 .repldmBtn::after {
@@ -50,6 +46,7 @@
     right: -7px;
     padding: 3px;
     font-size: 12px;
+    transition: transform 0.3s;
 }
 
 .repldmBtn .fa-paper-plane {
@@ -61,7 +58,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translate(-50%, 10%);
+    transform: translate(-50%, 30%);
     opacity: 0;
     transition-delay: 0.5s;
     background-color: rgba(0,0,0,0.6);
@@ -74,6 +71,18 @@
 }
 .repldmBtn:hover::before {
     opacity: 1;
+}
+
+.repldmBtn img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s;
+}
+.repldmBtn:hover img {
+    transform: translateY(-5px);
+}
+.repldmBtn:hover::after {
+    transform: translateY(-5px);
 }
 
 
