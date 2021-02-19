@@ -148,7 +148,7 @@ function setup() {
                         <!-- right -->
                         <div class='right white-bg'> 
                             <div class='no-msg'>
-                                <img style='width: 100px; height: auto; margin-top: -30px;' src='./dupl.png' />
+                                <img style='width: 100px; height: auto; margin-top: -30px;' src='https://chrome-extension.rafrafraf.repl.co/dupl.png' />
                                 <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                 <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit directly, here on repl.it</span>
                             </div>
