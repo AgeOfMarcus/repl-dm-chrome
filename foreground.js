@@ -218,7 +218,19 @@ function setup() {
                             <div class='message'><input type='text' placeholder="Message body" /></div>
                         </div>
                     </div>
-                </div>`;
+                </div>
+
+                <script>
+function toggleOpen() {
+    var ele = document.querySelector('.dmWrapper .settings');
+    if (ele.classList.contains('open')) {
+        ele.classList.remove('open');
+    }
+    else {
+        ele.classList.add('open');
+    }
+}
+                </script>`;
 
         $('body').append($(pageHtml));
     }
@@ -231,15 +243,7 @@ window.onload = setup();
     //$('.dmWrapper .settings').toggleClass('open');
 //})
 
-let toggleOpen = () => {
-    var ele = document.querySelector('.dmWrapper .settings');
-    if (ele.classList.contains('open')) {
-        ele.classList.remove('open');
-    }
-    else {
-        ele.classList.add('open');
-    }
-}
+
 
 // change bg color
 //$('.change-color').bind('click', (event) => {
