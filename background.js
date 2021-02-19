@@ -14,7 +14,3 @@ function addScripts(tab) {
         }
     })
 }
-
-var foo = () => {
-    console.log(1)
-}
