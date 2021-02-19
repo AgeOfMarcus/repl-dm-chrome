@@ -205,6 +205,18 @@ function setup() {
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class='new-msg-cont' style='display: none;'>
+                    <div class='new-msg'>
+                        <div class='top'>
+                            <div class='close-new-msg'><i class="fas fa-times"></i></div>
+                            New Message
+                            <div class='send-new-msg'>send</div>
+                        </div>
+                        <div class='to'>To: <input type='text' placeholder='Search' /></div>
+                        <div class='message'><input type='text' placeholder="Message body" /></div>
+                    </div>
                 </div>`;
 
         $('body').append($(pageHtml));
