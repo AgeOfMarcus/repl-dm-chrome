@@ -1,3 +1,97 @@
+
+.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)::after {
+    content: 'message';
+    margin-left: 5px;
+    background-color: #21953e;
+    border: 1px solid transparent;
+    color: white;
+    padding: 2px;
+    transition: color 0.5s;
+    cursor: default;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name):hover::after {
+    background-color: #228037;
+}
+
+
+.repldmBtn {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    border-right: 3px solid transparent;
+    padding: 8px;
+    margin-bottom: 4px;
+}
+.repldmBtn.open {
+    border-right: 3px solid #3485e4;
+    background-color: rgba(52,133,228,0.12);
+}
+.repldmBtn:hover {
+    background-color: #f3f3f3;
+}
+.repldmBtn::after {
+    content: '1';
+    background-color: #ff491c;
+    width: 14px;
+    height: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 12px;
+}
+
+.repldmBtn .fa-paper-plane {
+    height: 16px;
+    width: auto;
+    margin-right: 8px;
+}
+.repldmBtn .label {
+    margin-right: auto;
+}
+.repldmBtn .label, .repldmBtn .fa-paper-plane {
+    color: #363636;
+    user-select: none;
+}
+
+
+.darktheme .repldmBtn .label, .darktheme .repldmBtn .fa-paper-plane {
+    color: #e1e2e4;
+}
+.darktheme .repldmBtn:hover {
+    background-color: #262b3b;
+}
+.darktheme .repldmBtn.open {
+    border-right: 3px solid transparent;
+}
+
+.message-btn {
+    width: fit-content;
+    margin: auto;
+    padding: 3px 9px;
+    font-size: 16px;
+    background-color: #21953e;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.message-btn:hover {
+    background-color: #228037;
+}
+
+
+
+/* repldm page css */
 .cont {
     width: 100%;
     height: calc(100% - 60px);
@@ -11,6 +105,7 @@
     align-items: center;
     color: black;
     font-family: 'IBM Plex Sans',sans-serif;
+    z-index: 1000;
 }
 
 .dmWrapper {
