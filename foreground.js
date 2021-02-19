@@ -227,9 +227,9 @@ function setup() {
 window.onload = setup();
 
 // toggle settings
-$('.settings-btn').bind('click', () => {
-    $('.dmWrapper .settings').toggleClass('open');
-})
+//$('.settings-btn').bind('click', () => {
+    //$('.dmWrapper .settings').toggleClass('open');
+//})
 var els = document.getElementsByClassName('settings-btn');
 for (i=0; i<els.length; i++) {
     els[i].addEventListener('click', () => {
@@ -244,9 +244,15 @@ for (i=0; i<els.length; i++) {
 }
 
 // change bg color
-$('.change-color').bind('click', (event) => {
-    $('.dmWrapper .right').css('background-color', $(event.target).css('background-color'));
-})
+//$('.change-color').bind('click', (event) => {
+    //$('.dmWrapper .right').css('background-color', $(event.target).css('background-color'));
+//})
+var els = document.getElementsByClassName('change-color');
+for (i=0; i<els.length; i++) {
+    els[i].addEventListener((event) => {
+        document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
+    })
+}
 
 // close new message
 $('.close-new-msg').bind('click', () => {
