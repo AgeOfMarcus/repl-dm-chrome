@@ -58,7 +58,7 @@
 }
 
 .repldmBtn::before {
-    content: 'repl DM - by dupl';
+    content: 'repl DM by dupl';
     position: absolute;
     top: 100%;
     left: 50%;
