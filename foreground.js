@@ -27,16 +27,16 @@ function doAuth() {
 }
 
 function setup() {
-    console.log('setup')
-    console.log($('.profile-username-label').length)
     // add message button to profile page
-    if ($('.profile-username-label').length !== 0) {
-        $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
+    setTimeout(() => {
+        if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
+            $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
-        document.querySelector('.message-btn').addEventListener('click', (event) => {
-            newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
-        })
-    }
+            document.querySelector('.message-btn').addEventListener('click', (event) => {
+                newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
+            })
+        }
+    }, 100)
 
     // add repldm button 
     if ($('.repldmBtn').length == 0) {
