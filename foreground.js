@@ -15,16 +15,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
     })
 });
 
-function doAuth() {
-    var authWindow = window.open('https://repl.it/auth_with_repl_site?domain=repldm.dupl.repl.co');
-    authWindow.addEventListener('message', console.log)
-    setTimeout(function() {
-        authWindow.document.getElementsByClassName("jsx-2378225919")[0].click();
-        setTimeout(function() {
-            authWindow.close();
-        }, 1000)
-    }, 2000)
-}
+chrome.storage.sync.set({test: true}, () => { console.log("hell yea buddy") })
 
 function setup() {
     // add message button to profile page
