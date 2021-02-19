@@ -16,7 +16,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 });
 
 chrome.storage.sync.set({test: true}, () => { console.log("hell yea buddy") })
-chrome.storage.sync.set(['test'], (res) => { console.log("res:", res) })
+chrome.storage.sync.get(['test'], (res) => { console.log("res:", res) })
 
 function setup() {
     // add message button to profile page
