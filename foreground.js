@@ -15,6 +15,17 @@ $('html').on('DOMSubtreeModified', 'body', () => {
     })
 });
 
+function doAuth() {
+    var authWindow = window.open('https://repl.it/auth_with_repl_site?domain=repldm.dupl.repl.co');
+    authWindow.addEventListener('message', console.log)
+    setTimeout(function() {
+        authWindow.document.getElementsByClassName("jsx-2378225919")[0].click();
+        setTimeout(function() {
+            authWindow.close();
+        }, 1000)
+    }, 2000)
+}
+
 function setup() {
     // add message button to profile page
     if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
@@ -269,6 +280,6 @@ function newMessageTo(name) {
 
     // delete the profile prompt thingy
     if ($('.user-hover-card-anchor').length !== 0) {
-        $('.user-hover-card-anchor').remove();
+        $('.user-hover-card-anchor').hide();
     }
 }
