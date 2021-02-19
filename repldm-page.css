@@ -248,6 +248,10 @@
     left: 10px;
     cursor: pointer;
 }
+.new-msg .top .close-new-msg svg {
+    min-width: 11px;
+    flex-shrink: 0;
+}
 .new-msg .to, .new-msg .message {
     flex-shrink: 0;
     display: flex;
