@@ -218,19 +218,7 @@ function setup() {
                             <div class='message'><input type='text' placeholder="Message body" /></div>
                         </div>
                     </div>
-                </div>
-
-                <script>
-function toggleOpen() {
-    var ele = document.querySelector('.dmWrapper .settings');
-    if (ele.classList.contains('open')) {
-        ele.classList.remove('open');
-    }
-    else {
-        ele.classList.add('open');
-    }
-}
-                </script>`;
+                </div>`;
 
         $('body').append($(pageHtml));
     }
@@ -242,7 +230,18 @@ window.onload = setup();
 //$('.settings-btn').bind('click', () => {
     //$('.dmWrapper .settings').toggleClass('open');
 //})
-
+var els = document.getElementsByClassName('settings-btn');
+for (i=0; i<els.length; i++) {
+    els[i].addEventListener('click', () => {
+        var ele = document.querySelector('.dmWrapper .settings');
+        if (ele.classList.contains('open')) {
+            ele.classList.remove('open');
+        }
+        else {
+            ele.classList.add('open');
+        }
+    })
+}
 
 
 // change bg color
