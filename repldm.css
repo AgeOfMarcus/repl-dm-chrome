@@ -29,6 +29,10 @@
     padding: 8px;
     margin-bottom: 4px;
 }
+.repldmBtn.open {
+    border-right: 3px solid #3485e4;
+    background-color: rgba(52,133,228,0.12);
+}
 .repldmBtn:hover {
     background-color: #f3f3f3;
 }
@@ -60,6 +64,15 @@
 }
 
 
+.darktheme .repldmBtn .label, .darktheme .repldmBtn .fa-paper-plane {
+    color: #e1e2e4;
+}
+.darktheme .repldmBtn:hover {
+    background-color: #262b3b;
+}
+.darktheme .repldmBtn.open {
+    border-right: 3px solid transparent;
+}
 
 .message-btn {
     width: fit-content;

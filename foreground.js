@@ -45,11 +45,8 @@ function setup() {
         $('.repldmBtn').click(() => {
             var open = $('.cont').is(':visible');
             $('.repldmBtn .fa-paper-plane').toggle();
+            $('.repldmBtn').toggleClass('open');
             if (!open) { // open
-                $('.repldmBtn').css({
-                    borderRight: '3px solid #3485e4',
-                    backgroundColor: 'rgba(52,133,228,0.12)'    
-                });
                 $('body').css('overflow', 'hidden'); // stops page scrolling
                 $('.cont').show();
                 $('.dmWrapper').css({
@@ -63,10 +60,6 @@ function setup() {
             }
             else { // close
             $('body').css('overflow', 'scroll');
-                $('.repldmBtn').css({
-                    borderRight: '3px solid transparent',
-                    backgroundColor: ''    
-                });
                 $('.new-msg-cont').hide();
                 $('.dmWrapper').animate({
                     marginTop: '-400px',
@@ -219,7 +212,7 @@ function setup() {
                             <div class='top'>
                                 <div class='close-new-msg'><i class="fas fa-times"></i></div>
                                 New Message
-                                <div class='send-new-msg'>send</div>
+                                <div class='send-new-msg'>Send</div>
                             </div>
                             <div class='to'>To: <input type='text' placeholder='Search' /></div>
                             <div class='message'><input type='text' placeholder="Message body" /></div>
@@ -237,6 +230,18 @@ window.onload = setup();
 $('.settings-btn').bind('click', () => {
     $('.dmWrapper .settings').toggleClass('open');
 })
+var els = document.getElementsByClassName('settings-btn');
+for (i=0; i<els.length; i++) {
+    els[i].addEventListener('click', () => {
+        var ele = document.querySelector('.dmWrapper .settings');
+        if (ele.classList.contains('open')) {
+            ele.classList.remove('open');
+        }
+        else {
+            ele.classList.add('open');
+        }
+    })
+}
 
 // change bg color
 $('.change-color').bind('click', (event) => {
@@ -275,3 +280,5 @@ function newMessageTo(name) {
         $('.user-hover-card-anchor').hide();
     }
 }
+
+
