@@ -78,7 +78,7 @@ function setup() {
                         <!-- left -->
                         <div class='left'>
                             <div class='left-top'>
-                                <div class='settings-btn' onclick='toggleOpen();'> 
+                                <div class='settings-btn'> 
                                     <i class="fas fa-cog"></i>
                                 </div>
                                 <div class='title'>
@@ -172,7 +172,7 @@ function setup() {
                             <!-- settings -->
                             <div class='settings'>
                                 <div class='left-top'>
-                                    <div class='settings-btn' onclick='toggleOpen();' style='color: #eb4634;'> 
+                                    <div class='settings-btn' style='color: #eb4634;'> 
                                         <i class="fas fa-cog fa-lg"></i>
                                     </div>
                                     <div class='title'>
@@ -251,26 +251,35 @@ for (i=0; i<els.length; i++) {
 var els = document.getElementsByClassName('change-color');
 for (i=0; i<els.length; i++) {
     els[i].addEventListener('click', (event) => {
-        console.log(event.target.style.backgroundColor)
         document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
     })
 }
 
 // close new message
-$('.close-new-msg').bind('click', () => {
-    $('.new-msg-cont').hide();
+//$('.close-new-msg').bind('click', () => {
+    //$('.new-msg-cont').hide();
+//})
+document.querySelector('.close-new-msg').addEventListener('click', () => {
+    document.querySelector('.new-msg-cont').style.display = 'none';
 })
 // open new message 
-$('.write-msg-btn').bind('click', () => {
-    $('.new-msg-cont').show();
+//$('.write-msg-btn').bind('click', () => {
+    //$('.new-msg-cont').show();
+//})
+document.querySelector('.write-msg-btn').addEventListener('click', () => {
+    document.querySelector('.new-msg-cont').style.display = '';
 })
 
-$('.message-btn').bind('click', (event) => {
-    newMessageTo($(event.target).prev('.profile-username-label').text().split(" ")[0]);
+//$('.message-btn').bind('click', (event) => {
+    //newMessageTo($(event.target).prev('.profile-username-label').text().split(" ")[0]);
+//})
+document.querySelector('.message-btn').addEventListener('click', (event) => {
+    newMessageTo(event.targetpreviousElementSibling.innerText.split(" ")[0]);
 })
 
 function newMessageTo(name) {
     $('.cont').show();
+    console.log(name)
 
     $('.dmWrapper').animate({
         marginTop: '0',
