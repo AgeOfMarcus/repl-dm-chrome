@@ -24,10 +24,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    height: 60px;
     border-radius: 6px;
     cursor: pointer;
-    color: white;
     position: relative;
 }
 
@@ -42,11 +41,9 @@
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    top: -7px;
-    right: -7px;
+    right: 8px;
     padding: 3px;
     font-size: 12px;
-    transition: transform 0.3s;
 }
 
 .repldmBtn .fa-paper-plane {
@@ -74,16 +71,12 @@
 }
 
 .repldmBtn img {
+    position: absolute;
+    left: 8px;
     height: 50px;
     width: auto;
-    transition: transform 0.3s;
 }
-.repldmBtn:hover img {
-    transform: translateY(-5px);
-}
-.repldmBtn:hover::after {
-    transform: translateY(-5px);
-}
+
 
 
 .message-btn {

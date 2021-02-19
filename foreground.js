@@ -52,8 +52,9 @@ function setup() {
                     var html = `
                     <div class='repldmBtn' style='${maybe}'>
                         <img src='https://i.imgur.com/9xLqobG.png?1' />
+                        <div>repl DM</div>
                     </div>`;
-                    $(html).insertBefore('.scroll-container .new-repl-cta');
+                    $(html).insertAfter('.scroll-container .new-repl-cta');
 
                     $('.repldmBtn').click(() => {
                         var open = $('.cont').is(':visible');
