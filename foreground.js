@@ -17,6 +17,7 @@ $('html').on('DOMSubtreeModified', 'body', () => {
 
 chrome.storage.sync.set({test: true}, () => { console.log("hell yea buddy") })
 chrome.storage.sync.get(['test'], (res) => { console.log("res:", res) })
+chrome.storage.sync.remove(['test'], () => { console.log("deleted") })
 
 function setup() {
     // add message button to profile page
@@ -282,6 +283,8 @@ $('.node-radio').bind('click', () => {
 })
 
 function newMessageTo(name) {
+    $('.repldmBtn .fa-paper-plane').toggle();
+    $('.repldmBtn').toggleClass('open');
     $('.cont').show();
     console.log(name)
 
