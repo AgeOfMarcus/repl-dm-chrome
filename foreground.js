@@ -307,6 +307,21 @@ function authed() {
 }
 
 chrome.storage.sync.get(['auth'], (res) => { 
-    console.log(res, res.length, res == true, res == false) 
+    console.log(res)
+    if (res == {}) { // no auth object
+        var authHtml = `<div class='auth-wrapper' style='display: none;'> 
+            <div class='auth-cont'>
+                <div class='close-auth'><i class="fas fa-times"></i></div>
+                Please login with your repl account in order to use repl DM.
+                <div class='auth-btn'>Authorize</div>
+            </div>
+        </div>`;
+
+        $('body').append($(authHtml));
+        $('.auth-wrapper').fadeIn();
+    }
+    else {
+
+    }
 })
 
