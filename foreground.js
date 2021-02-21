@@ -319,6 +319,10 @@ chrome.storage.sync.get(['auth'], (res) => {
 
         $('body').append($(authHtml));
         $('.auth-wrapper').fadeIn();
+
+        $('.close-auth').click(() => {
+            $('.auth-wrapper').hide();
+        })
     }
     else {
 

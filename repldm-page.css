@@ -490,7 +490,7 @@
     z-index: 10000;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.15);
+    background-color: rgba(0,0,0,0.25);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -506,6 +506,7 @@
     position: relative;
     flex-direction: column;
     max-width: 260px;
+    user-select: none;
 }
 
 .auth-btn {
@@ -515,10 +516,12 @@
     border-radius: 4px;
     padding: 5px 6px;
     margin-top: 10px;
+    user-select: none;
 }
 .close-auth {
     position: absolute;
     top: 5px;
     left: 5px;
     cursor: pointer;
+    user-select: none;
 }
