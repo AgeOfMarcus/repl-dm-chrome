@@ -308,8 +308,7 @@ function authed() {
 
 chrome.storage.sync.get(['auth'], (res) => { 
     console.log(res)
-    if (res == {}) { // no auth object
-        console.log(1)
+    if (Object.keys(res).length === 0) { // no auth object
         var authHtml = `<div class='auth-wrapper' style='display: none;'> 
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
