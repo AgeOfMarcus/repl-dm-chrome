@@ -307,6 +307,6 @@ function authed() {
 }
 
 chrome.storage.sync.get(['auth'], (res) => { 
-    console.log("res:", res) 
+    console.log(res, res.length, res == true, res == false) 
 })
 
