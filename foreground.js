@@ -336,7 +336,7 @@ chrome.storage.sync.get(['auth'], (res) => {
         document.querySelector('.auth-btn').addEventListener('click', () => {
             window.open("https://repldm.dupl.repl.co/auth", "_blank");
 
-            document.getElementsByClassName('auth-form')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`;
+            document.getElementById('auth-form').innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`;
         })
 
         $('.auth-wrapper').fadeIn();
