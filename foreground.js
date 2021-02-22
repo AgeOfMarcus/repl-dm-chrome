@@ -315,8 +315,9 @@ function getAuth() {
         username: auth[0],
         token: auth[1]
     }
-    chrome.storage.sync.set({'auth': authObj}, (r) => { console.log(r) })
+    chrome.storage.sync.set({'auth': authObj}, (r) => { console.log("auth object stored") })
     socket.emit('hello', {auth: authObj}, (r) => { console.log(r) })
+    authed();
 }
 
 chrome.storage.sync.get(['auth'], (res) => { 
@@ -350,6 +351,7 @@ chrome.storage.sync.get(['auth'], (res) => {
     else {
         globalThis.authToken = res.auth;
         socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
+        authed();
     }
 })
 
