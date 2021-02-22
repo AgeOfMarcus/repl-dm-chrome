@@ -327,6 +327,7 @@ chrome.storage.sync.get(['auth'], (res) => {
                 <div class='close-auth'><i class="fas fa-times"></i></div>
                 Please login with your repl account in order to use repl DM.
                 <div class='auth-btn'>Authorize</div>
+                <div id='auth-form'></div>
             </div>
         </div>`;
 
@@ -335,8 +336,7 @@ chrome.storage.sync.get(['auth'], (res) => {
         document.querySelector('.auth-btn').addEventListener('click', () => {
             window.open("https://repldm.dupl.repl.co/auth", "_blank");
 
-            document.getElementsByClassName('auth-btn')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`;
-            document.querySelector('.auth-btn').removeEventListener('click');
+            document.getElementsByClassName('auth-form')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`;
         })
 
         $('.auth-wrapper').fadeIn();
