@@ -335,7 +335,8 @@ chrome.storage.sync.get(['auth'], (res) => {
         document.querySelector('.auth-btn').addEventListener('click', () => {
             window.open("https://repldm.dupl.repl.co/auth", "_blank");
 
-            document.getElementsByClassName('auth-btn')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`
+            document.getElementsByClassName('auth-btn')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`;
+            document.querySelector('.auth-btn').removeEventListener('click');
         })
 
         $('.auth-wrapper').fadeIn();
