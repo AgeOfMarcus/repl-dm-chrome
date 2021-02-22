@@ -310,9 +310,13 @@ function authed() {
 
 function getAuth() {
     $('.auth-wrapper').hide();
-    socket.emit('repl auth', (auth) => {
-        console.log(auth);
-    })
+    var auth = $('#authTkn').val().split(':');
+    var authObj = {
+        username: auth[0],
+        token: auth[1]
+    }
+    chrome.storage.sync.set({'auth': authObj}, (r) => { console.log(r) })
+    socket.emit('hello', {auth: authObj}, (r) => { console.log(r) })
 }
 
 chrome.storage.sync.get(['auth'], (res) => { 
@@ -329,20 +333,9 @@ chrome.storage.sync.get(['auth'], (res) => {
         $('body').append($(authHtml));
 
         document.querySelector('.auth-btn').addEventListener('click', () => {
+            window.open("https://repldm.dupl.repl.co/auth", "_blank");
 
-            var h = 500;
-            var w = 350;
-            var left = (screen.width / 2) - ( w / 2);
-            var top = (screen.height / 2) - (h / 2);
-
-            var authWindow = window.open(
-            'https://repl.it/auth_with_repl_site?domain=repldm.dupl.repl.co',
-            '_blank',
-            'modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
-
-            authWindow.addEventListener('onunload', () => {
-                getAuth();
-            })
+            document.getElementsByClassName('auth-btn')[0].innerHTML = `<input id='authTkn'></input><button onclick='getAuth()'>Authorize</button>`
         })
 
         $('.auth-wrapper').fadeIn();
@@ -352,7 +345,8 @@ chrome.storage.sync.get(['auth'], (res) => {
         })
     }
     else {
-
+        globalThis.authToken = res.auth;
+        socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
     }
 })
 
