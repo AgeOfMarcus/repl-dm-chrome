@@ -322,21 +322,12 @@ chrome.storage.sync.get(['auth'], (res) => {
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
                 Please login with your repl account in order to use repl DM.
-                <iframe src='https://repldm.dupl.repl.co/auth'></iframe>
-                <!-- <div class='auth-btn'>Authorize</div> -->
+                <div class='auth-btn'>Authorize</div>
             </div>
         </div>`;
 
         $('body').append($(authHtml));
 
-        window.addEventListener('message', (e) => {
-            if (e == 'authed') {
-                window.removeEventListener('message');
-                getAuth();
-            }
-        })
-        
-        /*
         document.querySelector('.auth-btn').addEventListener('click', () => {
 
             var h = 500;
@@ -349,13 +340,10 @@ chrome.storage.sync.get(['auth'], (res) => {
             '_blank',
             'modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
 
-            // repl auth does postMessage to parent but because the host origin (repl.it) isnt repdm.dupl.repl.co it wont allow it
-            // for some reason onunload isnt working, maybe we can listen to when the auth page changes and says "auth complete"
             authWindow.addEventListener('onunload', () => {
                 getAuth();
             })
         })
-        */
 
         $('.auth-wrapper').fadeIn();
 
