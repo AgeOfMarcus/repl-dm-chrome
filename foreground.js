@@ -28,7 +28,7 @@ function sendMessage(to, body, callback=parseMessage) {
         auth: authToken, // global object set on auth
         to: to,
         body: body
-    }, callback)
+    }, (r) => { callback(r.result) })
 }
 
 function getProfilePicture(user, callback) {
@@ -36,7 +36,7 @@ function getProfilePicture(user, callback) {
     socket.emit('pfp', {
         auth: auth,
         username: user
-    }, callback)
+    }, (r) => { })
 }
 
 
