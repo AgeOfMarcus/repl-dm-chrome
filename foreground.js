@@ -19,6 +19,18 @@ function parseMessage(message) {
     console.log(message)
 }
 
+function getMessages(user, older_than=null, limit=null, callback=console.log) {
+    // returns a dict {sent: [msg array], recieved: [msg array]}
+    data = {
+        auth: authToken,
+        user: user
+    }
+    if (older_than) data['older_than'] = older_than;
+    if (limit) data['limit'] = limit;
+
+    socket.emit('get messages', data, (r) => { callback(r.result) })
+}
+
 function sendMessage(to, body, callback=parseMessage) {
     /*
     socket returns a message object, which by default is passed to the 
@@ -34,9 +46,25 @@ function sendMessage(to, body, callback=parseMessage) {
 function getProfilePicture(user, callback) {
     // returns URL or default pfp if user not found
     socket.emit('pfp', {
-        auth: auth,
+        auth: authToken,
         username: user
-    }, (r) => { })
+    }, (r) => { callback(r.result) })
+}
+
+function listUnread(callback) {
+    // returns dict {username: unreadMessages[int]}
+    socket.emit('get unread', {
+        auth: authToken
+    }, (r) => { callback(r.result) })
+}
+
+function markRead(ids, callback, read=true) {
+    // returns list of ids which the operation was successful
+    socket.emit('mark read', {
+        auth: authToken,
+        ids: ids,
+        read: read
+    }, (r) => { callback(r.result) })
 }
 
 
