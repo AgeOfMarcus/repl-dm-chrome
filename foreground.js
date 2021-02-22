@@ -340,8 +340,13 @@ chrome.storage.sync.get(['auth'], (res) => {
             '_blank',
             'modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
 
-            authWindow.addEventListener('onunload', () => {
-                getAuth();
+            globalThis.authCheckInterval = setInterval(function() {
+                socket.emit('repl auth', (a) => {
+                    if (a) {
+                        clearInterval(authCheckInterval);
+                        console.log(a)
+                    }
+                }, 1000)
             })
         })
 
