@@ -322,12 +322,37 @@ chrome.storage.sync.get(['auth'], (res) => {
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
                 Please login with your repl account in order to use repl DM.
-                <script src='https://auth.turbio.repl.co/script.js' authed='getAuth()'></script>
-                <!-- <div class='auth-btn'>Authorize</div> -->
+                <div class='auth-btn'>Authorize</div>
             </div>
         </div>`;
 
         $('body').append($(authHtml));
+
+        document.querySelector('.auth-btn').addEventListener('click', () => {
+            window.addEventListener('message', authComplete);
+
+            var h = 500;
+            var w = 350;
+            var left = (screen.width / 2) - ( w / 2);
+            var top = (screen.height / 2) - (h / 2);
+
+            var authWindow = window.open(
+            'https://repl.it/auth_with_repl_site?domain='+location.host,
+            '_blank',
+            'modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left)
+
+            function authComplete(e) {
+                if (e.data !== 'auth_complete') {
+                    return;
+                }
+
+                window.removeEventListener('message', authComplete);
+
+                authWindow.close();
+                getAuth()
+            }
+        })
+
         $('.auth-wrapper').fadeIn();
 
         $('.close-auth').click(() => {
