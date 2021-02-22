@@ -1,5 +1,7 @@
 console.log('foreground baby');
 
+const socket = io("https://repldm.dupl.repl.co");
+
 function authed() {
     console.log('authed')
     
@@ -306,6 +308,13 @@ function authed() {
 
 }
 
+function getAuth() {
+    $('.auth-wrapper').hide();
+    socket.emit('repl auth', (auth) => {
+        console.log(auth);
+    })
+}
+
 chrome.storage.sync.get(['auth'], (res) => { 
     console.log(res)
     if (Object.keys(res).length === 0) { // no auth object
@@ -313,7 +322,8 @@ chrome.storage.sync.get(['auth'], (res) => {
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
                 Please login with your repl account in order to use repl DM.
-                <div class='auth-btn'>Authorize</div>
+                <script src='https://auth.turbio.repl.co/script.js' authed='getAuth()'></script>
+                <!-- <div class='auth-btn'>Authorize</div> -->
             </div>
         </div>`;
 
