@@ -2,6 +2,44 @@ console.log('foreground baby');
 
 const socket = io("https://repldm.dupl.repl.co");
 
+socket.on('new message', parseMessage)
+
+function parseMessage(message) {
+    /*
+    function to add message to the html
+    should accept a 'message' object - dict: 
+        {
+            "from": "username",
+            "to": "username",
+            "time": 1010100010001,
+            "body": "message body",
+            "id": "messageID"
+        }
+    */
+    console.log(message)
+}
+
+function sendMessage(to, body, callback=parseMessage) {
+    /*
+    socket returns a message object, which by default is passed to the 
+    parseMessage function and added to the html
+    */
+    socket.emit('send message', {
+        auth: authToken, // global object set on auth
+        to: to,
+        body: body
+    }, callback)
+}
+
+function getProfilePicture(user, callback) {
+    // returns URL or default pfp if user not found
+    socket.emit('pfp', {
+        auth: auth,
+        username: user
+    }, callback)
+}
+
+
 function authed() {
     console.log('authed')
     
