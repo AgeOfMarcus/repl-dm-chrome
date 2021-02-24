@@ -103,6 +103,7 @@ function init() {
 
                     $('.node-radio').bind('click', (event) => {
                         document.querySelector('.right .no-msg').style.display = 'none';
+                        event.target.classList.remove('seen');
                         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
                     })
 
