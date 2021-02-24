@@ -2,7 +2,9 @@ console.log('foreground baby');
 
 const socket = io("https://repldm.dupl.repl.co");
 
-socket.on('new message', parseMessage)
+socket.on('new message', (msg) => {
+    //TODO: if chat is open, append, else add to cache
+})
 
 var _msg_node_increment = 0;
 var _msg_cache = {};
