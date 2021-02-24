@@ -103,7 +103,7 @@ function init() {
             displaySentMessage(msg);
         })
     })
-    $('input .msg')[0].addEventListener('keyup', (event) => {
+    $('input .msg').bind('keyup', (event) => {
         if (event.key == 'Enter') {
             sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
         }
