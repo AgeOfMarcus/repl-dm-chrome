@@ -59,7 +59,7 @@ function markRead(ids, callback, read=true) {
 }
 
 function getConvos(callback) {
-    socket.emit('get conversations', {auth: authToken}, (r) => { callback(r.result) })
+    socket.emit('get conversations', {auth: authToken}, (r) => { console.log(r);callback(r.result) })
 }
 
 
