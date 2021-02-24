@@ -4,36 +4,23 @@ const socket = io("https://repldm.dupl.repl.co");
 
 socket.on('new message', parseMessage)
 
-var msg_node_increment = 0;
+var _msg_node_increment = 0;
+var _msg_cache = {};
 
-function parseMessage(message) {
-    /*
-    function to add message to the html
-    should accept a 'message' object - dict: 
-        {
-            "from": "username",
-            "to": "username",
-            "time": 1010100010001,
-            "body": "message body",
-            "id": "messageID"
-        }
-    */
-    console.log(message)
-}
-
-function getMessages(user, older_than=null, limit=null, callback=console.log) {
-    // returns a dict {sent: [msg array], recieved: [msg array]}
+function getMessages(user, older_than=null, newer_than=null, limit=null, callback=console.log) {
+    // returns a list of messages
     data = {
         auth: authToken,
         user: user
     }
     if (older_than) data['older_than'] = older_than;
     if (limit) data['limit'] = limit;
+    if (newer_than) data['newer_than'] = newer_than;
 
     socket.emit('get messages', data, (r) => { callback(r.result) })
 }
 
-function sendMessage(to, body, callback=parseMessage) {
+function sendMessage(to, body, callback) {
     /*
     socket returns a message object, which by default is passed to the 
     parseMessage function and added to the html
@@ -85,8 +72,8 @@ function init() {
                     if (user in unread) nodeClass = nodeClass + ' seen';
 
                     msgsDiv.append($(`
-                        <input type='radio' class='node-radio' id='msg-${msg_node_increment}' name='msg' />
-                        <label class='${nodeClass}' for='msg-${msg_node_increment}'>
+                        <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
+                        <label class='${nodeClass}' for='msg-${_msg_node_increment}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
@@ -98,11 +85,73 @@ function init() {
                         </label>
                     `));
 
-                    msg_node_increment++;
+                    _msg_node_increment++;
                 })
             })
         })
     })
+}
+
+function loadConvo(user) {
+    $('.chat .top span').text(user);
+    getProfilePicture(user, (src) => {
+        $('.chat .top img').attr('src', src);
+    });
+
+    if (user in _msg_cache) {
+        _msg_cache[user].forEach((item, index) => {
+            if (item.from == authToken.username) {
+                msgClass = 'sent';
+            } else {
+                msgClass = 'recieved'
+            }
+
+            $('.chat .box').append($(`
+                <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                    ${item.body}
+                    <input type="hidden" value='${JSON.stringify(item)}'/>
+                </div>
+            `)) //TODO: markdown and filter xss, add time to message
+        })
+
+        getMessages(user, newer_than=_msg_cache[user][_msg_cache[user].length - 1], callback=(messages) => {
+            _msg_cache[user].push(...messages) // *messages
+
+            messages.forEach((item, index) => {
+                if (item.from == authToken.username) {
+                    msgClass = 'sent';
+                } else {
+                    msgClass = 'recieved'
+                }
+
+                $('.chat .box').append($(`
+                    <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                        ${item.body}
+                        <input type="hidden" value='${JSON.stringify(item)}'/>
+                    </div>
+                `)) //TODO: markdown and filter xss, add time to message
+            })
+        })
+    } else { // fuck you rafi this is the better way of formatting if/else
+        getMessages(user, callback=(messages) => {
+            _msg_cache[user] = messages;
+
+            messages.forEach((item, index) => {
+                if (item.from == authToken.username) {
+                    msgClass = 'sent';
+                } else {
+                    msgClass = 'recieved'
+                }
+
+                $('.chat .box').append($(`
+                    <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                        ${item.body}
+                        <input type="hidden" value='${JSON.stringify(item)}'/>
+                    </div>
+                `)) //TODO: markdown and filter xss, add time to message
+            })
+        })
+    }
 }
 
 function authed() {
@@ -267,6 +316,7 @@ function authed() {
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
+                                            <!--
                                             <div class='msg-node recieved'>
                                                 ayo wys B ;)
                                             </div>
@@ -303,6 +353,7 @@ function authed() {
                                             <div class='msg-node sent'>
                                                 \ ESGG\ 
                                             </div>
+                                            -->
                                         </div>
                                         <div class='msg-wrapper'>
                                             <input class='msg' placeholder='message...' />
@@ -384,8 +435,9 @@ function authed() {
     })
 
     // open message
-    $('.node-radio').bind('click', () => {
+    $('.node-radio').bind('click', (event) => {
         document.querySelector('.right .no-msg').style.display = 'none';
+        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
 
     function newMessageTo(name) {
