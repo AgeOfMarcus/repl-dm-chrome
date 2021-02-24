@@ -193,6 +193,18 @@ function loadConvo(user) {
             })
         })
     }
+
+    $('.send-new-message').bind('click', () => {
+        loadConvo($('.new-msg .to input').val());
+        sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
+            displaySentMessage(msg);
+        })
+    })
+    $('input .msg').bind('keyup', (event) => {
+        if (event.key == 'Enter') {
+            sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
+        }
+    })
 }
 
 function authed() {
