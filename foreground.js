@@ -9,7 +9,7 @@ socket.on('new message', (msg) => {
 var _msg_node_increment = 0;
 var _msg_cache = {};
 
-function getMessages(user, older_than=null, newer_than=null, limit=null, callback=console.log) {
+function getMessages(user, callback, older_than=null, newer_than=null, limit=null) {
     // returns a list of messages
     data = {
         auth: authToken,
@@ -121,7 +121,7 @@ function loadConvo(user) {
             `)) //TODO: markdown and filter xss, add time to message
         })
 
-        getMessages(user, newer_than=_msg_cache[user][_msg_cache[user].length - 1], callback=(messages) => {
+        getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
 
             messages.forEach((item, index) => {
@@ -138,9 +138,9 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
             })
-        })
+        }, newer_than=_msg_cache[user][_msg_cache[user].length - 1])
     } else { // fuck you rafi this is the better way of formatting if/else
-        getMessages(user, callback=(messages) => {
+        getMessages(user, (messages) => {
             _msg_cache[user] = messages;
 
             messages.forEach((item, index) => {
