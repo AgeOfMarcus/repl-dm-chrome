@@ -77,6 +77,7 @@ function getConvos(callback) {
 
 
 function init() {
+    msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
             users.forEach((user, index) => {
@@ -510,7 +511,9 @@ function authed() {
         })
         $('.new-msg .to input').val('');
         $('.new-msg .message textarea').val('');
+        init();
     })
+
     document.querySelector('.msg').addEventListener('keyup', (event) => {
         if (event.key == 'Enter') {
             sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
