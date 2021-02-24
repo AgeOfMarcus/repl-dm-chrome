@@ -470,7 +470,7 @@ function authed() {
         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
 
-    document.querySelector('.send-new-message').addEventListener('click', () => {
+    document.querySelector('.send-new-msg').addEventListener('click', () => {
         loadConvo($('.new-msg .to input').val());
         sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
             displaySentMessage(msg);
