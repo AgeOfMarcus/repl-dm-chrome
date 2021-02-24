@@ -104,6 +104,7 @@ function loadConvo(user) {
     getProfilePicture(user, (src) => {
         $('.chat .top img').attr('src', src);
     });
+    $('.chat .box').empty();
 
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
