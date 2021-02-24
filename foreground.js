@@ -132,7 +132,7 @@ function displaySentMessage(message) {
 function checkReadStatus() {
     var ids = [];
     $('.msg-node').each((el) => {
-        if (isElementVisible(el)) {
+        if (isElementVisible(el[0])) {
             var msg = JSON.parse($(el).find('input').val());
             if (!msg.read) {
                 ids.push(msg.id);
