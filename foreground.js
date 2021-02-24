@@ -133,8 +133,8 @@ function checkReadStatus() {
     var ids = [];
     Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
         if (isElementVisible(el)) {
-            var msg = JSON.parse($(el).find('input').val());
-            if (!msg.read) {
+            var msg = JSON.parse(el.getElementsByClassName('hidden-input')[0].value);
+            if (!(msg.read)) {
                 ids.push(msg.id);
             }
         }
@@ -167,7 +167,7 @@ function loadConvo(user) {
             $('.chat .box').append($(`
                 <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                     ${item.body}
-                    <input type="hidden" value='${JSON.stringify(item)}'/>
+                    <input class='hidden-input' type="hidden" value='${JSON.stringify(item)}'/>
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
         })
