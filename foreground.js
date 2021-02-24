@@ -471,14 +471,18 @@ function authed() {
     })
 
     document.querySelector('.send-new-msg').addEventListener('click', () => {
+        document.querySelector('.new-msg-cont').style.display = 'none';
         loadConvo($('.new-msg .to input').val());
         sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
             displaySentMessage(msg);
         })
+        $('.new-msg .to input').val('');
+        $('.new-msg .message textarea').val('');
     })
     document.querySelector('.msg').addEventListener('keyup', (event) => {
         if (event.key == 'Enter') {
             sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
+            $(event.target).val('');
         }
     })
 
