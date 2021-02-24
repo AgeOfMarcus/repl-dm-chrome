@@ -4,6 +4,8 @@ const socket = io("https://repldm.dupl.repl.co");
 
 socket.on('new message', parseMessage)
 
+var msg_node_increment = 0;
+
 function parseMessage(message) {
     /*
     function to add message to the html
@@ -67,6 +69,41 @@ function markRead(ids, callback, read=true) {
     }, (r) => { callback(r.result) })
 }
 
+function getConvos(callback) {
+    socket.emit('get conversations', {auth: auth}, (r) => { callback(r.result) })
+}
+
+
+function init() {
+    listUnread((unread) => {
+        getConvos((users) => {
+            users.forEach((user, index) => {
+                getProfilePicture(user, (pfp) => {
+                    msgsDiv = $('.left-msgs');
+
+                    nodeClass = 'node';
+                    if (user in unread) nodeClass = nodeClass + ' seen';
+
+                    msgsDiv.append($(`
+                        <input type='radio' class='node-radio' id='msg-${msg_node_increment}' name='msg' />
+                        <label class='${nodeClass}' for='msg-${msg_node_increment}'>
+                            <div class='pfp'>
+                                <img src='${pfp}' />
+                            </div>
+                            <div class='mid'> 
+                                <div class='name'>${user}</div>
+                                <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
+                            </div>
+                            <div class='circle'></div>
+                        </label>
+                    `));
+
+                    msg_node_increment++;
+                })
+            })
+        })
+    })
+}
 
 function authed() {
     console.log('authed')
@@ -164,6 +201,7 @@ function authed() {
 
                                 <!-- messages -->
                                 <div class='left-msgs'> 
+                                    <!-- 
                                     <input type='radio' class='node-radio' id='msg-0' name='msg' />
                                     <label class='node' for='msg-0'>
                                         <div class='pfp'>
@@ -187,6 +225,7 @@ function authed() {
                                         </div>
                                         <div class='circle'></div>
                                     </label>
+                                    -->
                                 </div>
 
                                 <!-- settings -->
@@ -384,6 +423,7 @@ function getAuth() {
     chrome.storage.sync.set({'auth': authObj}, (r) => { console.log("auth object stored") })
     socket.emit('hello', {auth: authObj}, (r) => { console.log(r) })
     authed();
+    init();
 }
 
 chrome.storage.sync.get(['auth'], (res) => { 
@@ -418,6 +458,7 @@ chrome.storage.sync.get(['auth'], (res) => {
         globalThis.authToken = res.auth;
         socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
         authed();
+        init();
     }
 })
 
