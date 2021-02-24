@@ -138,7 +138,9 @@ function checkReadStatus() {
             if (!(msg.read)) {
                 ids.push(msg.id);
             }
-        } catch(err) console.log('error checking read status for elm:', err)
+        } catch(err) {
+            console.log('error checking read status for elm:', err)
+        }
     })
     markRead(ids, (res) => {
         console.log("Marked as read:", res);
