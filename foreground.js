@@ -144,7 +144,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
             })
-        }, newer_than=_msg_cache[user][_msg_cache[user].length - 1])
+        }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
             _msg_cache[user] = messages;
