@@ -100,6 +100,11 @@ function init() {
 }
 
 function loadConvo(user) {
+    if ($('.chat .top span').text() == user) {
+        // we don't need to reload
+        return;
+    }
+
     $('.chat .top span').text(user);
     getProfilePicture(user, (src) => {
         $('.chat .top img').attr('src', src);
