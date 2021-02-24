@@ -97,17 +97,6 @@ function init() {
             })
         })
     })
-    $('.send-new-message').bind('click', () => {
-        loadConvo($('.new-msg .to input').val());
-        sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
-            displaySentMessage(msg);
-        })
-    })
-    $('input .msg').bind('keyup', (event) => {
-        if (event.key == 'Enter') {
-            sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
-        }
-    })
 }
 
 function displaySentMessage(message) {
@@ -193,18 +182,6 @@ function loadConvo(user) {
             })
         })
     }
-
-    $('.send-new-message').bind('click', () => {
-        loadConvo($('.new-msg .to input').val());
-        sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
-            displaySentMessage(msg);
-        })
-    })
-    $('input .msg').bind('keyup', (event) => {
-        if (event.key == 'Enter') {
-            sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
-        }
-    })
 }
 
 function authed() {
@@ -493,11 +470,16 @@ function authed() {
         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
 
-    $('.send-new-message').bind('click', () => {
+    document.querySelector('.send-new-message').addEventListener('click', () => {
         loadConvo($('.new-msg .to input').val());
         sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
             displaySentMessage(msg);
         })
+    })
+    document.querySelector('.msg').addEventListener('keyup', (event) => {
+        if (event.key == 'Enter') {
+            sendMessage($('.chat .top span').text(), $(event.target).val(), displaySentMessage)
+        }
     })
 
     function newMessageTo(name) {
