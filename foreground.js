@@ -471,7 +471,7 @@ function authed() {
     })
 
     document.querySelector('.send-new-msg').addEventListener('click', () => {
-        document.querySelector('.new-msg-cont').style.display = 'none';
+        document.querySelector('.new-msg-cont').style.display = '';
         loadConvo($('.new-msg .to input').val());
         sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
             displaySentMessage(msg);
