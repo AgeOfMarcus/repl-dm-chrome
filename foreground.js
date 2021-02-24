@@ -87,6 +87,11 @@ function init() {
                         </label>
                     `));
 
+                    $('.node-radio').bind('click', (event) => {
+                        document.querySelector('.right .no-msg').style.display = 'none';
+                        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+                    })
+
                     _msg_node_increment++;
                 })
             })
