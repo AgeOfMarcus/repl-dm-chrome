@@ -471,6 +471,7 @@ function authed() {
     })
 
     $('.send-new-message').bind('click', () => {
+        loadConvo($('.new-msg .to input').val());
         sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
             displaySentMessage(msg);
         })
