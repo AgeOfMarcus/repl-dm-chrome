@@ -133,10 +133,12 @@ function checkReadStatus() {
     var ids = [];
     Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
         //TODO: check if element is in viewport
-        var msg = JSON.parse(el.getElementsByClassName('hidden-input')[0].value);
-        if (!(msg.read)) {
-            ids.push(msg.id);
-        }
+        try {
+            var msg = JSON.parse(el.getElementsByClassName('hidden-input')[0].value);
+            if (!(msg.read)) {
+                ids.push(msg.id);
+            }
+        } catch(err) console.log('error checking read status for elm:', err)
     })
     markRead(ids, (res) => {
         console.log("Marked as read:", res);
@@ -209,7 +211,7 @@ function loadConvo(user) {
             })
         })
     }
-    setTimeout(checkReadStatus, 1000);
+    setTimeout(checkReadStatus, 2000);
 }
 
 function authed() {
