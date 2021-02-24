@@ -99,6 +99,23 @@ function init() {
     })
 }
 
+function displaySentMessage(message) {
+    if (message.to in _msg_cache) {
+        _msg_cache[message.to].push(message)
+    } else {
+        _msg_cache[message.to] = [message];
+    }
+
+    if ($('.chat .top span').text() == message.to) {
+        $('.chat .box').append($(`
+            <div id="msg-${message.id}" class='msg-node sent'>
+                    ${message.body}
+                    <input type="hidden" value='${JSON.stringify(message)}'/>
+            </div>
+        `))
+    }
+}
+
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
         // we don't need to reload
@@ -385,7 +402,7 @@ function authed() {
                                 <div class='send-new-msg'>send</div>
                             </div>
                             <div class='to'>To: <input type='text' placeholder='Search' /></div>
-                            <div class='message'><input type='text' placeholder="Message body" /></div>
+                            <div class='message'><textarea type='text' placeholder="Message body" rows='15' cols='30' style='border: none'></textarea></div>
                         </div>
                     </div>`;
 
@@ -451,6 +468,12 @@ function authed() {
     $('.node-radio').bind('click', (event) => {
         document.querySelector('.right .no-msg').style.display = 'none';
         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+    })
+
+    $('.send-new-message').bind('click', () => {
+        sendMessage($('.new-msg .to input').val(), $('.new-msg .message textarea').val(), (msg) => {
+            displaySentMessage(msg);
+        })
     })
 
     function newMessageTo(name) {
