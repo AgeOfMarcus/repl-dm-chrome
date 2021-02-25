@@ -16,6 +16,15 @@ socket.on('new message', (msg) => {
                     <input class='hidden-input' type="hidden" value='${JSON.stringify(msg)}'/>
             </div>
         `))
+    } else {
+        if (_notify_perm) {
+            getProfilePicture(msg.from, (src) => {
+                var notif = new Notification(`${msg.from} sent you a message`, {
+                    body: msg.body,
+                    icon: src
+                });
+            })
+        }
     }
 })
 
@@ -141,7 +150,7 @@ function checkReadStatus() {
                 ids.push(msg.id);
             }
         } catch(err) {
-            console.log('error checking read status for elm:', err)
+            console.log('error checking read status. err:', err, 'elm:', el);
         }
     })
     markRead(ids, (res) => {
@@ -596,3 +605,6 @@ chrome.storage.sync.get(['auth'], (res) => {
     }
 })
 
+Notification.requestPermission().then((res) => {
+    globalThis._notify_perm = res;
+})
