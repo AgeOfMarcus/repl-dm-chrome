@@ -179,7 +179,7 @@ function loadPrevious() {
 
     if (user in _msg_cache) {
         getMessages(user, (messages) => {
-            _msg_cache[user].prepend(...messages) // *messages
+            _msg_cache[user].unshift(...messages) // *messages
 
             [...messages].reverse().forEach((item, index) => {
                 if (item.from == authToken.username) {
