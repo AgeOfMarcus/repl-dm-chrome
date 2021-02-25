@@ -217,7 +217,7 @@ function loadConvo(user) {
     $('.chat .box').empty();
 
     if (user in _msg_cache) {
-        [..._msg_cache[user]].reverse().forEach((item, index) => {
+        _msg_cache[user].forEach((item, index) => {
             if (item.from == authToken.username) {
                 msgClass = 'sent';
             } else {
