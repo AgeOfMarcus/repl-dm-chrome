@@ -173,7 +173,7 @@ function init() {
             $(sayHelloHtml).insertAfter('.left-msgs .node:last-child');
         }
         else {
-            $(sayHelloHtml).insertAfter('.left-msgs .node :nth-child(2)');
+            $(sayHelloHtml).insertAfter('.left-msgs .node:first-child');
         }
     }, 5000)
 }
