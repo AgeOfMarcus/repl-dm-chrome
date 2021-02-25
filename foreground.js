@@ -94,7 +94,7 @@ function init() {
                     msgsDiv = $('.left-msgs');
 
                     nodeClass = 'node';
-                    if (user in unread) nodeClass = nodeClass + ' seen';
+                    if (!(user in unread)) nodeClass = nodeClass + ' seen';
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
@@ -112,7 +112,7 @@ function init() {
 
                     $('.node-radio').bind('click', (event) => {
                         document.querySelector('.right .no-msg').style.display = 'none';
-                        event.target.classList.remove('seen');
+                        event.target.classList.add('seen');
                         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
                     })
 
@@ -134,7 +134,7 @@ function displaySentMessage(message) {
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
                     ${message.body}
-                    <input class='hidden-input' type="hidden" value='${JSON.stringify(message)}'/>
+                    <input class='hidden-input' type="hidden" value=\`${JSON.stringify(message)}\`/>
             </div>
         `))
     }
@@ -154,7 +154,7 @@ function checkReadStatus() {
         }
     })
     markRead(ids, (res) => {
-        console.log("Marked as read:", res);
+        console.log("Marked as read:", res, 'from:', ids);
     })
 }
 
