@@ -153,7 +153,7 @@ function checkReadStatus() {
         //TODO: check if element is in viewport
         try {
             var msg = JSON.parse(atob(el.getElementsByClassName('hidden-input')[0].value));
-            if (!(msg.read)) {
+            if (!(msg.read) && !(msg.from == authToken.username)) {
                 ids.push(msg.id);
             }
         } catch(err) {
@@ -167,7 +167,7 @@ function checkReadStatus() {
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
+        setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
         return;
     }
 
@@ -210,7 +210,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -231,7 +231,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
             })
         })
     }
