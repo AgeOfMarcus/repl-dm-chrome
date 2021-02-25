@@ -602,25 +602,22 @@ function authed() {
 
                     if (res.background == 'white') {
                         document.querySelector('.dmWrapper .right').classList.add('white-bg');
+                        $('.dmWrapper').attr('theme', 'white'); // white
                     }
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
                         console.log(res.background)
-                        if (res.background == 'rgb(37, 211, 102)') { // green
-                            $('.dmWrapper').attr('theme', 'green');
-                            console.log(1)
-                        }
-                        else if (res.background == 'rgb(34, 85, 221)') { // blue
+                        if (res.background == 'rgb(34, 85, 221)') { // blue
                             $('.dmWrapper').attr('theme', 'blue');
-                            console.log(2)
+                        }
+                        else if (res.background == 'rgb(37, 211, 102)') { // green
+                            $('.dmWrapper').attr('theme', 'green');
                         }
                         else if (res.background == 'rgb(222, 96, 82)') { // red
                             $('.dmWrapper').attr('theme', 'red');
-                            console.log(3)
                         }
                         else if (res.background == 'rgb(242, 236, 58)') { // yellow
                             $('.dmWrapper').attr('theme', 'yellow');
-                            console.log(4)
                         }
                     }
                 }

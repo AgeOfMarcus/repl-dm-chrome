@@ -482,6 +482,17 @@
 }
 
 
+/* message themes */
+
+.dmWrapper[theme="green"] .node.sent {
+    background-color: #44eb7d;
+    border-color: #44eb7d;
+}
+
+/* /message themes */
+
+
+
 .right .chat .wrapper .msg-wrapper {
     padding: 10px;
     width: calc(100% - 20px);
