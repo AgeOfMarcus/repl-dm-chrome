@@ -140,6 +140,11 @@ function displaySentMessage(message) {
     }
 }
 
+function showReadReceipt(id, timestamp) {
+    $('#rcpt').remove();
+    $(`#msg-${id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: 11px;">Read ${time_ago(new Date(timestamp))}</span>`)
+}
+
 function checkReadStatus() {
     var ids = [];
     Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
@@ -224,7 +229,9 @@ function loadConvo(user) {
             })
         })
     }
-    setTimeout(checkReadStatus, 2000);
+    setTimeout(checkReadStatus, 1000);
+    var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
+    setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
 }
 
 // https://stackoverflow.com/a/12475270/8291579
