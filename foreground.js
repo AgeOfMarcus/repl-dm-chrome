@@ -89,13 +89,12 @@ function init() {
     msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
-            for (var [user, sent_at] of Object.entries(users)) {
+            for (const [user, sent_at] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
 
                     nodeClass = 'node';
                     if (!(user in unread)) nodeClass = nodeClass + ' seen';
-                    time = time_ago(new Date(sent_at));
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
@@ -105,7 +104,7 @@ function init() {
                             </div>
                             <div class='mid'> 
                                 <div class='name'>${user}</div>
-                                <div class='description'>Sent you a message <span class='date'>${time}</span></div>
+                                <div class='description'>Sent you a message <span class='date'>${time_ago(new Date(sent_at))}</span></div>
                             </div>
                             <div class='circle'></div>
                         </label>
