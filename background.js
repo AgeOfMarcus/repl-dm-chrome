@@ -14,6 +14,9 @@ function addScripts(tab) {
         }
     })
 }
-console.log('test')
-// sound effect
-document.getElementById('notif-sound').play();
+
+chrome.runtime.onMessage.addListener(
+    () => {
+        document.getElementById('notif-sound').play();
+    }
+);

@@ -34,9 +34,9 @@ socket.on('new message', (res) => {
                 });
 
                 // sound effect
-                //document.getElementById('notif-sound').play();
-                //var audio = new Audio(_NOTIF_AUDIO);
-                //audio.play();
+                chrome.runtime.sendMessage(
+                    "play sound"
+                );
             })            
         }
     }
