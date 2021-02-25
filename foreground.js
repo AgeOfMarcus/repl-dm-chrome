@@ -119,7 +119,7 @@ function init() {
 
                     _msg_node_increment++;
                 })
-            })
+            }
         })
     })
 }
