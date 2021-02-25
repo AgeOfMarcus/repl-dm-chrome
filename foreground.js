@@ -93,7 +93,7 @@ function init() {
     msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
-            for (const [user, recent] of Object.entries(users)) {
+            for (let [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
 
@@ -108,7 +108,7 @@ function init() {
                             </div>
                             <div class='mid'> 
                                 <div class='name'>${user}</div>
-                                <div class='description'>${(recent.from == user) ? 'Sent you' : 'You sent'} a message <span class='date'>${time_ago(new Date(recent.time))}</span></div>
+                                <div class='description'>${((recent.from == user) ? 'Sent you' : 'You sent')} a message <span class='date'>${time_ago(new Date(recent.time))}</span></div>
                             </div>
                             <div class='circle'></div>
                         </label>
