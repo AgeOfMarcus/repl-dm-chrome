@@ -2,7 +2,10 @@ console.log('foreground baby');
 
 const socket = io("https://repldm.dupl.repl.co");
 
-socket.on('new message', (msg) => {
+socket.on('new message', (res) => {
+    let msg = res.message;
+    socket.emit('recv', {auth: authToken, token: res.token});
+
     if (msg.from in _msg_cache) {
         _msg_cache[msg.from].push(msg);
     } else {
@@ -31,7 +34,10 @@ socket.on('new message', (msg) => {
     }
 })
 
-socket.on('show mark read', (msg) => {
+socket.on('show mark read', (res) => {
+    let msg = res.message;
+    socket.emit('recv', {auth: authToken, token: res.token});
+    
     showReadReceipt([msg]);
 })
 

@@ -241,6 +241,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 .left-msgs .node.seen .circle {
     display: none;
@@ -562,6 +563,11 @@
     left: 50%;
     transform: translate(-50%, 100%);
     font-size: smaller;
+    background: #e4e9f5;
+    padding: 4px;
+    border-radius: 6px;
+    margin-bottom: -5px;
+    border: 1px solid rgb(219, 219, 219);
 }
 #load-more-btn:hover {
     cursor: pointer;
