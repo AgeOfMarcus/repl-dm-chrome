@@ -605,6 +605,23 @@ function authed() {
                     }
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
+                        console.log(res.background)
+                        if (res.background == 'rgb(37, 211, 102)') { // green
+                            $('.dmWrapper').attr('theme', 'green');
+                            console.log(1)
+                        }
+                        else if (res.background == '#25D') { // blue
+                            $('.dmWrapper').attr('theme', 'blue');
+                            console.log(2)
+                        }
+                        else if (res.background == '#de6052') { // red
+                            $('.dmWrapper').attr('theme', 'red');
+                            console.log(3)
+                        }
+                        else if (res.background == '#f2ec3a') { // yellow
+                            $('.dmWrapper').attr('theme', 'yellow');
+                            console.log(4)
+                        }
                     }
                 }
             })
