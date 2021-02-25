@@ -532,6 +532,7 @@
     height: 35px;
     width: fit-content;
     position: relative;
+    flex-shrink: 0;
 }
 .badge img {
     height: 100%;
@@ -544,14 +545,14 @@
 
 
 /* load more btn */
-.load-more-btn {
+#load-more-btn {
     color: #0095f6;
     position: absolute;
     bottom: 1px;
     left: 50%;
     transform: translateX(-50%);
 }
-.load-more-btn:hover {
+#load-more-btn:hover {
     cursor: pointer;
     text-decoration: underline;
 }
