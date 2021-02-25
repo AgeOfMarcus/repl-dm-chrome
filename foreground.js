@@ -151,8 +151,14 @@ function init() {
                     if (first) {
                         $('.loading-msgs').hide();
                         first = false;
+                    }
 
-                        // say hello 
+                    _msg_node_increment++;
+                })
+            }
+        })
+    }, () => {
+        // say hello 
                         setTimeout(() => {
                             var sayHelloHtml = `<div class='say-hello'>
                                 <div class='title'>Say Hello!</div>
@@ -170,12 +176,6 @@ function init() {
                                 $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)')
                             }
                         }, 3000)
-                    }
-
-                    _msg_node_increment++;
-                })
-            }
-        })
     })
 }
 
