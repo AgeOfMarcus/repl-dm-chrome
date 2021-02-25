@@ -140,11 +140,14 @@ function displaySentMessage(message) {
     }
 }
 
-function showReadReceipt(msg) {
+function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    if (msg.read) {
-        $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
-    }
+    msgs.reverse().every((item) => {
+        if (msg.read && (msg.from == authToken.username)) {
+            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
+            return false;
+        }
+    })
 }
 
 function checkReadStatus() {
@@ -160,14 +163,16 @@ function checkReadStatus() {
             console.log('error checking read status. err:', err, 'elm:', el);
         }
     })
-    markRead(ids, (res) => {
-        console.log("Marked as read:", res, 'from:', ids);
-    })
+    if (ids.length > 0) {
+        markRead(ids, (res) => {
+            console.log("Marked as read:", res, 'from:', ids);
+        })
+    }
 }
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
+        setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
         return;
     }
 
@@ -210,7 +215,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
+                { showReadReceipt(_msg_cache[user]) }, 1500);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -231,7 +236,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 1500);
+                { showReadReceipt(_msg_cache[user]) }, 1500);
             })
         })
     }
