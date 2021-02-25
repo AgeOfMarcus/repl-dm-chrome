@@ -150,7 +150,7 @@ function init() {
                     
                     if (first) {
                         $('.loading-msgs').hide();
-                        $('.say-hello').show();
+                        // $('.say-hello').show();  // heres the say hello show!! -------------- 
                         first = false;
                     }
 
