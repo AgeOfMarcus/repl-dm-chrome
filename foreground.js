@@ -8,8 +8,9 @@ const socket = io("https://repldm.dupl.repl.co");
 
 // to set notification badge all u gotta do is $('repldmBtn').attr('notifications', "[insert number here]")
 // if the notifications attribute doesnt exist, or has no value or the value of 0, the badge auto hides so dw about hiding it, and the attribute value auto sets the badge value too so its super easy.
-
 // also, i think the number it shows should be the number of unread chats, not the number of unread messages. so if you and some other guy sent me a few msgs, it would show 2 for 2 unread chats.
+
+// showing users online: just add class "online" to the node lol
 
 
 socket.on('new message', (res) => {

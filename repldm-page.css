@@ -606,3 +606,18 @@
     text-align: right;
     right: 8px;
 }
+
+
+
+
+/* online */
+.node.online::after {
+    content: '';
+    background-color: #0de03e;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 15px;
+    left: 65px;
+} 
