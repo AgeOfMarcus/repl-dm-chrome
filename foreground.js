@@ -181,7 +181,7 @@ function loadPrevious() {
         getMessages(user, (messages) => {
             _msg_cache[user].unshift(...messages) // *messages
 
-            [...messages].reverse().forEach((item, index) => {
+            messages.slice().reverse().forEach((item, index) => {
                 if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
