@@ -525,3 +525,19 @@
     cursor: pointer;
     user-select: none;
 }
+
+
+/* dupl badge */
+.badge {
+    height: 35px;
+    width: fit-content;
+    position: relative;
+}
+.badge img {
+    height: 100%;
+    width: auto;
+    -webkit-filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.8))
+                    drop-shadow(-1px -1px 0 rgba(219,219,219,0.8));
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.8)) 
+            drop-shadow(-1px -1px 0 rgba(219,219,219,0.8));
+}

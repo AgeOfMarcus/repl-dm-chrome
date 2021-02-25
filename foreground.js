@@ -101,7 +101,7 @@ function init() {
                     msgsDiv = $('.left-msgs');
 
                     nodeClass = 'node';
-                    if (!(user in unread)) nodeClass = nodeClass + ' seen';
+                    if (!(user in unread) || (user == authToken.username)) nodeClass = nodeClass + ' seen';
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
@@ -221,6 +221,14 @@ function loadConvo(user) {
         $('.chat .top img').attr('src', src);
     });
     $('.chat .box').empty();
+
+    // showdupl badge
+    if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
+        $('.chat .top .badge').show();
+    }
+    else {
+        $('.chat .top .badge').hide();
+    }
 
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
@@ -507,7 +515,8 @@ function authed() {
                                     <div class='top'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                         <span>Name</span>
-                                        <i id='load-more-btn' class="fa fa-refresh" aria-hidden="true">Load more</i>
+                                        <div class='badge' style='display: none;'><img src='https://i.imgur.com/6D1IhQM.png' /></div>
+                                        <i id='load-more-btn' class="fas fa-redo" aria-hidden="true">Load more</i>
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
