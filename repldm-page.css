@@ -598,3 +598,15 @@
         transform: rotate(360deg);
     }
 }
+
+
+/* message read styles */
+.msg-node.read:last-child {
+    margin-bottom: 10px;
+}
+.msg-node.read:last-child::after {
+    content: 'read';
+    position: absolute;
+    color: gray;
+    font-size: 10px;
+}

@@ -40,7 +40,7 @@ socket.on('show mark read', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
 
-    showReadReceipt([msg]);
+    $(`#msg-${id}`).addClass('read');
 })
 
 var _msg_node_increment = 0;
@@ -163,16 +163,6 @@ function displaySentMessage(message) {
     box.scrollTop(box.prop('scrollHeight'));
 }
 
-function showReadReceipt(msgs) {
-    $('#rcpt').remove();
-    msgs.slice().reverse().every((msg) => {
-        if (msg.read && (msg.from == authToken.username)) {
-            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: calc(100% - 11px); margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
-            return false;
-        }
-    })
-}
-
 function checkReadStatus() {
     var ids = [];
     Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
@@ -214,8 +204,6 @@ function loadPrevious() {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
-
                 var box = $('.chat .box');
                 box.scrollTop(box.prop('scrollHeight'));
             })
@@ -225,7 +213,6 @@ function loadPrevious() {
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
         return;
     }
 
@@ -247,7 +234,9 @@ function loadConvo(user) {
 
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
-            if (item.from == authToken.username) {
+            if ((item.from == authToken.username) && (item.read)) {
+                msgClass = 'sent read'
+            } else if (item.from == authToken.username) {
                 msgClass = 'sent';
             } else {
                 msgClass = 'received'
@@ -266,9 +255,11 @@ function loadConvo(user) {
 
         getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
-
+            if ($('.chat .top span').text() != user) return;
             messages.forEach((item, index) => {
-                if (item.from == authToken.username) {
+                if ((item.from == authToken.username) && (item.read)) {
+                    msgClass = 'sent read'
+                } else if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received'
@@ -281,18 +272,18 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
-
                 var box = $('.chat .box'); // scroll to bottom of chat
-            box.scrollTop(box.prop('scrollHeight'));
+                box.scrollTop(box.prop('scrollHeight'));
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
             _msg_cache[user] = messages;
-
+            if ($('.chat .top span').text() != user) return;
             messages.forEach((item, index) => {
-                if (item.from == authToken.username) {
+                if ((item.from == authToken.username) && (item.read)) {
+                    msgClass = 'sent read'
+                } else if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received'
@@ -305,14 +296,11 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
-
                 var box = $('.chat .box'); // scroll to bottom of chat
-            box.scrollTop(box.prop('scrollHeight'));
+                box.scrollTop(box.prop('scrollHeight'));
             })
         })
     }
-    setTimeout(checkReadStatus, 1000);
 }
 
 // https://stackoverflow.com/a/12475270/8291579
