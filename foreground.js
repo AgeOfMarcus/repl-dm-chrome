@@ -142,7 +142,7 @@ function displaySentMessage(message) {
 
 function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    msgs.reverse().every((item) => {
+    msgs.reverse().every((msg) => {
         if (msg.read && (msg.from == authToken.username)) {
             $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
             return false;
