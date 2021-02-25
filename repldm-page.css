@@ -238,7 +238,7 @@
 }
 .left-msgs .description {
     color: #262626;
-    font-weight: 600;
+    font-weight: 400;
 }
 .left-msgs .node.seen .description {
     color: rgb(142,142,142);
