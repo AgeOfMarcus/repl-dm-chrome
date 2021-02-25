@@ -11,7 +11,7 @@ socket.on('new message', (msg) => {
 
     if ($('.chat .top span').text() == msg.from) {
         $('.chat .box').append($(`
-            <div id="msg-${msg.id}" class='msg-node sent'>
+            <div id="msg-${msg.id}" class='msg-node'>
                     ${msg.body}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
@@ -28,7 +28,7 @@ socket.on('new message', (msg) => {
     }
 })
 
-socket.on('mark read', (msg) => {
+socket.on('show mark read', (msg) => {
     showReadReceipt([msg]);
 })
 
@@ -146,7 +146,7 @@ function displaySentMessage(message) {
 
 function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    msgs.every((msg) => {
+    msgs.reverse().every((msg) => {
         if (msg.read && (msg.from == authToken.username)) {
             $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: 100%; margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
             return false;
@@ -174,6 +174,36 @@ function checkReadStatus() {
     }
 }
 
+function loadPrevious() {
+    user = $('.chat .top span').text();
+
+    if (user in _msg_cache) {
+        getMessages(user, (messages) => {
+            _msg_cache[user].prepend(...messages) // *messages
+
+            messages.reverse().forEach((item, index) => {
+                if (item.from == authToken.username) {
+                    msgClass = 'sent';
+                } else {
+                    msgClass = 'recieved'
+                }
+
+                $('.chat .box').prepend($(`
+                    <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                        ${item.body}
+                        <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
+                    </div>
+                `)) //TODO: markdown and filter xss, add time to message
+
+                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
+
+                var box = $('.chat .box');
+                box.scrollTop(box.prop('scrollHeight'));
+            })
+        }, older_than=_msg_cache[user][0].time)
+    }
+}
+
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
         setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
@@ -187,7 +217,7 @@ function loadConvo(user) {
     $('.chat .box').empty();
 
     if (user in _msg_cache) {
-        _msg_cache[user].forEach((item, index) => {
+        _msg_cache[user].reverse().forEach((item, index) => {
             if (item.from == authToken.username) {
                 msgClass = 'sent';
             } else {
@@ -471,6 +501,7 @@ function authed() {
                                     <div class='top'>
                                         <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                         <span>Name</span>
+                                        <i id='load-more-btn' class="fa fa-refresh" aria-hidden="true">Load more</i>
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
@@ -597,6 +628,8 @@ function authed() {
         document.querySelector('.right .no-msg').style.display = 'none';
         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
+
+    $('#load-more-btn').bind('click', loadPrevious);
 
     document.querySelector('.send-new-msg').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
