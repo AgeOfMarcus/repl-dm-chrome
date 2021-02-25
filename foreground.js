@@ -100,7 +100,6 @@ function getConvos(callback) {
 
 function init() {
     var first = true;
-    msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
             for (const [user, recent] of Object.entries(users)) {
