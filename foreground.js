@@ -218,7 +218,7 @@ function loadConvo(user) {
 
     $('.chat .top span').text(user);
     getProfilePicture(user, (src) => {
-        $('.chat .top img').attr('src', src);
+        $('.chat .top .chat-img').attr('src', src);
     });
     $('.chat .box').empty();
 
@@ -513,10 +513,10 @@ function authed() {
                                 <!-- chat -->
                                 <div class='chat'> 
                                     <div class='top'>
-                                        <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
+                                        <img class='chat-img' src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                         <span>Name</span>
                                         <div class='badge' style='display: none;'><img src='https://i.imgur.com/6D1IhQM.png' /></div>
-                                        <i id='load-more-btn' class="fas fa-redo" aria-hidden="true">Load more</i>
+                                        <div id='load-more-btn'>Load more</div>
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>

@@ -541,3 +541,17 @@
     filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.8)) 
             drop-shadow(-1px -1px 0 rgba(219,219,219,0.8));
 }
+
+
+/* load more btn */
+.load-more-btn {
+    color: #0095f6;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.load-more-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
