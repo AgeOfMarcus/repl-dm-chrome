@@ -37,7 +37,7 @@ socket.on('new message', (res) => {
 socket.on('show mark read', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
-    
+
     showReadReceipt([msg]);
 })
 
@@ -235,6 +235,8 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
+
+    $('#load-more-btn').bind('click', loadPrevious);
 
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
