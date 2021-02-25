@@ -171,10 +171,12 @@ function init() {
         </div>`;
 
         if ($('.left-msgs .node').length <= 2) {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:last-child')
+            $(sayHelloHtml).insertAfter('.left-msgs .node:last-child');
+            console.log(1)
         }
         else {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)')
+            $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)');
+            console.log(2)
         }
     }, 5000)
 }
