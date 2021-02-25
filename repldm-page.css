@@ -37,7 +37,7 @@
     background-color: #f3f3f3;
 }
 .repldmBtn::after {
-    content: '1';
+    content: attr(notifications);
     background-color: #ff491c;
     width: 14px;
     height: 14px;
