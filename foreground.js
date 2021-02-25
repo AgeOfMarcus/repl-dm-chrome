@@ -140,9 +140,11 @@ function displaySentMessage(message) {
     }
 }
 
-function showReadReceipt(id, timestamp) {
+function showReadReceipt(msg) {
     $('#rcpt').remove();
-    $(`#msg-${id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: 11px;">Read ${time_ago(new Date(timestamp))}</span>`)
+    if (msg.read) {
+        $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
+    }
 }
 
 function checkReadStatus() {
@@ -165,7 +167,7 @@ function checkReadStatus() {
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        // we don't need to reload
+        setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
         return;
     }
 
@@ -208,8 +210,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
-                setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -230,8 +231,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
-                setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user][_msg_cache[user].length - 1]) }, 500);
             })
         })
     }
