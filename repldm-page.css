@@ -207,7 +207,7 @@
     position: relative;
 }
 .left-msgs .node .pfp img {
-    width: 70px;
+    width: auto;
     height: 70px;
     position: absolute;
     top: 50%;
