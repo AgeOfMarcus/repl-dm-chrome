@@ -160,7 +160,6 @@ function init() {
     })
 
     setTimeout(() => {
-        console.log('cmon man')
         var sayHelloHtml = `<div class='say-hello'>
             <div class='title'>Say Hello!</div>
             <div class='say-hello-cont'> 
@@ -172,11 +171,9 @@ function init() {
 
         if ($('.left-msgs .node').length <= 2) {
             $(sayHelloHtml).insertAfter('.left-msgs .node:last-child');
-            console.log(1)
         }
         else {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)');
-            console.log(2)
+            $(sayHelloHtml).insertAfter('.left-msgs .node :nth-child(2)');
         }
     }, 5000)
 }
