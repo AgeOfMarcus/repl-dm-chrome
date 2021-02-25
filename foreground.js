@@ -13,7 +13,7 @@ socket.on('new message', (msg) => {
         $('.chat .box').append($(`
             <div id="msg-${msg.id}" class='msg-node sent'>
                     ${msg.body}
-                    <input class='hidden-input' type="hidden" value='${JSON.stringify(msg)}'/>
+                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
         `))
     } else {
@@ -134,7 +134,7 @@ function displaySentMessage(message) {
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
                     ${message.body}
-                    <input class='hidden-input' type="hidden" value=\`${JSON.stringify(message)}\`/>
+                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message)})'/>
             </div>
         `))
     }
@@ -145,7 +145,7 @@ function checkReadStatus() {
     Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
         //TODO: check if element is in viewport
         try {
-            var msg = JSON.parse(el.getElementsByClassName('hidden-input')[0].value);
+            var msg = JSON.parse(atob(el.getElementsByClassName('hidden-input')[0].value));
             if (!(msg.read)) {
                 ids.push(msg.id);
             }
@@ -181,7 +181,7 @@ function loadConvo(user) {
             $('.chat .box').append($(`
                 <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                     ${item.body}
-                    <input class='hidden-input' type="hidden" value='${JSON.stringify(item)}'/>
+                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
         })
@@ -199,7 +199,7 @@ function loadConvo(user) {
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${item.body}
-                        <input class='hidden-input' type="hidden" value='${JSON.stringify(item)}'/>
+                        <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
             })
@@ -218,7 +218,7 @@ function loadConvo(user) {
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${item.body}
-                        <input class='hidden-input' type="hidden" value='${JSON.stringify(item)}'/>
+                        <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
             })
