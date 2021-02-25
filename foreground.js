@@ -34,7 +34,7 @@ socket.on('new message', (res) => {
                 });
 
                 // sound effect
-                  
+                document.getElementById('notif-sound').play();  
             })            
         }
     }
