@@ -170,10 +170,10 @@ function init() {
         </div>`;
 
         if ($('.left-msgs .node').length <= 2) {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:last-child');
+            ('.left-msgs .node:last-child').after(sayHelloHtml);
         }
         else {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:first-child');
+            ('.left-msgs .node:first-child').after(sayHelloHtml);
         }
     }, 5000)
 }
