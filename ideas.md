@@ -13,3 +13,5 @@
 * make notification go to chat onclick
 
 * perhaps firefox support
+
+* make the css for different screen sizes
