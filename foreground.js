@@ -126,7 +126,7 @@ function init() {
                     msgsDiv = $('.left-msgs');
 
                     nodeClass = 'node';
-                    if (!(user in unread) || (user == authToken.username) || (recent.from == user)) nodeClass = nodeClass + ' seen';
+                    if (!(user in unread) || (user == authToken.username) || !(recent.from == user)) nodeClass = nodeClass + ' seen';
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
