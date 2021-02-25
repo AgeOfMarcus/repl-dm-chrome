@@ -460,7 +460,7 @@
     color: white;
     border-color: #0095f6;
 }
-.right .chat .wrapper .box .msg-node.recieved {
+.right .chat .wrapper .box .msg-node.received {
     margin-left: 8px;
     background-color: white;
 }
@@ -540,9 +540,9 @@
     height: 100%;
     width: auto;
     -webkit-filter: drop-shadow(1px 1px 0 black)
-                    drop-shadow(-1px -1px 0 black);
+                    drop-shadow(0px 0px 0 black);
     filter: drop-shadow(1px 1px 0 black) 
-            drop-shadow(-1px -1px 0 black);
+            drop-shadow(0px 0px 0 black);
 }
 
 

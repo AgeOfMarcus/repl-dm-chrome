@@ -11,7 +11,7 @@ socket.on('new message', (msg) => {
 
     if ($('.chat .top span').text() == msg.from) {
         $('.chat .box').append($(`
-            <div id="msg-${msg.id}" class='msg-node'>
+            <div id="msg-${msg.id}" class='msg-node received'>
                     ${msg.body}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
