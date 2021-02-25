@@ -150,24 +150,6 @@ function init() {
             }
         })
     })
-
-    // background color 
-    chrome.storage.local.get(['background'], (res) => { 
-        console.log(res, res.background);
-        if (typeof res.background === 'undefined') {
-            chrome.storage.local.set({'background': 'white'});
-        }
-        else {
-            $('.dmWrapper .right').css('background-color', res.background);
-
-            if (res.background == 'white') {
-                document.querySelector('.dmWrapper .right').classList.add('white-bg');
-            }
-            else {
-                document.querySelector('.dmWrapper .right').classList.remove('white-bg');
-            }
-        }
-    })
 }
 
 function displaySentMessage(message) {
@@ -617,6 +599,24 @@ function authed() {
                     </div>`;
 
             $('body').append($(pageHtml));
+
+            // background color 
+            chrome.storage.local.get(['background'], (res) => { 
+                console.log(res, res.background);
+                if (typeof res.background === 'undefined') {
+                    chrome.storage.local.set({'background': 'white'});
+                }
+                else {
+                    $('.dmWrapper .right').css('background-color', res.background);
+
+                    if (res.background == 'white') {
+                        document.querySelector('.dmWrapper .right').classList.add('white-bg');
+                    }
+                    else {
+                        document.querySelector('.dmWrapper .right').classList.remove('white-bg');
+                    }
+                }
+            })
         }
     }
 
