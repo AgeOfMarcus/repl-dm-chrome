@@ -150,32 +150,13 @@ function init() {
                     
                     if (first) {
                         $('.loading-msgs').hide();
+                        $('.say-hello').show();
                         first = false;
                     }
 
                     _msg_node_increment++;
                 })
             }
-
-            setTimeout(() => {
-                var sayHelloHtml = `<div class='say-hello'>
-                    <div class='title'>Say Hello!</div>
-                    <div class='say-hello-cont'> 
-                        <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
-                        <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
-                    </div>
-                    <div class='body'>Message the dupl team</div>
-                </div>`;
-
-                if ($('.left-msgs .node').length <= 2) {
-                    $('.left-msgs .node:last-child').after(sayHelloHtml);
-                    console.log(1)
-                }
-                else {
-                    $('.left-msgs .node:first-child').after(sayHelloHtml);
-                    console.log(2)
-                }
-            }, 6000)
         })
     })
 }
@@ -499,31 +480,15 @@ function authed() {
                                 <!-- messages -->
                                 <div class='left-msgs'>
                                     <div class='loading-msgs'><img src='https://i.imgur.com/RlSKElx.png' /></div>
-                                    <!-- 
-                                    <input type='radio' class='node-radio' id='msg-0' name='msg' />
-                                    <label class='node' for='msg-0'>
-                                        <div class='pfp'>
-                                            <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
+
+                                    <div class='say-hello' style='display: none;'>
+                                        <div class='title'>Say Hello!</div>
+                                        <div class='say-hello-cont'> 
+                                            <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
+                                            <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
                                         </div>
-                                        <div class='mid'> 
-                                            <div class='name'>rafrafraf</div>
-                                            <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                        </div>
-                                        <div class='circle'></div>
-                                    </label>
-                                    
-                                    <input type='radio' class='node-radio' id='msg-1' name='msg' />
-                                    <label class='node seen' for='msg-1'>
-                                        <div class='pfp'>
-                                            <img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
-                                        </div>
-                                        <div class='mid'> 
-                                            <div class='name'>someone else</div>
-                                            <div class='description'>Sent you a message <span class='date'>1h ago</span></div>
-                                        </div>
-                                        <div class='circle'></div>
-                                    </label>
-                                    -->
+                                        <div class='body'>Message the dupl team</div>
+                                    </div>
                                 </div>
 
                                 <!-- settings -->
