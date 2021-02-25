@@ -46,7 +46,7 @@ socket.on('show mark read', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
 
-    $(`#msg-${id}`).addClass('read');
+    $(`#msg-${msg.id}`).addClass('read');
 })
 
 var _msg_node_increment = 0;
