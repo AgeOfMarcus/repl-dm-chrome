@@ -578,8 +578,8 @@
 
 /* loading msgs anim */
 .loading-msgs {
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: 45px;
     position: absolute;
     top: 50%;
     left: 50%;

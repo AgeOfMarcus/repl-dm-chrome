@@ -1,5 +1,7 @@
 console.log('foreground baby');
 
+var _first_load = true;
+
 const socket = io("https://repldm.dupl.repl.co");
 
 socket.on('new message', (res) => {
@@ -417,6 +419,10 @@ function authed() {
             $(html).insertAfter('.scroll-container .new-repl-cta');
 
             $('.repldmBtn').click(() => {
+                if (_first_load) {
+                    init();
+                    globalThis._first_load = false;
+                }
                 var open = $('.cont').is(':visible');
                 $('.repldmBtn .fa-paper-plane').toggle();
                 $('.repldmBtn').toggleClass('open');
@@ -664,6 +670,7 @@ function authed() {
         $('.new-msg .to input').val('');
         $('.new-msg .message textarea').val('');
         document.querySelector('.new-msg-cont').style.display = 'none';
+        msgsDiv = $('.left-msgs').empty();
         init();
     })
 
@@ -744,7 +751,6 @@ chrome.storage.sync.get(['auth'], (res) => {
         globalThis.authToken = res.auth;
         socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
         authed();
-        init();
     }
 })
 
