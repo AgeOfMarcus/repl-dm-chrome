@@ -36,7 +36,7 @@
 .repldmBtn:hover {
     background-color: #f3f3f3;
 }
-.repldmBtn[notifications]:not([notifications=""])::after {
+.repldmBtn[notifications]:not([notifications=""]):not([notifications="0"])::after {
     content: attr(notifications);
     background-color: #ff491c;
     width: 14px;

@@ -4,6 +4,14 @@ var _first_load = true;
 
 const socket = io("https://repldm.dupl.repl.co");
 
+// READ ME or ur gay lol
+
+// to set notification badge all u gotta do is $('repldmBtn').attr('notifications', "[insert number here]")
+// if the notifications attribute doesnt exist, or has no value or the value of 0, the badge auto hides so dw about hiding it, and the attribute value auto sets the badge value too so its super easy.
+
+// also, i think the number it shows should be the number of unread chats, not the number of unread messages. so if you and some other guy sent me a few msgs, it would show 2 for 2 unread chats.
+
+
 socket.on('new message', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
@@ -401,13 +409,14 @@ function authed() {
 
         // add repldm button 
         if ($('.repldmBtn').length == 0) {
-            var dark; // fix dark theme check
-            //if (__REPLIT_REDUX_STORE__.getState().user.userInfo.editorPreferences.theme == 'replitDark') {
-                //dark = 'darktheme';
-            //}
-            //else {
+            // dark theme check
+            var dark;
+            if ($('header').css('background-color') == "rgb(29, 35, 51)") {
+                dark = 'darktheme';
+            }
+            else {
                 dark = '';
-            //}
+            }
             var html = `
             <div class='repldmBtn ${dark}'>
                 <i class="fas fa-paper-plane" style='display: none;'></i>
