@@ -545,7 +545,6 @@
     width: fit-content;
     position: relative;
     flex-shrink: 0;
-    margin-bottom: 6px;
 }
 .badge img {
     height: 100%;
@@ -570,6 +569,7 @@
     border-radius: 6px;
     margin-bottom: -5px;
     border: 1px solid rgb(219, 219, 219);
+    z-index: 1000;
 }
 #load-more-btn:hover {
     cursor: pointer;
