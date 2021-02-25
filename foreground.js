@@ -623,17 +623,11 @@ function authed() {
     }
 
     // close new message
-    //$('.close-new-msg').bind('click', () => {
-        //$('.new-msg-cont').hide();
-    //})
     document.querySelector('.close-new-msg').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = 'none';
     })
 
     // open new message 
-    //$('.write-msg-btn').bind('click', () => {
-        //$('.new-msg-cont').show();
-    //})
     document.querySelector('.write-msg-btn').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
     })
@@ -645,7 +639,8 @@ function authed() {
     })
 
     $('#load-more-btn').bind('click', loadPrevious);
-
+    
+    // send msg to user
     document.querySelector('.send-new-msg').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
         loadConvo($('.new-msg .to input').val());
@@ -654,6 +649,7 @@ function authed() {
         })
         $('.new-msg .to input').val('');
         $('.new-msg .message textarea').val('');
+        document.querySelector('.new-msg-cont').style.display = 'none';
         init();
     })
 
