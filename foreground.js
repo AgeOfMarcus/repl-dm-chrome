@@ -172,7 +172,7 @@ function checkReadStatus() {
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        setTimeout(() => setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
+        setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
         return;
     }
 
