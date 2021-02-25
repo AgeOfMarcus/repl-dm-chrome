@@ -29,7 +29,7 @@
 ---
 
 ## bugs:
-* overflow hidden bug
+* overflow hidden bug when u go to a new page while on repldm smh
 
 * hide the load more if theres nothing else to load. also the load more btn dont even work lol
 
@@ -38,3 +38,5 @@
 * fix the chat not showing up as read when i open it (for marcus' chat)
 
 * notifications come up too many times for each msg and clicking back makes it come back idk why
+
+* fix all the bugs with read lmao

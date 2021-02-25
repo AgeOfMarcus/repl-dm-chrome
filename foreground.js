@@ -291,7 +291,7 @@ function loadConvo(user) {
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
             })
-        }, newer_than=_msg_cache[user][0].time)
+        }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
             _msg_cache[user] = messages;
