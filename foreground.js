@@ -146,9 +146,9 @@ function displaySentMessage(message) {
 
 function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    msgs.reverse().every((msg) => {
+    msgs.every((msg) => {
         if (msg.read && (msg.from == authToken.username)) {
-            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: 100%; margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
+            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: calc(100% - 11px); margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
             return false;
         }
     })
@@ -217,7 +217,7 @@ function loadConvo(user) {
     $('.chat .box').empty();
 
     if (user in _msg_cache) {
-        _msg_cache[user].reverse().forEach((item, index) => {
+        [..._msg_cache[user]].reverse().forEach((item, index) => {
             if (item.from == authToken.username) {
                 msgClass = 'sent';
             } else {
