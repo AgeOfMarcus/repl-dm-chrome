@@ -485,9 +485,10 @@
 /* message themes */
 
 .dmWrapper[theme="green"] .msg-node.sent {
-    background-color: #44eb7d;
-    border-color: #44eb7d;
+    background-color: #44eb7d !important;
+    border-color: #44eb7d !important;
 }
+
 
 /* /message themes */
 
