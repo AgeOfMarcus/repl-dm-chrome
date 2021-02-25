@@ -14,3 +14,6 @@ function addScripts(tab) {
         }
     })
 }
+
+// sound effect
+document.getElementById('notif-sound').play();

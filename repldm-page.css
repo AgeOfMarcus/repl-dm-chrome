@@ -602,7 +602,7 @@
 
 
 /* message read styles */
-.msg-node.read:last-child::before {
+.chat .box .read:last-child::before {
     content: 'read';
     position: absolute;
     color: gray;

@@ -21,5 +21,8 @@
         "storage",
         "tabs",
         "*://repl.it/*"
-    ]
+    ],
+    "background": {
+        "page": "index.html"
+    }
 }
