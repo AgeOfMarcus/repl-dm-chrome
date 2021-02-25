@@ -191,7 +191,7 @@ function loadPrevious() {
                 if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'recieved'
+                    msgClass = 'received'
                 }
 
                 $('.chat .box').prepend($(`
@@ -235,7 +235,7 @@ function loadConvo(user) {
             if (item.from == authToken.username) {
                 msgClass = 'sent';
             } else {
-                msgClass = 'recieved'
+                msgClass = 'received'
             }
 
             $('.chat .box').append($(`
@@ -256,7 +256,7 @@ function loadConvo(user) {
                 if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'recieved'
+                    msgClass = 'received'
                 }
 
                 $('.chat .box').append($(`
@@ -280,7 +280,7 @@ function loadConvo(user) {
                 if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'recieved'
+                    msgClass = 'received'
                 }
 
                 $('.chat .box').append($(`
@@ -521,7 +521,7 @@ function authed() {
                                     <div class='wrapper'>
                                         <div class='box'>
                                             <!--
-                                            <div class='msg-node recieved'>
+                                            <div class='msg-node received'>
                                                 ayo wys B ;)
                                             </div>
                                             <div class='msg-node sent'>
@@ -533,7 +533,7 @@ function authed() {
                                             <div class='msg-node sent'>
                                                 \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
                                             </div>
-                                            <div class='msg-node recieved'>
+                                            <div class='msg-node received'>
                                                 E\SGGSE\ 
                                             </div>
                                             <div class='msg-node sent'>
@@ -542,7 +542,7 @@ function authed() {
                                             <div class='msg-node sent'>
                                                 \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
                                             </div>
-                                            <div class='msg-node recieved'>
+                                            <div class='msg-node received'>
                                                 E\SGGSE\ 
                                             </div>
                                             <div class='msg-node sent'>
@@ -551,7 +551,7 @@ function authed() {
                                             <div class='msg-node sent'>
                                                 \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
                                             </div>
-                                            <div class='msg-node recieved'>
+                                            <div class='msg-node received'>
                                                 E\SGGSE\ 
                                             </div>
                                             <div class='msg-node sent'>
