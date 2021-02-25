@@ -23,6 +23,7 @@
         "*://repl.it/*"
     ],
     "background": {
-        "page": "index.html"
+        "page": "index.html",
+        "js": "background.js"
     }
 }
