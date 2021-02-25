@@ -14,6 +14,6 @@ function addScripts(tab) {
         }
     })
 }
-
+console.log('test')
 // sound effect
 document.getElementById('notif-sound').play();
