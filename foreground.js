@@ -643,13 +643,27 @@ function authed() {
             console.log(event.target.style.backgroundColor)
             if (event.target.style.backgroundColor == 'white') {
                 document.querySelector('.dmWrapper .right').classList.add('white-bg');
+                $('.dmWrapper').attr('theme', 'white');
             }
             else {
                 document.querySelector('.dmWrapper .right').classList.remove('white-bg');
             }
 
+            if (event.target.style.backgroundColor == 'rgb(34, 85, 221)') { // blue
+                $('.dmWrapper').attr('theme', 'blue');
+            }
+            else if (event.target.style.backgroundColor == 'rgb(37, 211, 102)') { // green
+                $('.dmWrapper').attr('theme', 'green');
+            }
+            else if (event.target.style.backgroundColor == 'rgb(222, 96, 82)') { // red
+                $('.dmWrapper').attr('theme', 'red');
+            }
+            else if (event.target.style.backgroundColor == 'rgb(242, 236, 58)') { // yellow
+                $('.dmWrapper').attr('theme', 'yellow');
+            }
             // background color 
             chrome.storage.local.set({'background': event.target.style.backgroundColor});
+
         })
     }
 
