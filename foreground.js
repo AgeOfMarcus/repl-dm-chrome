@@ -156,28 +156,28 @@ function init() {
                     _msg_node_increment++;
                 })
             }
+
+            setTimeout(() => {
+                var sayHelloHtml = `<div class='say-hello'>
+                    <div class='title'>Say Hello!</div>
+                    <div class='say-hello-cont'> 
+                        <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
+                        <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
+                    </div>
+                    <div class='body'>Message the dupl team</div>
+                </div>`;
+
+                if ($('.left-msgs .node').length <= 2) {
+                    $('.left-msgs .node:last-child').after(sayHelloHtml);
+                    console.log(1)
+                }
+                else {
+                    $('.left-msgs .node:first-child').after(sayHelloHtml);
+                    console.log(2)
+                }
+            }, 6000)
         })
     })
-
-    setTimeout(() => {
-        var sayHelloHtml = `<div class='say-hello'>
-            <div class='title'>Say Hello!</div>
-            <div class='say-hello-cont'> 
-                <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
-                <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
-            </div>
-            <div class='body'>Message the dupl team</div>
-        </div>`;
-
-        if ($('.left-msgs .node').length <= 2) {
-            $('.left-msgs .node:last-child').after(sayHelloHtml);
-            console.log(1)
-        }
-        else {
-            $('.left-msgs .node:first-child').after(sayHelloHtml);
-            console.log(2)
-        }
-    }, 10000)
 }
 
 function displaySentMessage(message) {
