@@ -606,20 +606,19 @@ function authed() {
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
                         console.log(res.background)
-                        console.log(res.background == 'rgb(37, 211, 102)')
                         if (res.background == 'rgb(37, 211, 102)') { // green
                             $('.dmWrapper').attr('theme', 'green');
                             console.log(1)
                         }
-                        else if (res.background == '#25D') { // blue
+                        else if (res.background == 'rgb(34, 85, 221)') { // blue
                             $('.dmWrapper').attr('theme', 'blue');
                             console.log(2)
                         }
-                        else if (res.background == '#de6052') { // red
+                        else if (res.background == 'rgb(222, 96, 82)') { // red
                             $('.dmWrapper').attr('theme', 'red');
                             console.log(3)
                         }
-                        else if (res.background == '#f2ec3a') { // yellow
+                        else if (res.background == 'rgb(242, 236, 58)') { // yellow
                             $('.dmWrapper').attr('theme', 'yellow');
                             console.log(4)
                         }
