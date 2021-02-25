@@ -150,6 +150,17 @@ function init() {
             }
         })
     })
+
+    // background color 
+    chrome.storage.sync.get(['background'], (res) => { 
+        console.log(res, res.background);
+        if (typeof res.background === 'undefined') {
+            chrome.storage.local.set({'background': 'white'});
+        }
+        else {
+            $('.dmWrapper .right').css('background-color', res.background);
+        }
+    })
 }
 
 function displaySentMessage(message) {
@@ -623,9 +634,6 @@ function authed() {
 
 
     // change bg color
-    //$('.change-color').bind('click', (event) => {
-        //$('.dmWrapper .right').css('background-color', $(event.target).css('background-color'));
-    //})
     var els = document.getElementsByClassName('change-color');
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', (event) => {
@@ -637,6 +645,9 @@ function authed() {
             else {
                 document.querySelector('.dmWrapper .right').classList.remove('white-bg');
             }
+
+            // background color 
+            chrome.storage.local.set({'background': event.target.style.backgroundColor});
         })
     }
 
