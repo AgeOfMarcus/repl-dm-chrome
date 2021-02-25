@@ -160,6 +160,7 @@ function init() {
     })
 
     setTimeout(() => {
+        console.log('cmon man')
         var sayHelloHtml = `<div class='say-hello'>
             <div class='title'>Say Hello!</div>
             <div class='say-hello-cont'> 
