@@ -606,6 +606,7 @@ function authed() {
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
                         console.log(res.background)
+                        console.log(res.background == 'rgb(37, 211, 102)')
                         if (res.background == 'rgb(37, 211, 102)') { // green
                             $('.dmWrapper').attr('theme', 'green');
                             console.log(1)
