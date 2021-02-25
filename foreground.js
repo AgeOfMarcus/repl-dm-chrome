@@ -16,6 +16,9 @@ socket.on('new message', (msg) => {
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
         `))
+
+        var box = $('.chat .box'); // scroll to bottom of chat
+        box.scrollTop(box.prop('scrollHeight'));
     } else {
         if (_notify_perm) {
             getProfilePicture(msg.from, (src) => {
@@ -142,6 +145,9 @@ function displaySentMessage(message) {
             </div>
         `))
     }
+
+    var box = $('.chat .box'); // scroll to bottom of chat
+    box.scrollTop(box.prop('scrollHeight'));
 }
 
 function showReadReceipt(msgs) {
@@ -231,7 +237,7 @@ function loadConvo(user) {
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
 
-            var box = $('.chat .box');
+            var box = $('.chat .box'); // scroll to bottom of chat
             box.scrollTop(box.prop('scrollHeight'));
         })
 
@@ -254,8 +260,8 @@ function loadConvo(user) {
 
                 setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
 
-                var box = $('.chat .box');
-                box.scrollTop(box.prop('scrollHeight'));
+                var box = $('.chat .box'); // scroll to bottom of chat
+            box.scrollTop(box.prop('scrollHeight'));
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -278,8 +284,8 @@ function loadConvo(user) {
 
                 setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
 
-                var box = $('.chat .box');
-                box.scrollTop(box.prop('scrollHeight'));
+                var box = $('.chat .box'); // scroll to bottom of chat
+            box.scrollTop(box.prop('scrollHeight'));
             })
         })
     }
