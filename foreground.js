@@ -28,6 +28,10 @@ socket.on('new message', (msg) => {
     }
 })
 
+socket.on('mark read', (msg) => {
+    showReadReceipt([msg]);
+})
+
 var _msg_node_increment = 0;
 var _msg_cache = {};
 
@@ -142,9 +146,9 @@ function displaySentMessage(message) {
 
 function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    msgs.reverse().every((msg) => {
+    msgs.every((msg) => {
         if (msg.read && (msg.from == authToken.username)) {
-            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
+            $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: 100%; margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
             return false;
         }
     })
@@ -196,6 +200,9 @@ function loadConvo(user) {
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
+
+            var box = $('.chat .box');
+            box.scrollTop(box.prop('scrollHeight'));
         })
 
         getMessages(user, (messages) => {
@@ -216,6 +223,9 @@ function loadConvo(user) {
                 `)) //TODO: markdown and filter xss, add time to message
 
                 setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
+
+                var box = $('.chat .box');
+                box.scrollTop(box.prop('scrollHeight'));
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -237,6 +247,9 @@ function loadConvo(user) {
                 `)) //TODO: markdown and filter xss, add time to message
 
                 setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
+
+                var box = $('.chat .box');
+                box.scrollTop(box.prop('scrollHeight'));
             })
         })
     }
