@@ -151,6 +151,25 @@ function init() {
                     if (first) {
                         $('.loading-msgs').hide();
                         first = false;
+
+                        // say hello 
+                        setTimeout(() => {
+                            var sayHelloHtml = `<div class='say-hello'>
+                                <div class='title'>Say Hello!</div>
+                                <div class='say-hello-cont'> 
+                                    <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
+                                    <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
+                                </div>
+                                <div class='body'>Message the dupl team</div>
+                            </div>`;
+
+                            if ($('.left-msgs .node').length <= 2) {
+                                $(sayHelloHtml).insertAfter('.left-msgs .node:last-child')
+                            }
+                            else {
+                                $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)')
+                            }
+                        }, 3000)
                     }
 
                     _msg_node_increment++;
@@ -158,24 +177,6 @@ function init() {
             }
         })
     })
-
-    setTimeout(() => {
-        var sayHelloHtml = `<div class='say-hello'>
-            <div class='title'>Say Hello!</div>
-            <div class='say-hello-cont'> 
-                <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' /></div>
-                <div class='say-hello-pfp'><img src='https://storage.googleapis.com/replit/images/1598545094187_98fcb803c6b4ed38d6f90e26faa0c40e.jpeg' /></div>
-            </div>
-            <div class='body'>Message the dupl team</div>
-        </div>`;
-
-        if ($('.left-msgs .node').length <= 2) {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:last-child')
-        }
-        else {
-            $(sayHelloHtml).insertAfter('.left-msgs .node:nth-child(2)')
-        }
-    }, 1000)
 }
 
 function displaySentMessage(message) {
