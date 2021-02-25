@@ -159,6 +159,13 @@ function init() {
         }
         else {
             $('.dmWrapper .right').css('background-color', res.background);
+
+            if (res.background == 'white') {
+                document.querySelector('.dmWrapper .right').classList.add('white-bg');
+            }
+            else {
+                document.querySelector('.dmWrapper .right').classList.remove('white-bg');
+            }
         }
     })
 }
