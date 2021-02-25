@@ -207,6 +207,9 @@ function loadConvo(user) {
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
+
+                var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
+                setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -226,12 +229,13 @@ function loadConvo(user) {
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
+
+                var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
+                setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
             })
         })
     }
     setTimeout(checkReadStatus, 1000);
-    var lastmsg = _msg_cache[user][_msg_cache[user].length - 1];
-    setTimeout(() => { showReadReceipt(lastmsg.id, lastmsg.time) }, 500);
 }
 
 // https://stackoverflow.com/a/12475270/8291579
