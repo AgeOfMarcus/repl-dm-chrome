@@ -574,3 +574,27 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+
+/* loading msgs anim */
+.loading-msgs {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.loading-msgs img {
+    height: 100%;
+    width: auto;
+    animation: spin 1s infinite linear;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

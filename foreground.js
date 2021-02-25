@@ -99,6 +99,7 @@ function getConvos(callback) {
 
 
 function init() {
+    var first = true;
     msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
@@ -128,6 +129,11 @@ function init() {
                         $(`label[for=${event.target.id}]`).addClass('seen');
                         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
                     })
+                    
+                    if (first) {
+                        $('.loading-msgs').hide();
+                        first = false;
+                    }
 
                     _msg_node_increment++;
                 })
@@ -158,7 +164,7 @@ function displaySentMessage(message) {
 
 function showReadReceipt(msgs) {
     $('#rcpt').remove();
-    msgs.every((msg) => {
+    msgs.slice().reverse().every((msg) => {
         if (msg.read && (msg.from == authToken.username)) {
             $(`#msg-${msg.id}`).after(`<span id="rcpt" style="color: gray;font-size: 10px;margin-left: calc(100% - 11px); margin-right: 11px;">Read ${time_ago(new Date(msg.time))}</span>`)
             return false;
@@ -197,7 +203,7 @@ function loadPrevious() {
                 if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'received'
+                    msgClass = 'received';
                 }
 
                 $('.chat .box').prepend($(`
@@ -459,7 +465,8 @@ function authed() {
                                 </div>
 
                                 <!-- messages -->
-                                <div class='left-msgs'> 
+                                <div class='left-msgs'>
+                                    <div class='loading-msgs'><img src='https://i.imgur.com/RlSKElx.png' /></div>
                                     <!-- 
                                     <input type='radio' class='node-radio' id='msg-0' name='msg' />
                                     <label class='node' for='msg-0'>
