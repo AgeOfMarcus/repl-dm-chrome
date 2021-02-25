@@ -93,7 +93,7 @@ function init() {
     msgsDiv = $('.left-msgs').empty();
     listUnread((unread) => {
         getConvos((users) => {
-            for (let [user, recent] of Object.entries(users)) {
+            for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
 
