@@ -172,7 +172,7 @@ function checkReadStatus() {
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
-        setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
+        setTimeout(() => setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
         return;
     }
 
@@ -215,7 +215,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                { showReadReceipt(_msg_cache[user]) }, 1500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -236,7 +236,7 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                { showReadReceipt(_msg_cache[user]) }, 1500);
+                setTimeout(() => { showReadReceipt(_msg_cache[user]) }, 1500);
             })
         })
     }
