@@ -248,8 +248,6 @@ function loadConvo(user) {
         $('.chat .top .badge').hide();
     }
 
-    $('#load-more-btn').bind('click', loadPrevious);
-
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
             if ((item.from == authToken.username) && (item.read)) {
@@ -528,7 +526,6 @@ function authed() {
                                         <img class='chat-img' src='https://storage.googleapis.com/replit/images/1601821666159_c0dcdf3d27cfe49d4ef1be6491fe5173.jpeg' />
                                         <span>Name</span>
                                         <div class='badge' style='display: none;'><img src='https://i.imgur.com/6D1IhQM.png' /></div>
-                                        <div id='load-more-btn'>Load more</div>
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
@@ -667,8 +664,6 @@ function authed() {
         document.querySelector('.right .no-msg').style.display = 'none';
         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
-
-    $('#load-more-btn').bind('click', loadPrevious);
     
     // send msg to user
     document.querySelector('.send-new-msg').addEventListener('click', () => {

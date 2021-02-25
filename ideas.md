@@ -1,17 +1,40 @@
 ## ideas:
-
 * custom right click menu: 
     1. delete message
     2. copy to clipboar
 
-* custom notification sound (we also want our own default one)
+* send images
 
+* maybe make chats have the same icons as snapchat to show the paper plane or chat and fill if unseen (hmmm i like this idea)
 
+* have something to show if a person has repl dm or not ---------------- dis a good idea i like dis
+
+* make scroll to top of chat load more messages
+
+---
 
 ## todo:
-
 * make notification go to chat onclick
 
 * perhaps firefox support
 
 * make the css for different screen sizes
+
+* notification badge number
+
+* order the chats by most recent to oldest
+
+* notification onclick
+
+---
+
+## bugs:
+* overflow hidden bug
+
+* hide the load more if theres nothing else to load. also the load more btn dont even work lol
+
+* clicking back on a notification just makes the notifcation come back smh
+
+* fix the chat not showing up as read when i open it (for marcus' chat)
+
+* notifications come up too many times for each msg and clicking back makes it come back idk why
