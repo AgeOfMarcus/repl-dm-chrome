@@ -5,3 +5,11 @@
     2. copy to clipboar
 
 * custom notification sound (we also want our own default one)
+
+
+
+## todo:
+
+* make notification go to chat onclick
+
+* perhaps firefox support

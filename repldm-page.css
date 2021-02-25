@@ -379,7 +379,7 @@
     resize: none;
     flex-grow: 1;
 }
-.new-msg .to input, .new-msg .message textarea:hover {
+.new-msg .to input, .new-msg .message textarea:hover, .new-msg .message textarea:focus, .new-msg .message textarea:active {
     outline: 0;
 }
 .new-msg .to {
