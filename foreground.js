@@ -152,7 +152,7 @@ function init() {
     })
 
     // background color 
-    chrome.storage.sync.get(['background'], (res) => { 
+    chrome.storage.local.get(['background'], (res) => { 
         console.log(res, res.background);
         if (typeof res.background === 'undefined') {
             chrome.storage.local.set({'background': 'white'});
