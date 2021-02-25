@@ -462,6 +462,7 @@
     flex-grow: 0;
     border: 1px solid rgb(219,219,219);
     margin-top: 5px;
+    position: relative;
 }
 .right .chat .wrapper .box .msg-node.sent {
     margin-left: auto;
@@ -601,12 +602,13 @@
 
 
 /* message read styles */
-.msg-node.read:last-child {
-    margin-bottom: 10px;
-}
-.msg-node.read:last-child::after {
+.msg-node.read:last-child::before {
     content: 'read';
     position: absolute;
     color: gray;
-    font-size: 10px;
+    bottom: -100%;
+    font-size: 14px;
+    bottom: -50%;
+    text-align: right;
+    right: 8px;
 }
