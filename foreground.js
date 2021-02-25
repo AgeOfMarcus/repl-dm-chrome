@@ -171,11 +171,13 @@ function init() {
 
         if ($('.left-msgs .node').length <= 2) {
             $('.left-msgs .node:last-child').after(sayHelloHtml);
+            console.log(1)
         }
         else {
             $('.left-msgs .node:first-child').after(sayHelloHtml);
+            console.log(2)
         }
-    }, 5000)
+    }, 10000)
 }
 
 function displaySentMessage(message) {
