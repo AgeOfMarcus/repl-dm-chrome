@@ -134,7 +134,7 @@ function displaySentMessage(message) {
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
                     ${message.body}
-                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message)})'/>
+                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message))}'/>
             </div>
         `))
     }
