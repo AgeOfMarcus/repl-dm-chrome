@@ -241,6 +241,9 @@
     transform: translateY(-100%);
     display: flex;
 }
+.left-msgs .name::before {
+    content: '@';
+}
 .left-msgs .description {
     color: #262626;
     font-weight: 400;
