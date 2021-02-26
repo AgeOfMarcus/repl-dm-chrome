@@ -139,8 +139,8 @@ function init() {
                                 <div class='icons' date='${time_ago(new Date(recent.time))}'>
                                     <i class="far fa-paper-plane read-icon"></i>
                                     <i class="fas fa-paper-plane sent-icon"></i>
-                                    <i class="far fa-comment-alt received-icon"></i>
-                                    <i class="fas fa-comment-alt opened-icon"></i>
+                                    <i class="far fa-comment-alt opened-icon"></i>
+                                    <i class="fas fa-comment-alt received-icon"></i>
                                 </div>
                             </div>
                         </label>
