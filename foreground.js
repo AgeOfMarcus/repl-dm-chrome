@@ -594,7 +594,7 @@ function authed() {
             // resizer script
             var up = false;
             var leftW = 300;
-            $('.resizer').bind('mousedown', (ev) => {
+            $('.dmWrapper .resizer').bind('mousedown', (ev) => {
                 up = true;
                 console.log('down');
                 var startPos = ev.pageX;
@@ -602,16 +602,12 @@ function authed() {
                     cursor: 'grabbing',
                     userSelect: 'none'
                 });
-                var rightW = $('.right').width();
-                console.log(rightW)
-                console.log($('.left').width())
+                var rightW = $('.dmWrapper .right').width();
                 $('body').mousemove((e) => {
                     var tmp = (e.pageX - ev.pageX);
                     var newW = leftW + tmp;
-                    console.log(newW, (rightW - tmp))
                     if ((newW >= 150) && (rightW - tmp) >= 360) {
-                        console.log('gud')
-                        $('.left').width(newW);
+                        $('.dmWrapper .left').width(newW);
                     }
                 })
             })
@@ -621,7 +617,7 @@ function authed() {
                     console.log('up');
                     up = false;
                     $('body').off('mousemove');
-                    leftW = $('.left').width();
+                    leftW = $('.dmWrapper .left').width();
                     $('body').css({
                         cursor: '',
                         userSelect: ''
