@@ -622,8 +622,8 @@
 .node.online::after {
     content: '';
     background-color: #0de03e;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     position: absolute;
     border-radius: 50%;
     bottom: 15px;
@@ -631,5 +631,5 @@
     border: 3px solid white;
 }
 .node:hover::after {
-    border: 3px solid transparent;
+    border: 3px solid white;
 }
