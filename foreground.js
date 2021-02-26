@@ -608,7 +608,7 @@ function authed() {
                 $('body').mousemove((e) => {
                     var tmp = (e.pageX - ev.pageX);
                     var newW = leftW + tmp;
-                    if ((newW >= 150) && (rightW - tmp) >= 300) {
+                    if ((newW >= 150) && (rightW - tmp) >= 360) {
                         $('.dmWrapper .left').width(newW);
                     }
                 })
