@@ -251,6 +251,7 @@ function loadConvo(user) {
     // showdupl badge
     if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
         $('.chat .top .badge').show();
+        console.log('dupl team')
     }
     else {
         $('.chat .top .badge').hide();
