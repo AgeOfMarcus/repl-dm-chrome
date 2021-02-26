@@ -594,9 +594,8 @@ function authed() {
             // resizer script
             var up = false;
             var leftW = 300;
-            $('.dmWrapper .resizer').bind('mousedown', (ev) => {
+            /*$('.dmWrapper .resizer').bind('mousedown', (ev) => {
                 up = true;
-                console.log('down');
                 var startPos = ev.pageX;
                 $('body').css({
                     cursor: 'grabbing',
@@ -611,10 +610,8 @@ function authed() {
                     }
                 })
             })
-
             $('body').bind('mouseup', () => {
                 if (up) {
-                    console.log('up');
                     up = false;
                     $('body').off('mousemove');
                     leftW = $('.dmWrapper .left').width();
@@ -623,7 +620,7 @@ function authed() {
                         userSelect: ''
                     });
                 }
-            })
+            })*/
 
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
