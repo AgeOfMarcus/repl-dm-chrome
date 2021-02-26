@@ -631,6 +631,8 @@
     position: relative;
     align-items: center;
     margin-right: 16px;
+    white-space: nowrap;
+    font-size: smaller;
 }
 .node .icons * {
     width: fit-content;
@@ -644,6 +646,7 @@
     color: black;
     text-transform: capitalize;
     width: fit-content;
+    font-size: smaller;
 }
 .node .fa-paper-plane {
     transform: rotate(55deg) skewY(10deg);
