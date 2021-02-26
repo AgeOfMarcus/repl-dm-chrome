@@ -641,10 +641,10 @@ function authed() {
                     $('.dmWrapper .right .box').removeClass('small');
                     $('.dmWrapper .right .box').removeClass('large');
 
-                    if (res.fontsize == 12) { // small
+                    if (res.fontsize == '12px') { // small
                         $('.dmWrapper .right .box').addClass('small');
                     }
-                    else if (res.fontsize == 20){ // large
+                    else if (res.fontsize == '20px'){ // large
                         $('.dmWrapper .right .box').addClass('large');
                     }
                 }
@@ -687,9 +687,6 @@ function authed() {
     window.onload = setup();
 
     // toggle settings
-    //$('.settings-btn').bind('click', () => {
-        //$('.dmWrapper .settings').toggleClass('open');
-    //})
     var els = document.getElementsByClassName('settings-btn');
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', () => {
@@ -711,10 +708,10 @@ function authed() {
             $('.dmWrapper .right .box').removeClass('small');
             $('.dmWrapper .right .box').removeClass('large');
 
-            if (event.target.style.fontSize == 12) { // small
+            if (event.target.style.fontSize == '12px') { // small
                 $('.dmWrapper .right .box').addClass('small');
             }
-            else if (event.target.style.fontSize == 20){ // large
+            else if (event.target.style.fontSize == '20px'){ // large
                 $('.dmWrapper .right .box').addClass('large');
             }
             // font size 

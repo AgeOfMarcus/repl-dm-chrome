@@ -463,8 +463,14 @@
     flex-direction: column;
     overflow-y: scroll;
     padding-top: 50px;
+    font-size: 16px;
 }
-
+.small {
+    font-size: 12px;
+}
+.large {
+    font-size: 20px;
+}
 
 .right .chat .wrapper .box .msg-node {
     border-radius: 15px;
