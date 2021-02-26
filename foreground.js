@@ -510,9 +510,9 @@ function authed() {
                                         </div>
                                         <div class='option'>
                                             Font size
-                                            <div class='change-size' style='font-size: initial'>aA</div>
-                                            <div class='change-size' style='font-size: large'>aA</div>
-                                            <div class='change-size' style='font-size: larger'>aA</div>
+                                            <div class='change-size' style='font-size: 12px'>aA</div>
+                                            <div class='change-size' style='font-size: 16px'>aA</div>
+                                            <div class='change-size' style='font-size: 20px'>aA</div>
                                         </div>
                                     </div>
                                 </div>
@@ -631,6 +631,25 @@ function authed() {
                 }
             })
 
+            // font size
+            chrome.storage.local.get(['fontsize'], (res) => { 
+                console.log(res, res.fontsize);
+                if (typeof res.fontsize === 'undefined') {
+                    chrome.storage.local.set({'fontsize': '16px'});
+                }
+                else {
+                    $('.dmWrapper .right .box').removeClass('small');
+                    $('.dmWrapper .right .box').removeClass('large');
+
+                    if (res.fontsize == 12) { // small
+                        $('.dmWrapper .right .box').addClass('small');
+                    }
+                    else if (res.fontsize == 20){ // large
+                        $('.dmWrapper .right .box').addClass('large');
+                    }
+                }
+            })
+    
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
                 console.log(res, res.background);
@@ -684,6 +703,25 @@ function authed() {
         })
     }
 
+    // change font size
+    var els = document.getElementsByClassName('change-size');
+    for (i=0; i<els.length; i++) {
+        els[i].addEventListener('click', (event) => {
+            console.log(event.target.style.fontSize)
+            $('.dmWrapper .right .box').removeClass('small');
+            $('.dmWrapper .right .box').removeClass('large');
+
+            if (event.target.style.fontSize == 12) { // small
+                $('.dmWrapper .right .box').addClass('small');
+            }
+            else if (event.target.style.fontSize == 20){ // large
+                $('.dmWrapper .right .box').addClass('large');
+            }
+            // font size 
+            chrome.storage.local.set({'fontsize': event.target.style.fontSize});
+
+        })
+    }
 
     // change bg color
     var els = document.getElementsByClassName('change-color');

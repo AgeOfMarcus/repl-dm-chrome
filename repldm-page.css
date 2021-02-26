@@ -723,6 +723,21 @@
 
 
 
+/* change font size option */
+.change-size {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+
+
 /* smaller screen widths */
 @media only screen and (max-width: 1000px) {
     .dmWrapper {
