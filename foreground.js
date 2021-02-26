@@ -594,7 +594,7 @@ function authed() {
             // resizer script
             var up = false;
             var leftW = 300;
-            /*$('.dmWrapper .resizer').bind('mousedown', (ev) => {
+            $('.dmWrapper .resizer').bind('mousedown', (ev) => {
                 up = true;
                 var startPos = ev.pageX;
                 $('body').css({
@@ -620,7 +620,7 @@ function authed() {
                         userSelect: ''
                     });
                 }
-            })*/
+            })
 
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
