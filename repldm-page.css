@@ -666,16 +666,16 @@
     right: -10px;
 }
 
-.mid[status='received'] .fas.fa-comment-alt { /* received */
+.mid[status='received'] .received-icon { /* received */
     display: block;
 }
-.mid[status='opened'] .far.fa-comment-alt { /* received & opened */
+.mid[status='opened'] .opened-icon { /* received & opened */
     display: block;
 }
-.mid[status='sent'] .fas.fa-paper-plane { /* sent */
+.mid[status='sent'] .sent-icon { /* sent */
     display: block;
 }
-.mid[status='read'] .far.fa-paper-plane { /* sent and read */
+.mid[status='read'] .read-icon { /* sent and read */
     display: block;
 }
 
