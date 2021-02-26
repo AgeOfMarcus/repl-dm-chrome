@@ -603,6 +603,8 @@ function authed() {
                     userSelect: 'none'
                 });
                 var rightW = $('.right').width();
+                console.log(rightW)
+                console.log($('.left').width())
                 $('body').mousemove((e) => {
                     var tmp = (e.pageX - ev.pageX);
                     var newW = leftW + tmp;
