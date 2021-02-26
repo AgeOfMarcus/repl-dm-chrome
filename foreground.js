@@ -137,10 +137,10 @@ function init() {
                             <div class='mid' status='${((recent.from == user) ? 'received' : 'sent')}'> 
                                 <div class='name'>${user}</div>
                                 <div class='icons' date='${time_ago(new Date(recent.time))}'>
-                                    <i class="far fa-paper-plane sent-icon"></i>
-                                    <i class="fas fa-paper-plane opened-icon"></i>
+                                    <i class="far fa-paper-plane read-icon"></i>
+                                    <i class="fas fa-paper-plane sent-icon"></i>
                                     <i class="far fa-comment-alt received-icon"></i>
-                                    <i class="fas fa-comment-alt read-icon"></i>
+                                    <i class="fas fa-comment-alt opened-icon"></i>
                                 </div>
                             </div>
                         </label>
