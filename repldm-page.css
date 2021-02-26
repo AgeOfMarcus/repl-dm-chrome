@@ -198,21 +198,21 @@
 }
 
 .left-msgs .node .pfp {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
-    min-height: 70px;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
 }
 .left-msgs .node .pfp img {
-    min-width: 70px;
+    min-width: 60px;
     width: auto;
-    min-height: 70px;
+    min-height: 60px;
     height: auto;
-    max-width: 90px;
-    max-height: 90px;
+    max-width: 70px;
+    max-height: 70px;
     position: absolute;
     top: 50%;
     left: 50%;
