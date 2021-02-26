@@ -310,12 +310,14 @@
     padding: 3px 12px;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 .settings-body .option .change-color {
     width: 30px;
     height: 20px;
     margin-left: 8px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 
