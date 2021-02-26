@@ -125,7 +125,7 @@
 /* left */
 .dmWrapper .left {
     border-right: 1px solid rgb(219,219,219);
-    width: 50%;
+    width: 300px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -231,28 +231,17 @@
 .left-msgs .mid {
     margin-left: 12px;
     flex-grow: 1;
+    display: flex;
 }
 .left-msgs .name {
     color: #262626;
     font-weight: 600;
+    position: absolute;
+    transform: translateY(-100%);
 }
 .left-msgs .description {
     color: #262626;
     font-weight: 400;
-}
-.left-msgs .node.seen .description {
-    color: rgb(142,142,142);
-}
-
-.left-msgs .circle {
-    background-color: #0095f6;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-.left-msgs .node.seen .circle {
-    display: none;
 }
 .left * {
     user-select: none;
@@ -263,7 +252,7 @@
 
 /* right */
 .dmWrapper .right {
-    width: 50%;
+    width: calc(100% - 300px);
     height: 100%;
     position: relative;
     background-color: white;
@@ -632,4 +621,75 @@
 }
 .node:hover::after {
     border: 3px solid white;
+}
+
+
+
+/* new message icons */
+.node .icons {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-right: 16px;
+}
+.node .icons * {
+    display: none;
+    width: fit-content;
+    color: #3485e4;
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.mid[status]::after {
+    content: attr(status);
+    color: black;
+    text-transform: capitalize;
+    width: fit-content;
+}
+.node .fa-paper-plane {
+    transform: rotate(55deg) skewY(10deg);
+}
+
+.node .icons[date]::after {
+    content: attr(date);
+    color: black;
+    text-transform: capitalize;
+    width: fit-content;
+}
+.node .icons::before {
+    content: '';
+    background-color: rgba(0,0,0,0.7);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+}
+
+.mid[status='received'] .fas.fa-comment-alt { /* received */
+    display: block;
+}
+.mid[status='opened'] .far.fa-comment-alt { /* received & opened */
+    display: block;
+}
+.mid[status='sent'] .fas.fa-paper-plane { /* sent */
+    display: block;
+}
+.mid[status='read'] .far.fa-paper-plane { /* sent and read */
+    display: block;
+}
+
+
+
+
+/* smaller screen widths */
+@media only screen and (max-width: 1000px) {
+    .dmWrapper {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .dmWrapper {
+        width: 95%;
+    }
 }

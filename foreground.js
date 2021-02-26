@@ -13,6 +13,8 @@ const socket = io("https://repldm.dupl.repl.co");
 // showing users online: just add class "online" to the node lol
 
 
+// new messages icons: to set status, give the .mid (child of .node) the attr called status - values are sent, received, read & opened
+
 socket.on('new message', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
@@ -126,20 +128,21 @@ function init() {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
 
-                    nodeClass = 'node';
-                    if (!(user in unread) || (user == authToken.username) || !(recent.from == user)) nodeClass = nodeClass + ' seen';
-
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
-                        <label class='${nodeClass}' for='msg-${_msg_node_increment}'>
+                        <label class='node' for='msg-${_msg_node_increment}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
-                            <div class='mid'> 
+                            <div class='mid' status='${((recent.from == user) ? 'received' : 'sent')}'> 
                                 <div class='name'>${user}</div>
-                                <div class='description'>${((recent.from == user) ? 'Sent you' : 'You sent')} a message <span class='date'>${time_ago(new Date(recent.time))}</span></div>
+                                <div class='icons' date='${time_ago(new Date(recent.time))}'>
+                                    <i class="far fa-paper-plane"></i>
+                                    <i class="fas fa-paper-plane"></i>
+                                    <i class="far fa-comment-alt"></i>
+                                    <i class="fas fa-comment-alt"></i>
+                                </div>
                             </div>
-                            <div class='circle'></div>
                         </label>
                     `));
 
