@@ -437,6 +437,9 @@
     font-weight: 600;
     position: relative;
 }
+.chat .top span {
+    cursor: pointer;
+}
 .right .chat .top .chat-img {
     width: 30px;
     height: 30px;

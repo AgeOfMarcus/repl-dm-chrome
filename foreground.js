@@ -235,6 +235,9 @@ function loadConvo(user) {
     }
 
     $('.chat .top span').text(user);
+    $('.chat .top span').click(() => {
+        window.location.pathname = `/@${user}`;
+    })
     getProfilePicture(user, (src) => {
         $('.chat .top .chat-img').attr('src', src);
     });
