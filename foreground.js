@@ -594,7 +594,7 @@ function authed() {
             // resizer script
             var up = false;
             var leftW = 300;
-            $('.resizer').mousedown((ev) => {
+            $('.resizer').bind('mousedown', (ev) => {
                 up = true;
                 console.log('down');
                 var startPos = ev.pageX;
@@ -606,13 +606,14 @@ function authed() {
                 $('body').mousemove((e) => {
                     var tmp = (e.pageX - ev.pageX);
                     var newW = leftW + tmp;
+                    console.log(newW)
                     if ((newW >= 150) && (rightW - tmp) >= 360) {
                         $('.left').width(newW);
                     }
                 })
             })
 
-            $('body').mouseup(() => {
+            $('body').bind('mouseup', () => {
                 if (up) {
                     console.log('up');
                     up = false;
