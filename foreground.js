@@ -508,6 +508,12 @@ function authed() {
                                             <div class='change-color' style='background-color: #f2ec3a;'></div>
                                             <div class='change-color' style='background-color: white; border: 1px solid rgb(219,219,219);'></div>
                                         </div>
+                                        <div class='option'>
+                                            Font size
+                                            <div class='change-size' style='font-size: initial'>aA</div>
+                                            <div class='change-size' style='font-size: large'>aA</div>
+                                            <div class='change-size' style='font-size: larger'>aA</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
