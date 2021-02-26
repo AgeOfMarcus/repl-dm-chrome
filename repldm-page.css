@@ -261,6 +261,7 @@
     height: 100%;
     position: relative;
     background-color: white;
+    z-index: 2;
 }
 
 .dmWrapper .right .no-msg {
@@ -309,7 +310,6 @@
     display: flex;
     padding: 3px 12px;
     align-items: center;
-    justify-content: center;
     white-space: nowrap;
 }
 .settings-body .option .change-color {
@@ -702,6 +702,7 @@
     justify-content: center;
     align-items: center;
     cursor: grab;
+    z-index: 2;
 }
 .resizer:active {
     cursor: grabbing;
