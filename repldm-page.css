@@ -665,17 +665,17 @@
     right: -10px;
 }
 
-.mid[status='received'] .received-icon { /* received */
-    display: block;
+.mid:not([status='received']) .received-icon { /* received */
+    display: none;
 }
-.mid[status='opened'] .opened-icon { /* received & opened */
-    display: block;
+.mid:not([status='opened']) .opened-icon { /* received & opened */
+    display: none;
 }
-.mid[status='sent'] .sent-icon { /* sent */
-    display: block;
+.mid:not([status='sent']) .sent-icon { /* sent */
+    display: none;
 }
-.mid[status='read'] .read-icon { /* sent and read */
-    display: block;
+.mid:not([status='read']) .read-icon { /* sent and read */
+    display: none;
 }
 
 
