@@ -431,6 +431,9 @@
 .chat .top span {
     cursor: pointer;
 }
+.chat .top span::before {
+    content: '@';
+}
 .right .chat .top .chat-img {
     width: 30px;
     height: 30px;
