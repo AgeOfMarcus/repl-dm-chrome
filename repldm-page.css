@@ -657,6 +657,7 @@
     margin-right: 6px;
     width: 15px;
     max-width: 15px;
+    min-width: 15px;
 }
 
 .mid[status]::after {
