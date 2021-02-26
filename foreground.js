@@ -588,6 +588,40 @@ function authed() {
 
             $('body').append($(pageHtml));
 
+            // resizer script
+            var up = false;
+            var leftW = 300;
+            $('.resizer').mousedown((ev) => {
+                up = true;
+                console.log('down');
+                var startPos = ev.pageX;
+                $('body').css({
+                    cursor: 'grabbing',
+                    userSelect: 'none'
+                });
+                var rightW = $('.right').width();
+                $('body').mousemove((e) => {
+                    var tmp = (e.pageX - ev.pageX);
+                    var newW = leftW + tmp;
+                    if ((newW >= 150) && (rightW - tmp) >= 360) {
+                        $('.left').width(newW);
+                    }
+                })
+            })
+
+            $('body').mouseup(() => {
+                if (up) {
+                    console.log('up');
+                    up = false;
+                    $('body').off('mousemove');
+                    leftW = $('.left').width();
+                    $('body').css({
+                        cursor: '',
+                        userSelect: ''
+                    });
+                }
+            })
+
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
                 console.log(res, res.background);
