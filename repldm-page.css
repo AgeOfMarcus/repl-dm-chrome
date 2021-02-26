@@ -611,8 +611,8 @@
 .node.online::after {
     content: '';
     background-color: #0de03e;
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     position: absolute;
     border-radius: 50%;
     bottom: 15px;
