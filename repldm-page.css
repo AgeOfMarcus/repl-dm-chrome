@@ -181,6 +181,7 @@
     padding-top: 8px;
     overflow-x: hidden;
     overflow-y: scroll;
+    padding-bottom: 150px;
 }
 
 .left-msgs .node {
@@ -464,6 +465,7 @@
     overflow-y: scroll;
     padding-top: 50px;
     font-size: 16px;
+    padding-bottom: 30px;
 }
 .small {
     font-size: 12px !important;
