@@ -509,6 +509,9 @@ function authed() {
                                 </div>
                             </div>
 
+                            <!-- resizer -->
+                            <div class='resizer'></div>
+
                             <!-- right -->
                             <div class='right white-bg'> 
                                 <div class='no-msg'>
