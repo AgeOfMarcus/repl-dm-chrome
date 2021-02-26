@@ -135,7 +135,7 @@ function init() {
                                 <img src='${pfp}' />
                             </div>
                             <div class='mid' status='${((recent.from == user) ? 'received' : 'sent')}'> 
-                                <div class='name'>${user} ${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
+                                <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
                                 <div class='icons' date='${time_ago(new Date(recent.time))}'>
                                     <i class="far fa-paper-plane read-icon"></i>
                                     <i class="fas fa-paper-plane sent-icon"></i>
