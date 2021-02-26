@@ -238,6 +238,7 @@
     font-weight: 600;
     position: absolute;
     transform: translateY(-100%);
+    display: flex;
 }
 .left-msgs .description {
     color: #262626;
