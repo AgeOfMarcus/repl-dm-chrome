@@ -585,7 +585,7 @@ function authed() {
         // add message button to profile page
         setTimeout(() => {
             if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
-                $('<div class="message-btn">repl DM</div>').insertAfter('.profile-username-label');
+                $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
                 document.querySelector('.message-btn').addEventListener('click', (event) => {
                     newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
