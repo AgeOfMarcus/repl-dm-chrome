@@ -26,7 +26,7 @@ socket.on('new message', (res) => {
     }
 
     if ($('.chat .top span').text() == msg.from) {
-        if (document.getElementById(`msg-${item.id}`)) {
+        if (document.getElementById(`msg-${msg.id}`)) {
             return; 
         }
 
@@ -227,6 +227,10 @@ function loadPrevious() {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received';
+                }
+
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
                 }
 
                 $('.chat .box').prepend($(`
