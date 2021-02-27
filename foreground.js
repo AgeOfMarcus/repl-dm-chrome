@@ -1002,24 +1002,30 @@ function getAuth() {
 chrome.storage.sync.get(['auth'], (res) => { 
     console.log(res)
     if (Object.keys(res).length === 0) { // no auth object
+        if (location.pathname == "/auth_with_repl_site") {
+            //document.querySelector(".root button").click(); // let's not do that
+            
+            return;
+        }
+
         var authHtml = `<div class='auth-wrapper' style='display: none;'> 
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
-                Please login with your repl account in order to use repl DM.
-                <div class='auth-btn'>Authorize</div>
+                <iframe src="https://repldm.dupl.repl.co/auth" style="display: block; border: none;"></iframe>
+                <i>Once authed, paste the code here:</i>
                 <div id='auth-form'></div>
             </div>
         </div>`;
 
         $('body').append($(authHtml));
 
-        document.querySelector('.auth-btn').addEventListener('click', () => {
-            window.open("https://repldm.dupl.repl.co/auth", "_blank");
+        //document.querySelector('.auth-btn').addEventListener('click', () => {
+        //    window.open("https://repldm.dupl.repl.co/auth", "_blank");
 
             document.getElementById('auth-form').innerHTML = `<input id='authTkn'></input><button id='get-auth-btn'>Authorize</button>`;
 
             document.getElementById('get-auth-btn').addEventListener('click', getAuth);
-        })
+        //})
 
         $('.auth-wrapper').fadeIn();
 
