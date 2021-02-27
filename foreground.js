@@ -26,6 +26,10 @@ socket.on('new message', (res) => {
     }
 
     if ($('.chat .top span').text() == msg.from) {
+        if (document.getElementById(`msg-${item.id}`)) {
+            return; 
+        }
+
         $('.chat .box').append($(`
             <div id="msg-${msg.id}" class='msg-node received'>
                     ${msg.body}
@@ -175,6 +179,10 @@ function displaySentMessage(message) {
     }
 
     if ($('.chat .top span').text() == message.to) {
+        if (document.getElementById(`msg-${item.id}`)) {
+            return; 
+        }
+
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
                     ${message.body}
