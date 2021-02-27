@@ -179,7 +179,7 @@ function displaySentMessage(message) {
     }
 
     if ($('.chat .top span').text() == message.to) {
-        if (document.getElementById(`msg-${item.id}`)) {
+        if (document.getElementById(`msg-${message.id}`)) {
             return; 
         }
 
