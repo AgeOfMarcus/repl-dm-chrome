@@ -255,8 +255,9 @@ function loadConvo(user) {
     console.log('load convo func', user);
 
     $('.chat .top span').text(user);
+    $('.chat .top span').off('click'); // remove previous bind
     $('.chat .top span').click(() => {
-        window.open(`/@${user}`, '_blank');
+        window.open(`/@${user}`, '_blank'); // open in new tab
     })
     getProfilePicture(user, (src) => {
         $('.chat .top .chat-img').attr('src', src);
@@ -274,34 +275,11 @@ function loadConvo(user) {
     $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
-        _msg_cache[user].forEach((item, index) => {
-            if ((item.from == authToken.username) && (item.read)) {
-                msgClass = 'sent read'
-            } else if (item.from == authToken.username) {
-                msgClass = 'sent';
-            } else {
-                msgClass = 'received'
-            }
-
-            if (document.getElementById(`msg-${item.id}`)) {
-                return; 
-            }
-
-            $('.chat .box').append($(`
-                <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                    ${item.body}
-                    <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
-                </div>
-            `)) //TODO: markdown and filter xss, add time to message
-
-            var box = $('.chat .box'); // scroll to bottom of chat
-            box.scrollTop(box.prop('scrollHeight'));
-        })
-
         getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
             if ($('.chat .top span').text() != user) return;
-            messages.forEach((item, index) => {
+
+            _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
                     msgClass = 'sent read'
                 } else if (item.from == authToken.username) {
@@ -324,6 +302,7 @@ function loadConvo(user) {
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
             })
+
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
