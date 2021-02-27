@@ -1004,7 +1004,7 @@ chrome.storage.sync.get(['auth'], (res) => {
     if (Object.keys(res).length === 0) { // no auth object
         if (location.pathname == "/auth_with_repl_site") {
             //document.querySelector(".root button").click(); // let's not do that
-            
+
             return;
         }
 
@@ -1012,7 +1012,7 @@ chrome.storage.sync.get(['auth'], (res) => {
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
                 <iframe src="https://repldm.dupl.repl.co/auth" style="display: block; border: none;"></iframe>
-                <i>Once authed, paste the code here:</i>
+                <br /><br />
                 <div id='auth-form'></div>
             </div>
         </div>`;
