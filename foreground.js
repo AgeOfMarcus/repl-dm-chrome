@@ -120,7 +120,7 @@ socket.on('new message', (res) => {
                     title: "Copy message",
                     action: () => copyToClipboard(msg.body)
                 }
-            ], e.pageX, e.pageY);
+            ], e.clientX, e.clientY);
         });
 
         var box = $('.chat .box'); // scroll to bottom of chat
@@ -259,7 +259,7 @@ function init() {
                         e.preventDefault();
                         e.stopPropagation();
 
-                        showContextMenu([ /* items go here, see displaySentMessage */ ], e.pageX, e.pageY);
+                        showContextMenu([ /* items go here, see displaySentMessage */ ], e.clientX, e.clientY);
                     });
                     
                     if (first) {
@@ -300,7 +300,7 @@ function displaySentMessage(message) {
                     title: "Copy message",
                     action: () => copyToClipboard(message.body)
                 }
-            ], e.pageX, e.pageY);
+            ], e.clientX, e.clientY);
         });
     }
 
@@ -358,7 +358,7 @@ function loadPrevious() {
                             title: "Copy message",
                             action: () => copyToClipboard(item.body)
                         }
-                    ], e.pageX, e.pageY);
+                    ], e.clientX, e.clientY);
                 });
 
                 var box = $('.chat .box');
@@ -421,7 +421,7 @@ function loadConvo(user) {
                         title: "Copy message",
                         action: () => copyToClipboard(item.body)
                     }
-                ], e.pageX, e.pageY);
+                ], e.clientX, e.clientY);
             });
 
             var box = $('.chat .box'); // scroll to bottom of chat
@@ -456,7 +456,7 @@ function loadConvo(user) {
                             title: "Copy message",
                             action: () => copyToClipboard(item.body)
                         }
-                    ], e.pageX, e.pageY);
+                    ], e.clientX, e.clientY);
                 });
 
                 var box = $('.chat .box'); // scroll to bottom of chat
@@ -492,7 +492,7 @@ function loadConvo(user) {
                             title: "Copy message",
                             action: () => copyToClipboard(item.body)
                         }
-                    ], e.pageX, e.pageY);
+                    ], e.clientX, e.clientY);
                 });
 
                 var box = $('.chat .box'); // scroll to bottom of chat
@@ -791,7 +791,7 @@ function authed() {
                 });
                 var rightW = $('.dmWrapper .right').width();
                 $('body').mousemove((e) => {
-                    var tmp = (e.pageX - ev.pageX);
+                    var tmp = (e.clientX - ev.pageX);
                     var newW = leftW + tmp;
                     if ((newW >= 150) && (rightW - tmp) >= 360) {
                         $('.dmWrapper .left').width(newW);
