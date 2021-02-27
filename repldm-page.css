@@ -37,6 +37,23 @@
     background-color: gray;
 }
 
+@keyframes repldmSuccessAnimation {
+    from { transform: translate(-50%, -50%) scale(1, 1); filter: opacity(1); }
+    to { transform: translate(-50%, -50%) scale(2, 2); filter: opacity(0); }
+}
+
+.repldmSuccessPopup {
+    background-color: black;
+    padding: 8px;
+    border-radius: 8px;
+    position: fixed;
+    z-index: 1000;
+    top: 50vh;
+    color: white;
+    left: 50vw;
+    animation: repldmSuccessAnimation 1s;
+}
+
 .repldmBtn {
     flex-shrink: 0;
     display: flex;
@@ -778,7 +795,5 @@
         width: 95%;
     }
 }
-
-
 
 
