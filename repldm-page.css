@@ -24,6 +24,7 @@
     border: 1px solid gray;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
 .repldmCtxmenu > * {
     padding: 4px;
