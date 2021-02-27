@@ -2,7 +2,67 @@ console.log('foreground baby');
 
 var _first_load = true;
 
+let currentCtxMenu = null;
+
 const socket = io("https://repldm.dupl.repl.co");
+
+document.body.addEventListener("click", () => currentCtxMenu?.remove());
+document.body.addEventListener("keydown", () => currentCtxMenu?.remove());
+document.body.addEventListener("resize", () => currentCtxMenu?.remove());
+
+function showContextMenu(items, x, y) {
+    const ctxMenu = document.createElement("div");
+    ctxMenu.classList.add("repldmCtxmenu");
+
+    ctxMenu.style.top = y + "px";
+    ctxMenu.style.left = x + "px";
+
+    for (const { title, action } of items) {
+        const item = document.createElement("span");
+        item.innerText = title;
+        item.onclick = action;
+        ctxMenu.appendChild(item);
+    }
+
+    currentCtxMenu?.remove();
+    currentCtxMenu = ctxMenu;
+
+    if (ctxMenu.children.length > 0) {
+        document.body.appendChild(ctxMenu);
+    }
+}
+
+function actionSuccess(message) {
+    const popup = document.createElement("div");
+    popup.classList.add("repldmSuccessPopup");
+    popup.innerText = message || "Success";
+    document.body.appendChild(popup);
+
+    setTimeout(() => popup.remove(), 1000);
+}
+
+function copyToClipboard(data, showSuccessPopup = true) {
+    /*
+    This API is deprecated.
+
+    const dataHost = document.createElement("input");
+
+    dataHost.style.display = "none";
+    dataHost.value = data;
+    
+    document.body.appendChild(dataHost);
+
+    dataHost.select();
+    dataHost.setSelectionRange(0, data.length + 10);
+
+    document.execCommand("copy");
+    dataHost.remove();
+    */
+
+    navigator.clipboard.writeText(data);
+
+    if (showSuccessPopup) actionSuccess("Copied!");
+}
 
 // READ ME or ur gay lol
 
@@ -32,6 +92,18 @@ socket.on('new message', (res) => {
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
         `))
+
+        document.querySelector(".chat .box div:last-child").addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            showContextMenu([
+                {
+                    title: "Copy message",
+                    action: () => copyToClipboard(msg.body)
+                }
+            ], e.pageX, e.pageY);
+        });
 
         var box = $('.chat .box'); // scroll to bottom of chat
         box.scrollTop(box.prop('scrollHeight'));
@@ -151,6 +223,14 @@ function init() {
                         $(`label[for=${event.target.id}]`).addClass('seen');
                         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
                     })
+
+                    const lastUserTile = document.querySelector(".left-msgs > label:last-child");
+                    lastUserTile.addEventListener("contextmenu", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        showContextMenu([ /* items go here, see ln245 */ ], e.pageX, e.pageY);
+                    });
                     
                     if (first) {
                         $('.loading-msgs').hide();
@@ -162,6 +242,8 @@ function init() {
             }
         })
     })
+
+    console.log("init"); //TEMP
 }
 
 function displaySentMessage(message) {
@@ -178,6 +260,18 @@ function displaySentMessage(message) {
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message))}'/>
             </div>
         `))
+
+        document.querySelector(".chat .box div:last-child").addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            showContextMenu([
+                {
+                    title: "Copy message",
+                    action: () => copyToClipboard(message.body)
+                }
+            ], e.pageX, e.pageY);
+        });
     }
 
     var box = $('.chat .box'); // scroll to bottom of chat
@@ -224,6 +318,18 @@ function loadPrevious() {
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
+
+                document.querySelector(".chat .box :first-child").addEventListener("contextmenu", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+        
+                    showContextMenu([
+                        {
+                            title: "Copy message",
+                            action: () => copyToClipboard(item.body)
+                        }
+                    ], e.pageX, e.pageY);
+                });
 
                 var box = $('.chat .box');
                 box.scrollTop(box.prop('scrollHeight'));
@@ -274,6 +380,18 @@ function loadConvo(user) {
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
 
+            document.querySelector(".chat .box div:last-child").addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+    
+                showContextMenu([
+                    {
+                        title: "Copy message",
+                        action: () => copyToClipboard(item.body)
+                    }
+                ], e.pageX, e.pageY);
+            });
+
             var box = $('.chat .box'); // scroll to bottom of chat
             box.scrollTop(box.prop('scrollHeight'));
         })
@@ -296,6 +414,18 @@ function loadConvo(user) {
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
+
+                document.querySelector(".chat .box div:last-child").addEventListener("contextmenu", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+        
+                    showContextMenu([
+                        {
+                            title: "Copy message",
+                            action: () => copyToClipboard(item.body)
+                        }
+                    ], e.pageX, e.pageY);
+                });
 
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
@@ -320,6 +450,18 @@ function loadConvo(user) {
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
+
+                document.querySelector(".chat .box div:last-child").addEventListener("contextmenu", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+        
+                    showContextMenu([
+                        {
+                            title: "Copy message",
+                            action: () => copyToClipboard(item.body)
+                        }
+                    ], e.pageX, e.pageY);
+                });
 
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
@@ -407,7 +549,7 @@ function authed() {
         // add message button to profile page
         setTimeout(() => {
             if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
-                $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
+                $('<div class="message-btn">repl DM</div>').insertAfter('.profile-username-label');
 
                 document.querySelector('.message-btn').addEventListener('click', (event) => {
                     newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
