@@ -16,6 +16,25 @@
     background-color: #228037;
 }
 
+.repldmCtxmenu {
+    position: fixed;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+.repldmCtxmenu > * {
+    padding: 4px;
+    border-radius: 4px;
+    border: none;
+    display: block;
+    cursor: pointer;
+}
+.repldmCtxmenu > *:hover {
+    background-color: gray;
+}
 
 .repldmBtn {
     flex-shrink: 0;
