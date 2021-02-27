@@ -271,6 +271,10 @@ function loadConvo(user) {
                 msgClass = 'received'
             }
 
+            if (document.getElementById(`msg-${item.id}`)) {
+                return; 
+            }
+
             $('.chat .box').append($(`
                 <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                     ${item.body}
@@ -292,6 +296,10 @@ function loadConvo(user) {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received'
+                }
+
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
                 }
 
                 $('.chat .box').append($(`
@@ -316,6 +324,10 @@ function loadConvo(user) {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received'
+                }
+
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
                 }
 
                 $('.chat .box').append($(`
