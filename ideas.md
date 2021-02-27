@@ -13,6 +13,7 @@
 
 * keyboard shortcut to open and close chat ✔
 
+* make it when u @ someone it becomes hoverable an blue n stuff thatd be c00l
 ---
 
 ## todo:
