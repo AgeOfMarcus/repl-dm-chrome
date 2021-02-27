@@ -64,6 +64,27 @@ function copyToClipboard(data, showSuccessPopup = true) {
     if (showSuccessPopup) actionSuccess("Copied!");
 }
 
+function togglePopup() {
+    document.querySelector(".repldmBtn").click();
+}
+
+const DOUBLETAP_DELTA = 300;
+let lastShift = 0;
+document.body.addEventListener("keydown", ({ code }) => {
+    if (code == "Escape" && open) {
+        togglePopup();
+    } else if (["ShiftLeft", "ShiftRight", "Shift"].includes(code)) {
+        const pressTime = (new Date()).getTime();
+
+        if (pressTime - lastShift < DOUBLETAP_DELTA) {
+            togglePopup();
+            lastShift = 0;
+        }
+
+        lastShift = pressTime;
+    }
+})
+
 // READ ME or ur gay lol
 
 // to set notification badge all u gotta do is $('repldmBtn').attr('notifications', "[insert number here]")
