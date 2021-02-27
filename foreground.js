@@ -7,6 +7,7 @@ let currentCtxMenu = null;
 const socket = io("https://repldm.dupl.repl.co");
 
 document.body.addEventListener("click", () => currentCtxMenu?.remove());
+document.body.addEventListener("auxclick", () => currentCtxMenu?.remove());
 document.body.addEventListener("keydown", () => currentCtxMenu?.remove());
 document.body.addEventListener("resize", () => currentCtxMenu?.remove());
 
@@ -68,7 +69,7 @@ function togglePopup() {
     document.querySelector(".repldmBtn").click();
 }
 
-const DOUBLETAP_DELTA = 300;
+const DOUBLETAP_DELTA = 200;
 let lastShift = 0;
 document.body.addEventListener("keydown", ({ code }) => {
     if (code == "Escape" && open) {
