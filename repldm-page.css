@@ -577,6 +577,7 @@
 }
 
 .auth-cont {
+    width: 500px;
     background-color: white;
     padding: 30px 10px;
     border-radius: 6px;
@@ -585,8 +586,15 @@
     justify-content: center;
     position: relative;
     flex-direction: column;
-    max-width: 260px;
+    max-width: 80%;
     user-select: none;
+}
+
+.auth-cont iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+    display: block;
 }
 
 .auth-btn {
@@ -604,6 +612,25 @@
     left: 5px;
     cursor: pointer;
     user-select: none;
+}
+
+#auth-form {
+    width: 100%;
+}
+
+#auth-form > div {
+    width: 100%;
+    display: flex;
+}
+
+#auth-form input {
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+#auth-form button {
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 
