@@ -36,7 +36,7 @@ socket.on('new message', (res) => {
         var box = $('.chat .box'); // scroll to bottom of chat
         box.scrollTop(box.prop('scrollHeight'));
     } else {
-        if (_notify_perm) {
+        if (_notify_perm && _settings.notifications) {
             getProfilePicture(msg.from, (src) => {
                 var notif = new Notification(`${msg.from} sent you a message`, {
                     body: msg.body,
@@ -44,10 +44,12 @@ socket.on('new message', (res) => {
                     silent: true
                 });
 
-                // sound effect
-                chrome.runtime.sendMessage(
-                    "play sound"
-                );
+                if (_settings.sound) {
+                    // sound effect
+                    chrome.runtime.sendMessage(
+                        "play sound"
+                    );
+                }
             })            
         }
     }
@@ -123,6 +125,7 @@ function getConvos(callback) {
 function init() {
     var first = true;
     listUnread((unread) => {
+        $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
@@ -514,6 +517,16 @@ function authed() {
                                             <div class='change-size' style='font-size: 16px'>aA</div>
                                             <div class='change-size' style='font-size: 20px'>aA</div>
                                         </div>
+                                        <div class='option'>
+                                            Notifications
+                                            <div class='change-notifications' style='background-color: green'>ON</div>
+                                            <div class='change-notifications' style='background-color: red'>OFF</div>
+                                        </div>
+                                        <div class='option'>
+                                            Notification Sound
+                                            <div class='change-sound' style='background-color: green'>ON</div>
+                                            <div class='change-sound' style='background-color: red'>OFF</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -752,6 +765,31 @@ function authed() {
         })
     }
 
+    var chn = document.getElementsByClassName('change-notifications');
+    for (let i=0; i < chn.length; i++) {
+        chn[i].addEventListener('click', (event) => {
+            switch(event.target.style.backgroundColor) {
+                case 'green':
+                    _settings.notifications = true;
+                case 'red':
+                    _settings.notifications = false;
+            }
+            chrome.storage.local.set({'settings': _settings});
+        })
+    }
+    var chs = document.getElementsByClassName('change-sound');
+    for (let i=0; i < chs.length; i++) {
+        chs[i].addEventListener('click', (event) => {
+            switch(event.target.style.backgroundColor) {
+                case 'green':
+                    _settings.sound = true;
+                case 'red':
+                    _settings.sound = false;
+            }
+            chrome.storage.local.set({'settings': _settings});
+        })
+    }
+
     // close new message
     document.querySelector('.close-new-msg').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = 'none';
@@ -822,6 +860,12 @@ function getAuth() {
         token: auth[1]
     }
     chrome.storage.sync.set({'auth': authObj}, (r) => { console.log("auth object stored") })
+    chrome.storage.sync.set({'settings': {
+        'notifications': true,
+        'sound': true,
+        'color': 'white',
+        'font-size': '16px'
+    }}, (r) => { console.log("default settings stored") })
     socket.emit('hello', {auth: authObj}, (r) => { console.log(r) })
     authed();
     init();
@@ -858,6 +902,19 @@ chrome.storage.sync.get(['auth'], (res) => {
     else {
         globalThis.authToken = res.auth;
         socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
+        chrome.storage.local.get(['settings'], (res) => {
+            if (res.settings) {
+                globalThis._settings = res.settings;
+            } else {
+                globalThis._settings = {
+                    'notifications': true,
+                    'sound': true,
+                    'color': 'white',
+                    'font-size': '16px'
+                }
+                chrome.storage.local.set({'settings': _settings}, (r) => { console.log("applied default settings") })
+            }
+        }) 
         authed();
     }
 })

@@ -11,6 +11,7 @@
 
 * make scroll to top of chat load more messages
 
+* make it when u @ someone it becomes hoverable an blue n stuff thatd be c00l
 ---
 
 ## todo:
