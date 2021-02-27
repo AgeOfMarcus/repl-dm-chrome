@@ -115,13 +115,18 @@
 }
 
 .message-btn {
-    width: fit-content;
+    position: absolute;
+    float: right;
+    top: 9px;
+    right: 9px;
+    width: 32px;
+    height: 32px;
     margin: auto;
-    padding: 3px 9px;
+    padding: 9px 9px;
     font-size: 16px;
     background-color: #21953e;
     color: white;
-    border-radius: 3px;
+    border-radius: 9px;
     cursor: pointer;
 }
 
