@@ -116,6 +116,14 @@ socket.on('new message', (res) => {
                     silent: true
                 });
 
+                notif.onclick = () => {
+                    //open repl dm on notification click
+
+                    if (!open) $(".repldmBtn").click();
+                    
+                    document.querySelector(`.left-msgs > input[data-sender="${msg.from}"]`).click();
+                };
+
                 // sound effect
                 chrome.runtime.sendMessage(
                     "play sound"
@@ -201,7 +209,7 @@ function init() {
                     msgsDiv = $('.left-msgs');
 
                     msgsDiv.append($(`
-                        <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
+                        <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' data-sender='${user}' />
                         <label class='node' for='msg-${_msg_node_increment}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
@@ -229,7 +237,7 @@ function init() {
                         e.preventDefault();
                         e.stopPropagation();
 
-                        showContextMenu([ /* items go here, see ln245 */ ], e.pageX, e.pageY);
+                        showContextMenu([ /* items go here, see displaySentMessage */ ], e.pageX, e.pageY);
                     });
                     
                     if (first) {
