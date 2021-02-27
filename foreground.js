@@ -249,7 +249,6 @@ function loadConvo(user) {
     getProfilePicture(user, (src) => {
         $('.chat .top .chat-img').attr('src', src);
     });
-    $('.chat .box').empty();
 
     // showdupl badge
     if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
