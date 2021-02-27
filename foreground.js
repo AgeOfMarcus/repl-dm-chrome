@@ -768,11 +768,13 @@ function authed() {
     var chn = document.getElementsByClassName('change-notifications');
     for (let i=0; i < chn.length; i++) {
         chn[i].addEventListener('click', (event) => {
-            switch(event.target.style.backgroundColor) {
-                case 'green':
-                    _settings.notifications = true;
-                case 'red':
-                    _settings.notifications = false;
+            col = event.target.style.backgroundColor;
+            if (col == "green") {
+                _settings.notifications = true;
+            } else if (col == "red") {
+                _settings.notifications = false;
+            } else {
+                console.log("what:", col);
             }
             chrome.storage.local.set({'settings': _settings}, () => { console.log(_settings) });
         })
@@ -780,11 +782,13 @@ function authed() {
     var chs = document.getElementsByClassName('change-sound');
     for (let i=0; i < chs.length; i++) {
         chs[i].addEventListener('click', (event) => {
-            switch(event.target.style.backgroundColor) {
-                case 'green':
-                    _settings.sound = true;
-                case 'red':
-                    _settings.sound = false;
+            col = event.target.style.backgroundColor;
+            if (col == "green") {
+                _settings.sound = true;
+            } else if (col == "red") {
+                _settings.sound = false;
+            } else {
+                console.log("what:", col);
             }
             chrome.storage.local.set({'settings': _settings}, () => { console.log(_settings) });
         })
