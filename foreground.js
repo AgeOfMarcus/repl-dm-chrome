@@ -45,17 +45,13 @@ function actionSuccess(message) {
 function copyToClipboard(data, showSuccessPopup = true) {
     /*
     This API is deprecated.
-
     const dataHost = document.createElement("input");
-
     dataHost.style.display = "none";
     dataHost.value = data;
     
     document.body.appendChild(dataHost);
-
     dataHost.select();
     dataHost.setSelectionRange(0, data.length + 10);
-
     document.execCommand("copy");
     dataHost.remove();
     */
@@ -585,7 +581,7 @@ function authed() {
         // add message button to profile page
         setTimeout(() => {
             if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
-                $('<div class="message-btn"><svg class="svg-inline--fa fa-paper-plane fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="paper-plane" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="display: block;"><path fill="currentColor" d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z"></path></svg></div>').insertAfter('.profile-username-label');
+                $('<div class="message-btn"><i class="far fa-paper-plane"></i></div>').insertAfter('.profile-username-label');
 
                 document.querySelector('.message-btn').addEventListener('click', (event) => {
                     newMessageTo(event.target.previousElementSibling.innerText.split(" ")[0]);
@@ -661,12 +657,10 @@ function authed() {
                                         <i class="far fa-edit"></i>
                                     </div>
                                 </div>
-
                                 <!-- messages -->
                                 <div class='left-msgs'>
                                     <div class='loading-msgs'><img src='https://i.imgur.com/RlSKElx.png' /></div>
                                 </div>
-
                                 <!-- settings -->
                                 <div class='settings'>
                                     <div class='left-top'>
@@ -705,10 +699,8 @@ function authed() {
                                     </div>
                                 </div>
                             </div>
-
                             <!-- resizer -->
                             <div class='resizer'></div>
-
                             <!-- right -->
                             <div class='right white-bg'> 
                                 <div class='no-msg'>
@@ -716,7 +708,6 @@ function authed() {
                                     <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                     <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit.</span>
                                 </div>
-
                                 <!-- chat -->
                                 <div class='chat'> 
                                     <div class='top'>
