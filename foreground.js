@@ -125,9 +125,9 @@ socket.on('new message', (res) => {
                 };
 
                 // sound effect
-                chrome.runtime.sendMessage(
-                    "play sound"
-                );
+                if (document.visibilityState != "visible") {
+                    chrome.runtime.sendMessage("play sound");
+                }
             })            
         }
     }
