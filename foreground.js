@@ -66,11 +66,12 @@ function togglePopup() {
 }
 
 const DOUBLETAP_DELTA = 200;
+const held = [];
 let lastShift = 0;
 document.body.addEventListener("keydown", ({ code }) => {
     if (code == "Escape" && open) {
         togglePopup();
-    } else if (["ShiftLeft", "ShiftRight", "Shift"].includes(code)) {
+    } else if (["ShiftLeft", "ShiftRight", "Shift"].includes(code) && !held.includes(code)) {
         const pressTime = (new Date()).getTime();
 
         if (pressTime - lastShift < DOUBLETAP_DELTA) {
@@ -79,8 +80,12 @@ document.body.addEventListener("keydown", ({ code }) => {
         }
 
         lastShift = pressTime;
+        held.push(code);
     }
-})
+});
+document.body.addEventListener("keyup", ({ code }) => {
+    if (held.incldues(code)) held.splice(held.indexOf(code), 1);
+});
 
 // READ ME or ur gay lol
 
