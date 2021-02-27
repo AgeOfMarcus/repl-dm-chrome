@@ -84,7 +84,7 @@ document.body.addEventListener("keydown", ({ code }) => {
     }
 });
 document.body.addEventListener("keyup", ({ code }) => {
-    if (held.incldues(code)) held.splice(held.indexOf(code), 1);
+    if (held.includes(code)) held.splice(held.indexOf(code), 1);
 });
 
 // READ ME or ur gay lol
