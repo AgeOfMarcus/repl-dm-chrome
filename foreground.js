@@ -774,7 +774,7 @@ function authed() {
                 case 'red':
                     _settings.notifications = false;
             }
-            chrome.storage.local.set({'settings': _settings});
+            chrome.storage.local.set({'settings': _settings}, () => { console.log(_settings) });
         })
     }
     var chs = document.getElementsByClassName('change-sound');
@@ -786,7 +786,7 @@ function authed() {
                 case 'red':
                     _settings.sound = false;
             }
-            chrome.storage.local.set({'settings': _settings});
+            chrome.storage.local.set({'settings': _settings}, () => { console.log(_settings) });
         })
     }
 
