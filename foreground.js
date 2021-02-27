@@ -244,7 +244,7 @@ function loadConvo(user) {
 
     $('.chat .top span').text(user);
     $('.chat .top span').click(() => {
-        window.location.pathname = `/@${user}`;
+        window.open(`/@${user}`, '_blank');
     })
     getProfilePicture(user, (src) => {
         $('.chat .top .chat-img').attr('src', src);
@@ -259,6 +259,8 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
+
+    $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
         _msg_cache[user].forEach((item, index) => {
