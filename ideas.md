@@ -1,7 +1,7 @@
 ## ideas:
 * custom right click menu: 
     1. delete message
-    2. copy to clipboard
+    2. copy to clipboard ✔
 
 * send images
 
@@ -11,10 +11,12 @@
 
 * make scroll to top of chat load more messages
 
+* keyboard shortcut to open and close chat ✔
+
 ---
 
 ## todo:
-* make notification go to chat onclick
+* make notification go to chat onclick ✔
 
 * perhaps firefox support
 
@@ -24,7 +26,7 @@
 
 * order the chats by most recent to oldest
 
-* notification onclick
+* notification onclick ✔
 
 ---
 
@@ -41,4 +43,4 @@
 
 * duplicate messages
 
-* notification sound plays even if youre on chat
+* notification sound plays even if youre on chat ✔
