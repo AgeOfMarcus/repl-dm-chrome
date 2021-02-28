@@ -43,3 +43,4 @@
 * duplicate messages
 
 * notification sound plays even if youre on chat
+

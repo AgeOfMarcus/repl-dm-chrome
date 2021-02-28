@@ -273,6 +273,7 @@ function loadConvo(user) {
     console.log('load convo func', user);
 
     $('.chat .top span').text(user);
+    $('.chat .top span').off('click');
     $('.chat .top span').click(() => {
         window.open(`/@${user}`, '_blank');
     })
