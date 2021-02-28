@@ -134,6 +134,19 @@ function init() {
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
+                    if (recent.from == user) {
+                        if (recent.read) {
+                            status = "read"
+                        } else {
+                            status = "sent"
+                        }
+                    } else {
+                        if (recent.read) {
+                            status = "opened"
+                        } else {
+                            status = "recieved"
+                        }
+                    }
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
@@ -141,9 +154,9 @@ function init() {
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
-                            <div class='mid' status='${((recent.from == user) ? 'received' : 'sent')}'> 
+                            <div class='mid' status='${status}'> 
                                 <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
-                                <div class='icons' date='${time_ago(new Date(recent.time))}'>
+                                <div class='icons' date='${time_ago(new Date(recent.time))}'>  
                                     <i class="far fa-paper-plane read-icon"></i>
                                     <i class="fas fa-paper-plane sent-icon"></i>
                                     <i class="far fa-comment-alt opened-icon"></i>
@@ -169,6 +182,11 @@ function init() {
             }
         })
     })
+}
+
+function renderText(text) {
+    const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
+    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')));
 }
 
 function displaySentMessage(message) {
