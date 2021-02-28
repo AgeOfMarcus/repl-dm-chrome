@@ -109,6 +109,10 @@ socket.on('new message', (res) => {
     }
 
     if ($('.chat .top span').text() == msg.from) {
+        if (document.getElementById(`msg-${msg.id}`)) {
+            return; 
+        }
+
         $('.chat .box').append($(`
             <div id="msg-${msg.id}" class='msg-node received'>
                     ${msg.body}
@@ -234,6 +238,19 @@ function init() {
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
+                    if (recent.from == user) {
+                        if (recent.read) {
+                            status = "read"
+                        } else {
+                            status = "sent"
+                        }
+                    } else {
+                        if (recent.read) {
+                            status = "opened"
+                        } else {
+                            status = "recieved"
+                        }
+                    }
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' data-sender='${user}' />
@@ -241,9 +258,9 @@ function init() {
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
-                            <div class='mid' status='${((recent.from == user) ? 'received' : 'sent')}'> 
+                            <div class='mid' status='${status}'> 
                                 <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
-                                <div class='icons' date='${time_ago(new Date(recent.time))}'>
+                                <div class='icons' date='${time_ago(new Date(recent.time))}'>  
                                     <i class="far fa-paper-plane read-icon"></i>
                                     <i class="fas fa-paper-plane sent-icon"></i>
                                     <i class="far fa-comment-alt opened-icon"></i>
@@ -281,6 +298,11 @@ function init() {
     console.log("init"); //TEMP
 }
 
+function renderText(text) {
+    const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
+    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')));
+}
+
 function displaySentMessage(message) {
     if (message.to in _msg_cache) {
         _msg_cache[message.to].push(message)
@@ -289,6 +311,10 @@ function displaySentMessage(message) {
     }
 
     if ($('.chat .top span').text() == message.to) {
+        if (document.getElementById(`msg-${message.id}`)) {
+            return; 
+        }
+
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
                     ${message.body}
@@ -347,6 +373,10 @@ function loadPrevious() {
                     msgClass = 'received';
                 }
 
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
+                }
+
                 $('.chat .box').prepend($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${item.body}
@@ -381,13 +411,13 @@ function loadConvo(user) {
     console.log('load convo func', user);
 
     $('.chat .top span').text(user);
+    $('.chat .top span').off('click');
     $('.chat .top span').click(() => {
         window.open(`/@${user}`, '_blank');
     })
     getProfilePicture(user, (src) => {
         $('.chat .top .chat-img').attr('src', src);
     });
-    $('.chat .box').empty();
 
     // showdupl badge
     if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
@@ -408,6 +438,10 @@ function loadConvo(user) {
                 msgClass = 'sent';
             } else {
                 msgClass = 'received'
+            }
+
+            if (document.getElementById(`msg-${item.id}`)) {
+                return; 
             }
 
             $('.chat .box').append($(`
@@ -445,6 +479,10 @@ function loadConvo(user) {
                     msgClass = 'received'
                 }
 
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
+                }
+
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${item.body}
@@ -479,6 +517,10 @@ function loadConvo(user) {
                     msgClass = 'sent';
                 } else {
                     msgClass = 'received'
+                }
+
+                if (document.getElementById(`msg-${item.id}`)) {
+                    return; 
                 }
 
                 $('.chat .box').append($(`
