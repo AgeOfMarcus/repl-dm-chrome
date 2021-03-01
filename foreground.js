@@ -145,7 +145,7 @@ function init() {
                         if (recent.read) { // i've read it
                             status = "opened"
                         } else { // i havent - aka unread
-                            status = "recieved"
+                            status = "received"
                         }
                     }
 
