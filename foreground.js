@@ -235,26 +235,6 @@ function checkReadStatus() {
             console.log("Marked as read:", res, 'from:', ids);
         })
     }
-
-    recent = elms[elms.length - 1]
-    user = $('.chat .top span').text()
-    usernode = $(`label[data-user=${user}] .mid`)
-
-    if (recent.from == authToken.username) { // from me
-        if (recent.read) { // they opened it
-            status = "read"
-        } else { // sent successfully to them
-            status = "sent"
-        }
-    } else { // to me
-        if (recent.read) { // i've read it
-            status = "opened"
-        } else { // i havent - aka unread
-            status = "recieved"
-        }
-    }
-
-    usernode.attr('status', status);
 }
 
 function loadPrevious() {
@@ -317,6 +297,7 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
+    
 
     $('.chat .box').empty() // we gotta clear g
 
