@@ -18,6 +18,8 @@
 * **make a user does not have repldm yet**
 
 * **make loading chats faster by making profile pics lazy load perhaps?**
+
+* **make a site that lets ppl that cant use chrome extensions use it**
 ---
 
 ## todo:

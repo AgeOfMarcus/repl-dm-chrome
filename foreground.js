@@ -294,6 +294,7 @@ function loadConvo(user) {
     $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
+        _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
         _msg_cache[user].forEach((item, index) => {
             if ((item.from == authToken.username) && (item.read)) {
                 msgClass = 'sent read'
