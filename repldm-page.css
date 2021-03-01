@@ -635,10 +635,6 @@
     text-align: right;
     right: 8px;
 }
-.chat .box .read + .read {
-    content: ''
-}
-
 
 
 
