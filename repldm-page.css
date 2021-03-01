@@ -625,7 +625,7 @@
 
 
 /* message read styles */
-.read:nth-last-of-type(1)::before {
+.read::before {
     content: 'read';
     position: absolute;
     color: gray;
