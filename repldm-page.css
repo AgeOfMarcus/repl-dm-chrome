@@ -635,6 +635,16 @@
     text-align: right;
     right: 8px;
 }
+.sent:not(.read)::before {
+    content: 'delivered';
+    position: absolute;
+    color: gray;
+    bottom: -100%;
+    font-size: 14px;
+    bottom: -21px;
+    text-align: right;
+    right: 8px;
+}
 
 .sent + .received {
     margin-top: 20px !important;
