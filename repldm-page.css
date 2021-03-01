@@ -497,6 +497,7 @@
     border: 1px solid rgb(219,219,219);
     margin-top: 5px;
     position: relative;
+    min-width: 50px;
 }
 .right .chat .wrapper .box .msg-node.sent {
     margin-left: auto;
