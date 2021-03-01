@@ -639,6 +639,9 @@
 .sent + .received {
     margin-top: 20px !important;
 }
+.reveived + .sent {
+    margin-top: 20px !important;
+}
 
 
 
