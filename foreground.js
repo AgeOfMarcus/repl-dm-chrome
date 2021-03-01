@@ -151,11 +151,11 @@ function init() {
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
-                        <label class='node' for='msg-${_msg_node_increment}' data-user='${user}'>
+                        <label class='node' for='msg-${_msg_node_increment}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
-                            <div class='mid' status='${status}'> 
+                            <div class='mid' status='${status}' id="status-${user}"> 
                                 <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
                                 <div class='icons' date='${time_ago(new Date(recent.time))}'>  
                                     <i class="far fa-paper-plane read-icon"></i>
@@ -216,7 +216,7 @@ function displaySentMessage(message) {
     box.scrollTop(box.prop('scrollHeight'));
 }
 
-function checkReadStatus() {
+function checkReadStatus(user) {
     var ids = [];
     var elms = Array.from(document.getElementsByClassName('msg-node'));
     elms.forEach((el) => {
@@ -235,6 +235,23 @@ function checkReadStatus() {
             console.log("Marked as read:", res, 'from:', ids);
         })
     }
+
+    recent = elms[elms.length - 1]
+    if (recent.from == authToken.username) { // from me
+        if (recent.read) { // they opened it
+            status = "read"
+        } else { // sent successfully to them
+            status = "sent"
+        }
+    } else { // to me
+        if (recent.read) { // i've read it
+            status = "opened"
+        } else { // i havent - aka unread
+            status = "received"
+        }
+    }
+
+    $(`#status-${user}`).attr('status', status);
 }
 
 function loadPrevious() {
@@ -388,7 +405,7 @@ function loadConvo(user) {
             })
         })
     }
-    setTimeout(checkReadStatus, 1500);
+    setTimeout(() => { checkReadStatus(user) }, 1500);
 }
 
 // https://stackoverflow.com/a/12475270/8291579
