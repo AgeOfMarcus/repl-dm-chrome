@@ -446,7 +446,7 @@ function time_ago(time) {
     }
   return time;
 }
-
+ //test
 function authed() {
     const url = chrome.runtime.getURL('.git/ORIG_HEAD');
     fetch(url).then((resp) => {
