@@ -249,17 +249,17 @@ function init() {
                         if (recent.read) { // i've read it
                             status = "opened"
                         } else { // i havent - aka unread
-                            status = "recieved"
+                            status = "received"
                         }
                     }
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' data-sender='${user}' />
-                        <label class='node' for='msg-${_msg_node_increment}' data-user='${user}'>
+                        <label class='node' for='msg-${_msg_node_increment}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
-                            <div class='mid' status='${status}'> 
+                            <div class='mid' status='${status}' id="status-${user}"> 
                                 <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
                                 <div class='icons' date='${time_ago(new Date(recent.time))}'>  
                                     <i class="far fa-paper-plane read-icon"></i>
@@ -342,7 +342,7 @@ function displaySentMessage(message) {
     box.scrollTop(box.prop('scrollHeight'));
 }
 
-function checkReadStatus() {
+function checkReadStatus(user) {
     var ids = [];
     var elms = Array.from(document.getElementsByClassName('msg-node'));
     elms.forEach((el) => {
@@ -361,6 +361,23 @@ function checkReadStatus() {
             console.log("Marked as read:", res, 'from:', ids);
         })
     }
+
+    recent = elms[elms.length - 1]
+    if (recent.from == authToken.username) { // from me
+        if (recent.read) { // they opened it
+            status = "read"
+        } else { // sent successfully to them
+            status = "sent"
+        }
+    } else { // to me
+        if (recent.read) { // i've read it
+            status = "opened"
+        } else { // i havent - aka unread
+            status = "received"
+        }
+    }
+
+    $(`#status-${user}`).attr('status', status);
 }
 
 function loadPrevious() {
@@ -562,7 +579,7 @@ function loadConvo(user) {
             })
         })
     }
-    setTimeout(checkReadStatus, 1500);
+    setTimeout(() => { checkReadStatus(user) }, 1500);
 }
 
 // https://stackoverflow.com/a/12475270/8291579
@@ -620,8 +637,31 @@ function time_ago(time) {
     }
   return time;
 }
-
+ //test
 function authed() {
+    const url = chrome.runtime.getURL('.git/FETCH_HEAD');
+    fetch(url).then((resp) => {
+        resp.text().then((version) => {
+            $.getJSON('https://api.github.com/repos/AgeOfMarcus/repl-dm-chrome/commits', (res) => {
+                if (version.split('\t')[0] != res[0].sha) {
+                    console.log(version, res[0].sha)
+                    if (_notify_perm && _settings.notifications) {
+                        var notif = new Notification(`An update is available`, {
+                            body: `Please update manually`, //TODO: onclick 
+                            silent: true
+                        });
+
+                        if (_settings.sound) {
+                            // sound effect
+                            chrome.runtime.sendMessage(
+                                "play sound"
+                            );
+                        }        
+                    }
+                }
+            })
+        })
+    })
     console.log('authed')
     
     var path = window.location.pathname;
