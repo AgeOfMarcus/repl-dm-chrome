@@ -451,11 +451,8 @@ function authed() {
     const url = chrome.runtime.getURL('.git/ORIG_HEAD');
     fetch(url).then((resp) => {
         resp.text().then((version) => {
-            socket.emit('check version', {
-                version: version,
-                auth: authToken
-            }, (res) => {
-                if (version != res.result) {
+            $.getJSON('https://api.github.com/repos/AgeOfMarcus/repl-dm-chrome/commits', (res) => {
+                if (version != res[0].sha) {
                     if (_notify_perm && _settings.notifications) {
                         var notif = new Notification(`An update is available`, {
                             body: `Please update manually`, //TODO: onclick 
