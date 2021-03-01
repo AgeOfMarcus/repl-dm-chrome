@@ -475,9 +475,17 @@ function authed() {
                     console.log(version, res[0].sha)
                     if (_notify_perm && _settings.notifications) {
                         var notif = new Notification(`An update is available`, {
-                            body: `Please update manually`, //TODO: onclick 
+                            body: `Click to download new version`,
                             silent: true
                         });
+                        
+                        notif.onclick = () => {
+                            window.open(`https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip`);
+                            new Notification(`Archive downloaded`, {
+                                body: `Unzip the file and install it to continue`,
+                                silent: true
+                            });
+                        };
 
                         if (_settings.sound) {
                             // sound effect
