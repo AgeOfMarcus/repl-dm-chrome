@@ -448,6 +448,31 @@ function time_ago(time) {
 }
 
 function authed() {
+    const url = chrome.runtime.getURL('.git/ORIG_HEAD');
+    fetch(url).then((resp) => {
+        resp.text().then((version) => {
+            socket.emit('check version', {
+                version: version,
+                auth: authToken
+            }, (res) => {
+                if (version != res.result) {
+                    if (_notify_perm && _settings.notifications) {
+                        var notif = new Notification(`An update is available`, {
+                            body: `Please update manually`, //TODO: onclick 
+                            silent: true
+                        });
+
+                        if (_settings.sound) {
+                            // sound effect
+                            chrome.runtime.sendMessage(
+                                "play sound"
+                            );
+                        }        
+                    }
+                }
+            })
+        })
+    })
     console.log('authed')
     
     var path = window.location.pathname;
