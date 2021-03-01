@@ -631,13 +631,13 @@
     color: gray;
     bottom: -100%;
     font-size: 14px;
-    bottom: -50%;
+    bottom: -30%;
     text-align: right;
     right: 8px;
 }
 
 .sent + .received {
-    margin-top: 12px;
+    margin-top: 20px !important;
 }
 
 
