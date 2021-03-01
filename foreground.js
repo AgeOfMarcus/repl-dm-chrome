@@ -21,6 +21,7 @@ socket.on('new message', (res) => {
 
     if (msg.from in _msg_cache) {
         _msg_cache[msg.from].push(msg);
+        _msg_cache[msg.from] = _msg_cache[msg.from].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
     } else {
         _msg_cache[msg.from] = [msg];
     }
