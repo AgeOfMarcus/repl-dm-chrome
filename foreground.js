@@ -33,7 +33,7 @@ socket.on('new message', (res) => {
 
         $('.chat .box').append($(`
             <div id="msg-${msg.id}" class='msg-node received'>
-                    ${msg.body}
+                    ${renderText(msg.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
         `))
@@ -151,7 +151,7 @@ function init() {
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
-                        <label class='node' for='msg-${_msg_node_increment}'>
+                        <label class='node' for='msg-${_msg_node_increment}' data-user='${user}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
@@ -206,7 +206,7 @@ function displaySentMessage(message) {
 
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
-                    ${message.body}
+                    ${renderText(message.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message))}'/>
             </div>
         `))
@@ -218,7 +218,8 @@ function displaySentMessage(message) {
 
 function checkReadStatus() {
     var ids = [];
-    Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
+    var elms = Array.from(document.getElementsByClassName('msg-node'));
+    elms.forEach((el) => {
         //TODO: check if element is in viewport
         try {
             var msg = JSON.parse(atob(el.getElementsByClassName('hidden-input')[0].value));
@@ -234,6 +235,26 @@ function checkReadStatus() {
             console.log("Marked as read:", res, 'from:', ids);
         })
     }
+
+    recent = elms[elms.length - 1]
+    user = $('.chat .top span').text()
+    usernode = $(`label[data-user=${user} .mid`)
+
+    if (recent.from == authToken.username) { // from me
+        if (recent.read) { // they opened it
+            status = "read"
+        } else { // sent successfully to them
+            status = "sent"
+        }
+    } else { // to me
+        if (recent.read) { // i've read it
+            status = "opened"
+        } else { // i havent - aka unread
+            status = "recieved"
+        }
+    }
+
+    usernode.attr('status', status);
 }
 
 function loadPrevious() {
@@ -260,7 +281,7 @@ function loadPrevious() {
 
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -316,7 +337,7 @@ function loadConvo(user) {
 
             $('.chat .box').append($(`
                 <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                    ${item.body}
+                    ${renderText(item.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
@@ -347,7 +368,7 @@ function loadConvo(user) {
 
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -376,7 +397,7 @@ function loadConvo(user) {
 
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -608,44 +629,6 @@ function authed() {
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
-                                            <!--
-                                            <div class='msg-node received'>
-                                                ayo wys B ;)
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                wagwan piffting send me your bbn pin
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                ewgSDGSEG WEWEG WEGWE AG GEZZGEG 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            -->
                                         </div>
                                         <div class='msg-wrapper'>
                                             <input class='msg' placeholder='message...' />
