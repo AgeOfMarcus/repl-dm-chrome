@@ -27,6 +27,6 @@
     },
 
     "web_accessible_resources": [
-        ".git/ORIG_HEAD"
+        ".git/FETCH_HEAD"
     ]
 }

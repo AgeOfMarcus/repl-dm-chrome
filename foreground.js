@@ -448,7 +448,7 @@ function time_ago(time) {
 }
  //test
 function authed() {
-    const url = chrome.runtime.getURL('.git/ORIG_HEAD');
+    const url = chrome.runtime.getURL('.git/FETCH_HEAD');
     fetch(url).then((resp) => {
         resp.text().then((version) => {
             $.getJSON('https://api.github.com/repos/AgeOfMarcus/repl-dm-chrome/commits', (res) => {
