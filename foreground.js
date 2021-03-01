@@ -104,6 +104,7 @@ socket.on('new message', (res) => {
 
     if (msg.from in _msg_cache) {
         _msg_cache[msg.from].push(msg);
+        _msg_cache[msg.from] = _msg_cache[msg.from].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
     } else {
         _msg_cache[msg.from] = [msg];
     }
@@ -115,7 +116,7 @@ socket.on('new message', (res) => {
 
         $('.chat .box').append($(`
             <div id="msg-${msg.id}" class='msg-node received'>
-                    ${msg.body}
+                    ${renderText(msg.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(msg))}'/>
             </div>
         `))
@@ -238,23 +239,23 @@ function init() {
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
-                    if (recent.from == user) {
-                        if (recent.read) {
+                    if (recent.from == authToken.username) { // from me
+                        if (recent.read) { // they opened it
                             status = "read"
-                        } else {
+                        } else { // sent successfully to them
                             status = "sent"
                         }
-                    } else {
-                        if (recent.read) {
+                    } else { // to me
+                        if (recent.read) { // i've read it
                             status = "opened"
-                        } else {
+                        } else { // i havent - aka unread
                             status = "recieved"
                         }
                     }
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' data-sender='${user}' />
-                        <label class='node' for='msg-${_msg_node_increment}'>
+                        <label class='node' for='msg-${_msg_node_increment}' data-user='${user}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
@@ -310,6 +311,8 @@ function displaySentMessage(message) {
         _msg_cache[message.to] = [message];
     }
 
+    _msg_cache[message.to] = _msg_cache[message.to].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+
     if ($('.chat .top span').text() == message.to) {
         if (document.getElementById(`msg-${message.id}`)) {
             return; 
@@ -317,7 +320,7 @@ function displaySentMessage(message) {
 
         $('.chat .box').append($(`
             <div id="msg-${message.id}" class='msg-node sent'>
-                    ${message.body}
+                    ${renderText(message.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(message))}'/>
             </div>
         `))
@@ -341,7 +344,8 @@ function displaySentMessage(message) {
 
 function checkReadStatus() {
     var ids = [];
-    Array.from(document.getElementsByClassName('msg-node')).forEach((el) => {
+    var elms = Array.from(document.getElementsByClassName('msg-node'));
+    elms.forEach((el) => {
         //TODO: check if element is in viewport
         try {
             var msg = JSON.parse(atob(el.getElementsByClassName('hidden-input')[0].value));
@@ -365,21 +369,25 @@ function loadPrevious() {
     if (user in _msg_cache) {
         getMessages(user, (messages) => {
             _msg_cache[user].unshift(...messages) // *messages
+            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+            $('.chat .box').clear();
 
-            messages.slice().reverse().forEach((item, index) => {
-                if (item.from == authToken.username) {
+            _msg_cache[user].forEach((item, index) => {
+                if ((item.from == authToken.username) && (item.read)) {
+                    msgClass = 'sent read'
+                } else if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'received';
+                    msgClass = 'received'
                 }
 
                 if (document.getElementById(`msg-${item.id}`)) {
                     return; 
                 }
 
-                $('.chat .box').prepend($(`
+                $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -427,10 +435,12 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
+    
 
     $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
+        _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
         _msg_cache[user].forEach((item, index) => {
             if ((item.from == authToken.username) && (item.read)) {
                 msgClass = 'sent read'
@@ -446,7 +456,7 @@ function loadConvo(user) {
 
             $('.chat .box').append($(`
                 <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                    ${item.body}
+                    ${renderText(item.body)}
                     <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
@@ -469,8 +479,12 @@ function loadConvo(user) {
 
         getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
+
+            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+
             if ($('.chat .top span').text() != user) return;
-            messages.forEach((item, index) => {
+            $('.chat .box').empty();
+           _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
                     msgClass = 'sent read'
                 } else if (item.from == authToken.username) {
@@ -485,7 +499,7 @@ function loadConvo(user) {
 
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -508,9 +522,10 @@ function loadConvo(user) {
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
-            _msg_cache[user] = messages;
+            _msg_cache[user] = messages.sort((a, b) => { (a.time < b.time) ? 1 : -1 });
             if ($('.chat .top span').text() != user) return;
-            messages.forEach((item, index) => {
+            $('.chat .box').empty();
+            _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
                     msgClass = 'sent read'
                 } else if (item.from == authToken.username) {
@@ -525,7 +540,7 @@ function loadConvo(user) {
 
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
-                        ${item.body}
+                        ${renderText(item.body)}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
@@ -764,44 +779,6 @@ function authed() {
                                     </div>
                                     <div class='wrapper'>
                                         <div class='box'>
-                                            <!--
-                                            <div class='msg-node received'>
-                                                ayo wys B ;)
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                wagwan piffting send me your bbn pin
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                ewgSDGSEG WEWEG WEGWE AG GEZZGEG 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGS GE\G EG SEGEG\EDXG\DHD\ 
-                                            </div>
-                                            <div class='msg-node received'>
-                                                E\SGGSE\ 
-                                            </div>
-                                            <div class='msg-node sent'>
-                                                \ ESGG\ 
-                                            </div>
-                                            -->
                                         </div>
                                         <div class='msg-wrapper'>
                                             <input class='msg' placeholder='message...' />
