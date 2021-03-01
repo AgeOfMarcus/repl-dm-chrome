@@ -453,6 +453,7 @@ function authed() {
         resp.text().then((version) => {
             $.getJSON('https://api.github.com/repos/AgeOfMarcus/repl-dm-chrome/commits', (res) => {
                 if (version != res[0].sha) {
+                    console.log(version, res[0].sha)
                     if (_notify_perm && _settings.notifications) {
                         var notif = new Notification(`An update is available`, {
                             body: `Please update manually`, //TODO: onclick 
