@@ -350,7 +350,7 @@ function loadConvo(user) {
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
-            _msg_cache[user] = _msg_cache[user].slice().push(...messages).sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+            _msg_cache[user] = messages.sort((a, b) => { (a.time < b.time) ? 1 : -1 });
             if ($('.chat .top span').text() != user) return;
             $('.chat .box').empty();
             _msg_cache[user].forEach((item, index) => {
