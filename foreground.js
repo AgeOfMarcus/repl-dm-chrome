@@ -63,7 +63,7 @@ socket.on('new message', (res) => {
 socket.on('show mark read', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
-
+    $('.read').removeClass('read');
     $(`#msg-${msg.id}`).addClass('read');
 
     var box = $('.chat .box'); // scroll to bottom of chat
@@ -147,7 +147,9 @@ function init() {
                         } else { // i havent - aka unread
                             status = "received"
                         }
-                    }
+                    } 
+
+                    // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
