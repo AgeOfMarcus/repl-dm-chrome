@@ -238,7 +238,7 @@ function checkReadStatus() {
 
     recent = elms[elms.length - 1]
     user = $('.chat .top span').text()
-    usernode = $(`label[data-user=${user} .mid`)
+    usernode = $(`label[data-user=${user}] .mid`)
 
     if (recent.from == authToken.username) { // from me
         if (recent.read) { // they opened it
