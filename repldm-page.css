@@ -625,7 +625,7 @@
 
 
 /* message read styles */
-.chat .box [class~='read']:nth-last-of-type(1)::before {
+.read:nth-last-of-type(1)::before {
     content: 'read';
     position: absolute;
     color: gray;
