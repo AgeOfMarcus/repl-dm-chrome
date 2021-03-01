@@ -319,8 +319,12 @@ function loadConvo(user) {
 
         getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
+
+            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+
             if ($('.chat .top span').text() != user) return;
-            messages.forEach((item, index) => {
+            $('.chat .box').empty();
+           _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
                     msgClass = 'sent read'
                 } else if (item.from == authToken.username) {
@@ -346,9 +350,10 @@ function loadConvo(user) {
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
         getMessages(user, (messages) => {
-            _msg_cache[user] = messages;
+            _msg_cache[user] = _msg_cache[user].slice().push(...messages).sort((a, b) => { (a.time < b.time) ? 1 : -1 });
             if ($('.chat .top span').text() != user) return;
-            messages.forEach((item, index) => {
+            $('.chat .box').empty();
+            _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
                     msgClass = 'sent read'
                 } else if (item.from == authToken.username) {

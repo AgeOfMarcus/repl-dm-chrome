@@ -12,6 +12,12 @@
 * make scroll to top of chat load more messages
 
 * make it when u @ someone it becomes hoverable an blue n stuff thatd be c00l
+
+* **make a user not found for when you send a message to a user that doesnt exist**
+
+* **make a user does not have repldm yet**
+
+* **make loading chats faster by making profile pics lazy load perhaps?**
 ---
 
 ## todo:
