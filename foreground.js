@@ -132,7 +132,7 @@ function init() {
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
-            for (const [user, recent] of Array.from(Object.entries(users)).sort((a, b) => { (a[1].time > b[1].time) ? 1 : -1 })) {
+            for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
                     if (recent.from == authToken.username) { // from me
