@@ -132,7 +132,7 @@ function init() {
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
-            for (const [user, recent] of Object.entries(users)) {
+            for (const [user, recent] of Array.from(Object.entries(users)).sort((a, b) => { (a[1].time > b[1].time) ? 1 : -1 })) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
                     if (recent.from == authToken.username) { // from me
@@ -197,6 +197,8 @@ function displaySentMessage(message) {
         _msg_cache[message.to] = [message];
     }
 
+    _msg_cache[message.to] = _msg_cache[message.to].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+
     if ($('.chat .top span').text() == message.to) {
         if (document.getElementById(`msg-${message.id}`)) {
             return; 
@@ -240,19 +242,23 @@ function loadPrevious() {
     if (user in _msg_cache) {
         getMessages(user, (messages) => {
             _msg_cache[user].unshift(...messages) // *messages
+            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+            $('.chat .box').clear();
 
-            messages.slice().reverse().forEach((item, index) => {
-                if (item.from == authToken.username) {
+            _msg_cache[user].forEach((item, index) => {
+                if ((item.from == authToken.username) && (item.read)) {
+                    msgClass = 'sent read'
+                } else if (item.from == authToken.username) {
                     msgClass = 'sent';
                 } else {
-                    msgClass = 'received';
+                    msgClass = 'received'
                 }
 
                 if (document.getElementById(`msg-${item.id}`)) {
                     return; 
                 }
 
-                $('.chat .box').prepend($(`
+                $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${item.body}
                         <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
