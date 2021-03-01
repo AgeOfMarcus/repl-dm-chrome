@@ -134,16 +134,16 @@ function init() {
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
-                    if (recent.from == user) {
-                        if (recent.read) {
+                    if (recent.from == authToken.username) { // from me
+                        if (recent.read) { // they opened it
                             status = "read"
-                        } else {
+                        } else { // sent successfully to them
                             status = "sent"
                         }
-                    } else {
-                        if (recent.read) {
+                    } else { // to me
+                        if (recent.read) { // i've read it
                             status = "opened"
-                        } else {
+                        } else { // i havent - aka unread
                             status = "recieved"
                         }
                     }
