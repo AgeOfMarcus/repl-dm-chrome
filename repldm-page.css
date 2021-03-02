@@ -321,7 +321,9 @@
     cursor: pointer;
     flex-shrink: 0;
 }
-
+.settings-body .option input {
+    margin-left: 8px;
+}
 
 
 /* new msg */
