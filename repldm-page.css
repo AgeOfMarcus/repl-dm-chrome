@@ -660,9 +660,8 @@
     color: white !important;
 }
 
-/* scroll bar track background */
-.box::-webkit-scrollbar-track {
-    background: attr(bg-value);
+.box::-webkit-scrollbar {
+    background: transparent;
 }
 
 .sent + .received {
