@@ -87,6 +87,8 @@ document.body.addEventListener("keyup", ({ code }) => {
     if (held.includes(code)) held.splice(held.indexOf(code), 1);
 });
 
+var version = chrome.runtime.getManifest().version;
+
 // READ ME or ur gay lol
 
 // to set notification badge all u gotta do is $('repldmBtn').attr('notifications', "[insert number here]")
@@ -167,7 +169,7 @@ socket.on('new message', (res) => {
 socket.on('show mark read', (res) => {
     let msg = res.message;
     socket.emit('recv', {auth: authToken, token: res.token});
-
+    $('.read').removeClass('read');
     $(`#msg-${msg.id}`).addClass('read');
 
     var box = $('.chat .box'); // scroll to bottom of chat
@@ -251,7 +253,9 @@ function init() {
                         } else { // i havent - aka unread
                             status = "received"
                         }
-                    }
+                    } 
+
+                    // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
 
                     msgsDiv.append($(`
                         <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' data-sender='${user}' />
@@ -301,7 +305,9 @@ function init() {
 
 function renderText(text) {
     const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
-    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')));
+    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+    });
 }
 
 function displaySentMessage(message) {
@@ -647,9 +653,17 @@ function authed() {
                     console.log(version, res[0].sha)
                     if (_notify_perm && _settings.notifications) {
                         var notif = new Notification(`An update is available`, {
-                            body: `Please update manually`, //TODO: onclick 
+                            body: `Click to download new version`,
                             silent: true
                         });
+                        
+                        notif.onclick = () => {
+                            window.open(`https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip`);
+                            new Notification(`Archive downloaded`, {
+                                body: `Unzip the file and install it to continue`,
+                                silent: true
+                            });
+                        };
 
                         if (_settings.sound) {
                             // sound effect
@@ -790,13 +804,11 @@ function authed() {
                                         </div>
                                         <div class='option'>
                                             Notifications
-                                            <div class='change-notifications' style='background-color: green'>ON</div>
-                                            <div class='change-notifications' style='background-color: red'>OFF</div>
+                                            <input type='checkbox' class='change-notifications' />
                                         </div>
                                         <div class='option'>
                                             Notification Sound
-                                            <div class='change-sound' style='background-color: green'>ON</div>
-                                            <div class='change-sound' style='background-color: red'>OFF</div>
+                                            <input type='checkbox' class='change-sound' />
                                         </div>
                                     </div>
                                 </div>
@@ -806,7 +818,9 @@ function authed() {
                             <!-- right -->
                             <div class='right white-bg'> 
                                 <div class='no-msg'>
+                                    <p class='now-with'>Now with markdown (and image) <br>support!</p>
                                     <img style='width: 100px; height: auto; margin-top: -30px;' src='https://chrome-extension.rafrafraf.repl.co/dupl.png' />
+                                    <span style='margin-top: -15px; font-weight: 900; font-family: system-ui;'>V${version}</span>
                                     <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                     <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit.</span>
                                 </div>
@@ -874,6 +888,37 @@ function authed() {
                 }
             })
 
+            window.addEventListener('paste', (event) => {
+                var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+                for (index in items) {
+                    var item = items[index];
+                    if (item.kind === 'file') {
+                        var file = item.getAsFile();
+                        var filename = file.name;
+                        /*Get File Extension*/
+                        var ext = filename.split('.').reverse()[0].toLowerCase();
+                        /*Check Image File Extensions*/
+                        if (jQuery.inArray(ext, ['jpg', 'png', 'gif', 'jpeg']) > -1) {
+                            /*Create FormData Instance*/
+                            var data = new FormData();
+                            data.append('image', file);
+                            /*Request Ajax With File*/
+                            $.ajax({
+                                url: 'https://i.marcusj.tech/api/upload',
+                                data: data,
+                                type: 'POST',
+                                processData: false,
+                                contentType: false,
+                                success: function (response) {
+                                    var body = $('input.msg').val() + `![img](${response.url})`;
+                                    $('input.msg').val(body);
+                                }
+                            })
+                        } 
+                    }
+                }
+            })
+
             // font size
             chrome.storage.local.get(['fontsize'], (res) => { 
                 console.log(res, res.fontsize);
@@ -901,7 +946,7 @@ function authed() {
                 }
                 else {
                     $('.dmWrapper .right').css('background-color', res.background);
-
+                
                     if (res.background == 'white') {
                         document.querySelector('.dmWrapper .right').classList.add('white-bg');
                         $('.dmWrapper').attr('theme', 'white'); // white
@@ -922,6 +967,22 @@ function authed() {
                             $('.dmWrapper').attr('theme', 'yellow');
                         }
                     }
+                }
+            })
+            chrome.storage.local.get(['settings'], (res) => {
+                if (res.settings) {
+                    // notifications
+                    if (res.settings.notifications) {
+                        document.getElementsByClassName('change-notifications')[0].checked = true;
+                    }
+                    // notifications sound
+                    if (res.settings.sound) {
+                        document.getElementsByClassName('change-sound')[0].checked = true;
+                    }
+                }
+                else {
+                    document.getElementsByClassName('change-notifications')[0].checked = true;
+                    document.getElementsByClassName('change-sound')[0].checked = true;
                 }
             })
         }
@@ -991,38 +1052,36 @@ function authed() {
             }
             // background color 
             chrome.storage.local.set({'background': event.target.style.backgroundColor});
-
         })
     }
 
-    var chn = document.getElementsByClassName('change-notifications');
-    for (let i=0; i < chn.length; i++) {
-        chn[i].addEventListener('click', (event) => {
-            col = event.target.style.backgroundColor;
-            if (col == "green") {
-                _settings.notifications = true;
-            } else if (col == "red") {
-                _settings.notifications = false;
-            } else {
-                console.log("what:", col);
-            }
-            chrome.storage.local.set({'settings': _settings});
-        })
-    }
-    var chs = document.getElementsByClassName('change-sound');
-    for (let i=0; i < chs.length; i++) {
-        chs[i].addEventListener('click', (event) => {
-            col = event.target.style.backgroundColor;
-            if (col == "green") {
-                _settings.sound = true;
-            } else if (col == "red") {
-                _settings.sound = false;
-            } else {
-                console.log("what:", col);
-            }
-            chrome.storage.local.set({'settings': _settings});
-        })
-    }
+    // change notifications
+    var chn = document.getElementsByClassName('change-notifications')[0];
+    chn.addEventListener('change', () => {
+        if ($(chn).is(':checked')) {
+            _settings.notifications = true;
+            console.log('on')
+        }
+        else {
+            _settings.notifications = false;
+            console.log('off')
+        } 
+        chrome.storage.local.set({'settings': _settings});
+    })
+    
+    // change notif sound
+    var chs = document.getElementsByClassName('change-sound')[0];
+    chs.addEventListener('change', () => {
+        if ($(chs).is(':checked')) {
+            _settings.sound = true;
+            console.log('on')
+        }
+        else {
+            _settings.sound = false;
+            console.log('off')
+        } 
+        chrome.storage.local.set({'settings': _settings});
+    })
 
     // close new message
     document.querySelector('.close-new-msg').addEventListener('click', () => {
