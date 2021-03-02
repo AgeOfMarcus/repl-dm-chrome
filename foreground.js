@@ -304,10 +304,10 @@ function loadPrevious() {
         }, older_than=_msg_cache[user][0].time)
     }
 }
-$('.box').on('scroll', function() {
-    var scrollTop = $('.box').scrollTop();
-    console.log(scrollTop + $('.box').innerHeight(), $('.box')[0].scrollHeight)
-    if (scrollTop + $('.box').innerHeight() >= $('.box')[0].scrollHeight) {
+$('.chat .box').on('scroll', function() {
+    var scrollTop = $('.chat .box').scrollTop();
+    console.log(scrollTop + $('.chat .box').innerHeight(), $('.chat .box')[0].scrollHeight)
+    if (scrollTop + $('.chat .box').innerHeight() >= $('.chat .box')[0].scrollHeight) {
         loadPrevious();
         console.log('loading old messages')
     }
