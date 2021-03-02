@@ -227,6 +227,7 @@
 }
 .node-radio:checked + .node {
     border-right: 3px solid #3485e4;
+    background-color: rgba(52, 133, 228, 0.12) !important;
 }
 
 
