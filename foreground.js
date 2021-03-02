@@ -700,7 +700,6 @@ function authed() {
             // scroll script
             $('.chat .box').on('scroll', () => {
                 var scrollTop = $('.chat .box').scrollTop();
-                console.log(scrollTop)
                 if (scrollTop <= 0) {
                     loadPrevious();
                     console.log('loading old messages')
