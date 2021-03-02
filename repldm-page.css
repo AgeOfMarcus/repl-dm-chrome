@@ -439,7 +439,7 @@
           drop-shadow(-1px -1px 0 rgb(219,219,219));
 }
 .white-bg .no-msg * {
-    color: #19191a !important;
+    color: #19191a;
 }
 
 .right .chat {
