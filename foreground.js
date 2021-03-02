@@ -737,6 +737,7 @@ function authed() {
                                 processData: false,
                                 contentType: false,
                                 success: function (response) {
+                                    console.log(response);
                                     var url = JSON.parse(response).url;
                                     var body = $('input.msg').val() + `![img](${url})`;
                                     $('input.msg').val(body);
