@@ -689,10 +689,10 @@
     background-color: rgba(250,250,250,0.85);
 }
 .white-bg .box::-webkit-scrollbar-thumb {
-    background: default !important;
+    background: #b0b4b8bb;
 }
 .white-bg .box::-webkit-scrollbar-thumb:hover {
-    background: default !important;
+    background: #b0b4b8;
 }
 
 .sent + .received {
