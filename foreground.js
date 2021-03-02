@@ -800,16 +800,22 @@ function authed() {
                     }
                 }
             })
-
-            // notifications 
-            if (globalThis._settings.notifications) {
-                document.getElementsByClassName('change-notifications')[0].checked = true;
-            }
-
-            // notifications sound
-            if (globalThis._settings.sound) {
-                document.getElementsByClassName('change-sound')[0].checked = true;
-            }
+            chrome.storage.local.get(['settings'], (res) => {
+                if (res.settings) {
+                    // notifications
+                    if (res.settings.notifications) {
+                        document.getElementsByClassName('change-notifications')[0].checked = true;
+                    }
+                    // notifications sound
+                    if (res.settings.sound) {
+                        document.getElementsByClassName('change-sound')[0].checked = true;
+                    }
+                }
+                else {
+                    document.getElementsByClassName('change-notifications')[0].checked = true;
+                    document.getElementsByClassName('change-sound')[0].checked = true;
+                }
+            })
         }
     }
 
