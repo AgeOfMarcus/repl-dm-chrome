@@ -304,14 +304,6 @@ function loadPrevious() {
         }, older_than=_msg_cache[user][0].time)
     }
 }
-$('.chat .box').bind('scroll', () => {
-    var scrollTop = $('.chat .box').scrollTop();
-    console.log(scrollTop)
-    if (scrollTop <= 0) {
-        loadPrevious();
-        console.log('loading old messages')
-    }
-});
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
@@ -704,6 +696,16 @@ function authed() {
                     </div>`;
 
             $('body').append($(pageHtml));
+
+            // scroll script
+            $('.chat .box').on('scroll', () => {
+                var scrollTop = $('.chat .box').scrollTop();
+                console.log(scrollTop)
+                if (scrollTop <= 0) {
+                    loadPrevious();
+                    console.log('loading old messages')
+                }
+            });
 
             // resizer script
             var up = false;
