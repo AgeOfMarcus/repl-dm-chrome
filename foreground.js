@@ -304,10 +304,9 @@ function loadPrevious() {
         }, older_than=_msg_cache[user][0].time)
     }
 }
-$('.chat .box').on('scroll', function() {
+$('.chat .box').bind('scroll', function() {
     var scrollTop = $('.chat .box').scrollTop();
-    console.log(scrollTop + $('.chat .box').innerHeight(), $('.chat .box')[0].scrollHeight)
-    if (scrollTop + $('.chat .box').innerHeight() >= $('.chat .box')[0].scrollHeight) {
+    if (scrollTop <= 0) {
         loadPrevious();
         console.log('loading old messages')
     }
