@@ -304,8 +304,9 @@ function loadPrevious() {
         }, older_than=_msg_cache[user][0].time)
     }
 }
-$('.chat .box').bind('scroll', function() {
+$('.chat .box').bind('scroll', () => {
     var scrollTop = $('.chat .box').scrollTop();
+    console.log(scrollTop)
     if (scrollTop <= 0) {
         loadPrevious();
         console.log('loading old messages')
