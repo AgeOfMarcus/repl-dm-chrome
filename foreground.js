@@ -1,5 +1,3 @@
-console.log('foreground baby');
-
 var _first_load = true;
 
 const socket = io("https://repldm.dupl.repl.co");
@@ -260,7 +258,7 @@ function checkReadStatus(user) {
     $(`#status-${user}`).attr('status', status);
 }
 
-function loadPrevious() {
+function loadPrevious() { // dis no work ------------------------------------------------------------------ 
     user = $('.chat .top span').text();
     var html = '';
     if (user in _msg_cache) {
@@ -311,8 +309,6 @@ function loadConvo(user) {
         return;
     }
 
-    console.log('load convo func', user);
-
     $('.chat .top span').text(user);
     $('.chat .top span').off('click');
     $('.chat .top span').click(() => {
@@ -325,7 +321,6 @@ function loadConvo(user) {
     // showdupl badge
     if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
         $('.chat .top .badge').show();
-        console.log('dupl team')
     }
     else {
         $('.chat .top .badge').hide();
@@ -771,7 +766,6 @@ function authed() {
 
             // font size
             chrome.storage.local.get(['fontsize'], (res) => { 
-                console.log(res, res.fontsize);
                 if (typeof res.fontsize === 'undefined') {
                     chrome.storage.local.set({'fontsize': '16px'});
                 }
@@ -790,7 +784,6 @@ function authed() {
     
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
-                console.log(res, res.background);
                 if (typeof res.background === 'undefined') {
                     chrome.storage.local.set({'background': 'white'});
                 }
@@ -803,7 +796,6 @@ function authed() {
                     }
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
-                        console.log(res.background)
                         if (res.background == 'rgb(34, 85, 221)') { // blue
                             $('.dmWrapper').attr('theme', 'blue');
                         }
@@ -858,7 +850,6 @@ function authed() {
     var els = document.getElementsByClassName('change-size');
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', (event) => {
-            console.log(event.target.style.fontSize)
             $('.dmWrapper .right .box').removeClass('small');
             $('.dmWrapper .right .box').removeClass('large');
 
@@ -879,7 +870,6 @@ function authed() {
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', (event) => {
             document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
-            console.log(event.target.style.backgroundColor)
             if (event.target.style.backgroundColor == 'white') {
                 document.querySelector('.dmWrapper .right').classList.add('white-bg');
                 $('.dmWrapper').attr('theme', 'white');
@@ -910,11 +900,9 @@ function authed() {
     chn.addEventListener('change', () => {
         if ($(chn).is(':checked')) {
             _settings.notifications = true;
-            console.log('on')
         }
         else {
             _settings.notifications = false;
-            console.log('off')
         } 
         chrome.storage.local.set({'settings': _settings});
     })
@@ -924,11 +912,9 @@ function authed() {
     chs.addEventListener('change', () => {
         if ($(chs).is(':checked')) {
             _settings.sound = true;
-            console.log('on')
         }
         else {
             _settings.sound = false;
-            console.log('off')
         } 
         chrome.storage.local.set({'settings': _settings});
     })
@@ -974,7 +960,6 @@ function authed() {
         $('.repldmBtn .fa-paper-plane').toggle();
         $('.repldmBtn').toggleClass('open');
         $('.cont').show();
-        console.log(name)
 
         $('.dmWrapper').animate({
             marginTop: '0',
