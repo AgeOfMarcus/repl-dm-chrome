@@ -4,6 +4,8 @@ var _first_load = true;
 
 const socket = io("https://repldm.dupl.repl.co");
 
+var version = chrome.runtime.getManifest().version;
+
 // READ ME or ur gay lol
 
 // to set notification badge all u gotta do is $('repldmBtn').attr('notifications', "[insert number here]")
@@ -650,6 +652,7 @@ function authed() {
                                 <div class='no-msg'>
                                     <p class='now-with'>Now with markdown (and image) <br>support!</p>
                                     <img style='width: 100px; height: auto; margin-top: -30px;' src='https://chrome-extension.rafrafraf.repl.co/dupl.png' />
+                                    <span style='margin-top: -15px; font-weight: 600;'>V${version}</span>
                                     <span style='color: rgba(255,255,255,0.9); font-size: 30px; font-weight: 100; margin: 10px 0;'>Direct messaging</span>
                                     <span style='color: rgba(255,255,255,0.95); font-size: 14px;'>Talk to anyone on replit.</span>
                                 </div>
