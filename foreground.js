@@ -262,12 +262,12 @@ function checkReadStatus(user) {
 
 function loadPrevious() {
     user = $('.chat .top span').text();
-
+    var html = '';
     if (user in _msg_cache) {
         getMessages(user, (messages) => {
             _msg_cache[user].unshift(...messages) // *messages
             _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
-            $('.chat .box').clear();
+            //$('.chat .box').clear();
 
             _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
@@ -281,7 +281,14 @@ function loadPrevious() {
                 if (document.getElementById(`msg-${item.id}`)) {
                     return; 
                 }
+                var html = html + `
+                    <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                        ${renderText(item.body)}
+                        <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
+                    </div>
+                `;
 
+                /*
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${renderText(item.body)}
@@ -291,10 +298,19 @@ function loadPrevious() {
 
                 var box = $('.chat .box');
                 box.scrollTop(box.prop('scrollHeight'));
+                */
             })
+            $('.chat .box').html(html + $('.chat .box').html());
         }, older_than=_msg_cache[user][0].time)
     }
 }
+$('.box').on('scroll', function() {
+    var scrollTop = $(this).scrollTop();
+    if (scrollTop + $(this).innerHeight() >= this.scrollHeight) {
+        loadPrevious();
+        console.log('loading old messages')
+    }
+});
 
 function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
