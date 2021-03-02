@@ -731,13 +731,13 @@ function authed() {
                             data.append('image', file);
                             /*Request Ajax With File*/
                             $.ajax({
-                                url: 'https://i.marcusj.tech/upload',
+                                url: 'https://i.marcusj.tech/api/upload',
                                 data: data,
                                 type: 'POST',
                                 processData: false,
                                 contentType: false,
-                                success: function (data, status, xhr) {
-                                    var url = xhr.getResponseHeader('Location');
+                                success: function (response) {
+                                    var url = JSON.parse(response).url;
                                     var body = $('input.msg').val() + `![img](${url})`;
                                     $('input.msg').val(body);
                                 }
