@@ -8,7 +8,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["*://repl.it/*"],
+            "matches": ["*://repl.it/*", ""*://replit.com/*""],
             "js": ["./fontawesome.js", "./socket.io.js", "./jquery.min.js", "marked.min.js", "./sanitize-html.js", "./foreground.js"],
             "css": ["./fontawesome.css", "./repldm-page.css"]
         }
