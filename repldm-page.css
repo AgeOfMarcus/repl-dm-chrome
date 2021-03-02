@@ -695,7 +695,7 @@
 .received + .sent {
     margin-top: 20px !important;
 }
-.read + .sent {
+.read + .sent:not(.read) {
     margin-top: 20px !important;
 }
 
