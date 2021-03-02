@@ -656,10 +656,19 @@
     text-align: right;
     right: 8px;
 }
-
 .right:not(.white-bg) .msg-node::before {
     color: white !important;
 }
+
+
+.box::-webkit-scrollbar-track-piece:start {
+    background: transparent url('https://purepng.com/public/uploads/large/purepng.com-png-background-checkboard-patternpngbackgroundcheckboardpatternpurepng-691522544567tziig.png') repeat-y !important;
+}
+
+.box::-webkit-scrollbar-track-piece:end {
+    background: transparent url('https://purepng.com/public/uploads/large/purepng.com-png-background-checkboard-patternpngbackgroundcheckboardpatternpurepng-691522544567tziig.png') repeat-y !important;
+}
+
 .sent + .received {
     margin-top: 20px !important;
 }
