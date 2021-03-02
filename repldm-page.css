@@ -829,6 +829,27 @@
 
 
 
+/* now with style */
+.now-with {
+    position: absolute;
+    text-align: center;
+    margin-top: -60px;
+    margin-left: 100px;
+    animation: grow-shrink 1.5s ease-in-out infinite;
+}
+@keyframes grow-shrink {
+    0% {
+        transform: rotate(-10deg) scale(1);
+    }
+    50% {
+        transform: rotate(-10deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(-10deg) scale(1);
+    }
+}
+
+
 /* smaller screen widths */
 @media only screen and (max-width: 1000px) {
     .dmWrapper {
