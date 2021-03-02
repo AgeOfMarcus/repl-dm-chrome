@@ -306,6 +306,7 @@ function loadPrevious() {
 }
 $('.box').on('scroll', function() {
     var scrollTop = $('.box').scrollTop();
+    console.log(scrollTop + $('.box').innerHeight(), $('.box')[0].scrollHeight)
     if (scrollTop + $('.box').innerHeight() >= $('.box')[0].scrollHeight) {
         loadPrevious();
         console.log('loading old messages')
