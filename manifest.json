@@ -1,7 +1,7 @@
 {
-    "name": "repl.it DMs",
-    "description": "Adds direct messaging functionality to replit.",
-    "version": "0.6.0",
+    "name": "ReplDM",
+    "description": "Adds direct messaging functionality to repl.it",
+    "version": "0.6.1",
     "manifest_version": 2,
     "icons": {
         "128": "icon.png"
