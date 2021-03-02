@@ -663,6 +663,9 @@
 .box::-webkit-scrollbar {
     background: transparent;
 }
+.box::-webkit-scrollbar-track {
+    display: none;
+}
 
 .sent + .received {
     margin-top: 20px !important;
