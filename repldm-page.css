@@ -541,7 +541,7 @@
 .msg-node a {
     color: #82cbff;
 }
-.dmWrapper[them="green"] .msg-node a {
+.dmWrapper[theme="green"] .msg-node a {
     color: #1a7fc7;
 }
 
