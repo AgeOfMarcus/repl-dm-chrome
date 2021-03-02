@@ -189,7 +189,9 @@ function init() {
 
 function renderText(text) {
     const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
-    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')));
+    return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+    });
 }
 
 function displaySentMessage(message) {
