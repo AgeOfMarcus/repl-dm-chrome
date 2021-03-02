@@ -527,7 +527,9 @@ function authed() {
     function setup() {
         // add message button to profile page
         setTimeout(() => {
-            if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
+            const profilePageUser = document.querySelector(".profile-username-label").childNodes[2].data; //get username
+            
+            if (authToken.username != profilePageUser && $('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
                 $('<div class="message-btn">message</div>').insertAfter('.profile-username-label');
 
                 document.querySelector('.message-btn').addEventListener('click', (event) => {
