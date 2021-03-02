@@ -657,6 +657,9 @@
     right: 8px;
 }
 
+.right:not(.white-bg) .msg-node::before {
+    color: white !important;
+}
 .sent + .received {
     margin-top: 20px !important;
 }
