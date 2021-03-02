@@ -301,6 +301,7 @@ function loadPrevious() {
                 */
             })
             $('.chat .box').html(html + $('.chat .box').html());
+            console.log(html)
         }, older_than=_msg_cache[user][0].time)
     }
 }
