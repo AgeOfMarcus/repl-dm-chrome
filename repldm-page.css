@@ -438,8 +438,8 @@
     filter: drop-shadow(1px 1px 0 black) 
           drop-shadow(-1px -1px 0 rgb(219,219,219));
 }
-.white-bg .no-msg * {
-    color: #19191a;
+.white-bg .no-msg span {
+    color: #19191a !important;
 }
 
 .right .chat {
