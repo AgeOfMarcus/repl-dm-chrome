@@ -632,13 +632,11 @@ function authed() {
                                         </div>
                                         <div class='option'>
                                             Notifications
-                                            <div class='change-notifications' style='background-color: green'>ON</div>
-                                            <div class='change-notifications' style='background-color: red'>OFF</div>
+                                            <input type='checkbox' class='change-notifications' />
                                         </div>
                                         <div class='option'>
                                             Notification Sound
-                                            <div class='change-sound' style='background-color: green'>ON</div>
-                                            <div class='change-sound' style='background-color: red'>OFF</div>
+                                            <input type='checkbox' class='change-sound' />
                                         </div>
                                     </div>
                                 </div>
@@ -802,6 +800,16 @@ function authed() {
                     }
                 }
             })
+
+            // notifications 
+            if (globalThis._settings.notifications) {
+                document.getElementsByClassName('change-notifications')[0].checked = true;
+            }
+
+            // notifications sound
+            if (globalThis._settings.sound) {
+                document.getElementsByClassName('change-sound')[0].checked = true;
+            }
         }
     }
 
@@ -872,34 +880,35 @@ function authed() {
         })
     }
 
-    var chn = document.getElementsByClassName('change-notifications');
-    for (let i=0; i < chn.length; i++) {
-        chn[i].addEventListener('click', (event) => {
-            col = event.target.style.backgroundColor;
-            if (col == "green") {
-                _settings.notifications = true;
-            } else if (col == "red") {
-                _settings.notifications = false;
-            } else {
-                console.log("what:", col);
-            }
-            chrome.storage.local.set({'settings': _settings});
-        })
-    }
-    var chs = document.getElementsByClassName('change-sound');
-    for (let i=0; i < chs.length; i++) {
-        chs[i].addEventListener('click', (event) => {
-            col = event.target.style.backgroundColor;
-            if (col == "green") {
-                _settings.sound = true;
-            } else if (col == "red") {
-                _settings.sound = false;
-            } else {
-                console.log("what:", col);
-            }
-            chrome.storage.local.set({'settings': _settings});
-        })
-    }
+    // change notifications
+    var chn = document.getElementsByClassName('change-notifications')[0];
+    chn.addEventListener('change', () => {
+        col = event.target.style.backgroundColor;
+        if (this.checked) {
+            _settings.notifications = true;
+            console.log('on')
+        }
+        else {
+            _settings.notifications = false;
+            console.log('off')
+        } 
+        chrome.storage.local.set({'settings': _settings});
+    })
+    
+    // change notif sound
+    var chs = document.getElementsByClassName('change-sound')[0];
+    chs.addEventListener('change', () => {
+        col = event.target.style.backgroundColor;
+        if (this.checked) {
+            _settings.sound = true;
+            console.log('on')
+        }
+        else {
+            _settings.sound = false;
+            console.log('off')
+        } 
+        chrome.storage.local.set({'settings': _settings});
+    })
 
     // close new message
     document.querySelector('.close-new-msg').addEventListener('click', () => {
