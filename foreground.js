@@ -715,6 +715,38 @@ function authed() {
                 }
             })
 
+            window.addEventListener('paste', (event) => {
+                var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+                for (index in items) {
+                    var item = items[index];
+                    if (item.kind === 'file') {
+                        var file = item.getAsFile();
+                        var filename = file.name;
+                        /*Get File Extension*/
+                        var ext = filename.split('.').reverse()[0].toLowerCase();
+                        /*Check Image File Extensions*/
+                        if (jQuery.inArray(ext, ['jpg', 'png', 'gif', 'jpeg']) > -1) {
+                            /*Create FormData Instance*/
+                            var data = new FormData();
+                            data.append('image', file);
+                            /*Request Ajax With File*/
+                            $.ajax({
+                                url: 'https://i.marcusj.tech/upload',
+                                data: data,
+                                type: 'POST',
+                                processData: false,
+                                contentType: false,
+                                success: function (response) {
+                                    var url = JSON.parse(response).url;
+                                    var body = $('input.msg').val() + `![img](${url})`;
+                                    $('input.msg').val(body);
+                                }
+                            })
+                        } 
+                    }
+                }
+            })
+
             // font size
             chrome.storage.local.get(['fontsize'], (res) => { 
                 console.log(res, res.fontsize);
