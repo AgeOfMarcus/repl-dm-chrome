@@ -889,7 +889,7 @@ function authed() {
     // change notifications
     var chn = document.getElementsByClassName('change-notifications')[0];
     chn.addEventListener('change', () => {
-        if (this.checked) {
+        if ($(chn).is(':checked')) {
             _settings.notifications = true;
             console.log('on')
         }
@@ -903,7 +903,7 @@ function authed() {
     // change notif sound
     var chs = document.getElementsByClassName('change-sound')[0];
     chs.addEventListener('change', () => {
-        if (this.checked) {
+        if ($(chs).is(':checked')) {
             _settings.sound = true;
             console.log('on')
         }
