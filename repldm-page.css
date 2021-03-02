@@ -537,6 +537,14 @@
     border-color: #44eb7d !important;
 }
 
+
+.msg-node a {
+    color: #82cbff;
+}
+.dmWrapper[them="green"] .msg-node a {
+    color: #1a7fc7;
+}
+
 /* /themes */
 
 
@@ -687,7 +695,9 @@
 .received + .sent {
     margin-top: 20px !important;
 }
-
+.read + .sent {
+    margin-top: 20px !important;
+}
 
 
 /* online */
