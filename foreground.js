@@ -775,6 +775,8 @@ function authed() {
                 }
                 else {
                     $('.dmWrapper .right').css('background-color', res.background);
+                
+                    $('.box').attr('bg-value', res.background);
 
                     if (res.background == 'white') {
                         document.querySelector('.dmWrapper .right').classList.add('white-bg');
@@ -865,7 +867,7 @@ function authed() {
             }
             // background color 
             chrome.storage.local.set({'background': event.target.style.backgroundColor});
-
+            $('.box').attr('bg-value', event.target.style.backgroundColor);
         })
     }
 

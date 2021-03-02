@@ -660,13 +660,9 @@
     color: white !important;
 }
 
-
-.box::-webkit-scrollbar-track-piece:start {
-    background: transparent url('https://purepng.com/public/uploads/large/purepng.com-png-background-checkboard-patternpngbackgroundcheckboardpatternpurepng-691522544567tziig.png') repeat-y !important;
-}
-
-.box::-webkit-scrollbar-track-piece:end {
-    background: transparent url('https://purepng.com/public/uploads/large/purepng.com-png-background-checkboard-patternpngbackgroundcheckboardpatternpurepng-691522544567tziig.png') repeat-y !important;
+/* scroll bar track background */
+.box::-webkit-scrollbar-track {
+    background: attr(bg-value);
 }
 
 .sent + .received {
