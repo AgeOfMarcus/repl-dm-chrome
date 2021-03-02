@@ -52,6 +52,7 @@
     color: white;
     left: 50vw;
     animation: repldmSuccessAnimation 1s;
+    filter: opacity(0);
 }
 
 .repldmBtn {
