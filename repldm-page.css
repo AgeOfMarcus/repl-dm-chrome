@@ -521,7 +521,7 @@
 }
 
 .right .chat .wrapper .box .msg-node {
-    border-radius: 15px;
+    border-radius: 12px;
     padding: 10px;
     width: fit-content;
     max-width: 280px;

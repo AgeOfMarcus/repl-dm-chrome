@@ -1,5 +1,3 @@
-console.log('foreground baby');
-
 var _first_load = true;
 
 let currentCtxMenu = null;
@@ -386,14 +384,14 @@ function checkReadStatus(user) {
     $(`#status-${user}`).attr('status', status);
 }
 
-function loadPrevious() {
+function loadPrevious() { // dis no work ------------------------------------------------------------------ 
     user = $('.chat .top span').text();
-
+    var html = '';
     if (user in _msg_cache) {
         getMessages(user, (messages) => {
             _msg_cache[user].unshift(...messages) // *messages
             _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
-            $('.chat .box').clear();
+            //$('.chat .box').clear();
 
             _msg_cache[user].forEach((item, index) => {
                 if ((item.from == authToken.username) && (item.read)) {
@@ -407,7 +405,14 @@ function loadPrevious() {
                 if (document.getElementById(`msg-${item.id}`)) {
                     return; 
                 }
+                var html = html + `
+                    <div id="msg-${item.id}" class='msg-node ${msgClass}'>
+                        ${renderText(item.body)}
+                        <input class='hidden-input' type="hidden" value='${btoa(JSON.stringify(item))}'/>
+                    </div>
+                `;
 
+                /*
                 $('.chat .box').append($(`
                     <div id="msg-${item.id}" class='msg-node ${msgClass}'>
                         ${renderText(item.body)}
@@ -429,7 +434,10 @@ function loadPrevious() {
 
                 var box = $('.chat .box');
                 box.scrollTop(box.prop('scrollHeight'));
+                */
             })
+            $('.chat .box').html(html + $('.chat .box').html());
+            console.log(html)
         }, older_than=_msg_cache[user][0].time)
     }
 }
@@ -438,8 +446,6 @@ function loadConvo(user) {
     if ($('.chat .top span').text() == user) {
         return;
     }
-
-    console.log('load convo func', user);
 
     $('.chat .top span').text(user);
     $('.chat .top span').off('click');
@@ -453,7 +459,6 @@ function loadConvo(user) {
     // showdupl badge
     if (['rafrafraf', 'MarcusWeinberger'].includes(user)) {
         $('.chat .top .badge').show();
-        console.log('dupl team')
     }
     else {
         $('.chat .top .badge').hide();
@@ -696,7 +701,9 @@ function authed() {
     function setup() {
         // add message button to profile page
         setTimeout(() => {
-            if ($('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
+            const profilePageUser = document.querySelector(".profile-username-label").childNodes[2].data; //get username
+            
+            if (authToken.username != profilePageUser && $('.profile-username-label').length !== 0 && $('.message-btn').length == 0) {
                 $('<div class="message-btn"><i class="far fa-paper-plane"></i></div>').insertAfter('.profile-username-label');
 
                 document.querySelector('.message-btn').addEventListener('click', (event) => {
@@ -857,6 +864,15 @@ function authed() {
 
             $('body').append($(pageHtml));
 
+            // scroll script
+            $('.chat .box').on('scroll', () => {
+                var scrollTop = $('.chat .box').scrollTop();
+                if (scrollTop <= 0) {
+                    loadPrevious();
+                    console.log('loading old messages')
+                }
+            });
+
             // resizer script
             var up = false;
             var leftW = 300;
@@ -921,7 +937,6 @@ function authed() {
 
             // font size
             chrome.storage.local.get(['fontsize'], (res) => { 
-                console.log(res, res.fontsize);
                 if (typeof res.fontsize === 'undefined') {
                     chrome.storage.local.set({'fontsize': '16px'});
                 }
@@ -940,7 +955,6 @@ function authed() {
     
             // background color 
             chrome.storage.local.get(['background'], (res) => { 
-                console.log(res, res.background);
                 if (typeof res.background === 'undefined') {
                     chrome.storage.local.set({'background': 'white'});
                 }
@@ -953,7 +967,6 @@ function authed() {
                     }
                     else {
                         document.querySelector('.dmWrapper .right').classList.remove('white-bg');
-                        console.log(res.background)
                         if (res.background == 'rgb(34, 85, 221)') { // blue
                             $('.dmWrapper').attr('theme', 'blue');
                         }
@@ -1008,7 +1021,6 @@ function authed() {
     var els = document.getElementsByClassName('change-size');
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', (event) => {
-            console.log(event.target.style.fontSize)
             $('.dmWrapper .right .box').removeClass('small');
             $('.dmWrapper .right .box').removeClass('large');
 
@@ -1029,7 +1041,6 @@ function authed() {
     for (i=0; i<els.length; i++) {
         els[i].addEventListener('click', (event) => {
             document.querySelector('.dmWrapper .right').style.backgroundColor = event.target.style.backgroundColor;
-            console.log(event.target.style.backgroundColor)
             if (event.target.style.backgroundColor == 'white') {
                 document.querySelector('.dmWrapper .right').classList.add('white-bg');
                 $('.dmWrapper').attr('theme', 'white');
@@ -1060,11 +1071,9 @@ function authed() {
     chn.addEventListener('change', () => {
         if ($(chn).is(':checked')) {
             _settings.notifications = true;
-            console.log('on')
         }
         else {
             _settings.notifications = false;
-            console.log('off')
         } 
         chrome.storage.local.set({'settings': _settings});
     })
@@ -1074,11 +1083,9 @@ function authed() {
     chs.addEventListener('change', () => {
         if ($(chs).is(':checked')) {
             _settings.sound = true;
-            console.log('on')
         }
         else {
             _settings.sound = false;
-            console.log('off')
         } 
         chrome.storage.local.set({'settings': _settings});
     })
@@ -1124,7 +1131,6 @@ function authed() {
         $('.repldmBtn .fa-paper-plane').toggle();
         $('.repldmBtn').toggleClass('open');
         $('.cont').show();
-        console.log(name)
 
         $('.dmWrapper').animate({
             marginTop: '0',

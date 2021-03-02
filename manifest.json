@@ -1,14 +1,14 @@
 {
-    "name": "repl.it DMs",
-    "description": "Adds direct messaging functionality to replit.",
-    "version": "1.5.0",
+    "name": "ReplDM",
+    "description": "Adds direct messaging functionality to repl.it",
+    "version": "0.6.1",
     "manifest_version": 2,
     "icons": {
-
+        "128": "icon.png"
     },
     "content_scripts": [
         {
-            "matches": ["*://repl.it/*"],
+            "matches": ["*://repl.it/*", "*://replit.com/*"],
             "js": ["./fontawesome.js", "./socket.io.js", "./jquery.min.js", "marked.min.js", "./sanitize-html.js", "./foreground.js"],
             "css": ["./fontawesome.css", "./repldm-page.css"]
         }
