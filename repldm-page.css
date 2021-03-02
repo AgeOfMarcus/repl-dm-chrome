@@ -834,8 +834,14 @@
     position: absolute;
     text-align: center;
     margin-top: -60px;
-    margin-left: 100px;
     animation: grow-shrink 1.5s ease-in-out infinite;
+    z-index: 10;
+    margin-top: -;
+    font-size: 14px;
+    margin-left: 120px;
+    font-weight: 600;
+    color: #f0fc08 !important;
+    filter: drop-shadow(#6f7500 1px 1px 0px);
 }
 @keyframes grow-shrink {
     0% {
