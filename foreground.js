@@ -736,8 +736,8 @@ function authed() {
                                 type: 'POST',
                                 processData: false,
                                 contentType: false,
-                                success: function (response) {
-                                    var url = JSON.parse(response).url;
+                                success: function (data, status, xhr) {
+                                    var url = xhr.getResponseHeader('Location');
                                     var body = $('input.msg').val() + `![img](${url})`;
                                     $('input.msg').val(body);
                                 }
