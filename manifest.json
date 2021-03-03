@@ -20,7 +20,8 @@
     "permissions": [
         "storage",
         "tabs",
-        "*://repl.it/*"
+        "*://repl.it/*",
+        "*://replit.com/*"
     ],
     "background": {
         "page": "index.html"
