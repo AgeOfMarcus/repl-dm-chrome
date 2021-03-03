@@ -358,6 +358,7 @@
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 .new-msg .top .close-new-msg {
     position: absolute;
@@ -873,9 +874,9 @@
     align-items: center;
     position: absolute;
     margin-top: -30px;
+    animation: spin linear 1s infinite;
 }
 .load-old-msgs * {
-    animation: spin linear 1s infinite;
     width: 16px;
     height: 16px;
 }
