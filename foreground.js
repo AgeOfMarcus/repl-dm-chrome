@@ -309,6 +309,8 @@ function loadPrevious() { // dis no work ---------------------------------------
 }
 
 function loadConvo(user) {
+    $('.chat .box').empty() // we gotta clear g
+
     $('.load-old-msgs').animate({ // loading msgs anim
         marginTop: "5px"
     }, 200);
@@ -333,9 +335,6 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
-    
-
-    $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
         _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
