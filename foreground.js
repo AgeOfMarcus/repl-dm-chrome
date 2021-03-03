@@ -359,12 +359,12 @@ function loadConvo(user) {
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
 
-            var box = $('.chat .box'); // scroll to bottom of chat
-            box.scrollTop(box.prop('scrollHeight'));
-
             $('.load-old-msgs').animate({ // loading msgs anim
                 marginTop: "-30px"
             }, 200);
+
+            var box = $('.chat .box'); // scroll to bottom of chat
+            box.scrollTop(box.prop('scrollHeight'));
         })
 
         getMessages(user, (messages) => {
@@ -394,12 +394,12 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                var box = $('.chat .box'); // scroll to bottom of chat
-                box.scrollTop(box.prop('scrollHeight'));
-
                 $('.load-old-msgs').animate({ // loading msgs anim
                     marginTop: "-30px"
                 }, 200);
+                
+                var box = $('.chat .box'); // scroll to bottom of chat
+                box.scrollTop(box.prop('scrollHeight'));
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -427,12 +427,12 @@ function loadConvo(user) {
                     </div>
                 `)) //TODO: markdown and filter xss, add time to message
 
-                var box = $('.chat .box'); // scroll to bottom of chat
-                box.scrollTop(box.prop('scrollHeight'));
-
                 $('.load-old-msgs').animate({ // loading msgs anim
                     marginTop: "-30px"
                 }, 200);
+                
+                var box = $('.chat .box'); // scroll to bottom of chat
+                box.scrollTop(box.prop('scrollHeight'));
             })
         })
     }
