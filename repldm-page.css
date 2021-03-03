@@ -875,6 +875,7 @@
     position: absolute;
     margin-top: -30px;
     animation: spin linear 1s infinite;
+    user-select: none;
 }
 .load-old-msgs * {
     width: 16px;

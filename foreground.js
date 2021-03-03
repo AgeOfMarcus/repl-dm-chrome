@@ -762,7 +762,7 @@ function authed() {
                 if (scrollTop <= 0) {
                     loadPrevious();
                     $('.load-old-msgs').animate({
-                        marginTop: 0
+                        marginTop: "-5px"
                     }, 200);
                     console.log('loading old messages')
                 }
