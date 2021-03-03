@@ -258,7 +258,11 @@ function checkReadStatus(user) {
     $(`#status-${user}`).attr('status', status);
 }
 
-function loadPrevious() { // dis no work ------------------------------------------------------------------ 
+function loadPrevious() { // dis no work ------------------------------------------------------------------
+    $('.load-old-msgs').animate({ // loading msgs anim
+        marginTop: "5px"
+    }, 200);
+
     user = $('.chat .top span').text();
     var html = '';
     if (user in _msg_cache) {
@@ -305,6 +309,10 @@ function loadPrevious() { // dis no work ---------------------------------------
 }
 
 function loadConvo(user) {
+    $('.load-old-msgs').animate({ // loading msgs anim
+        marginTop: "5px"
+    }, 200);
+
     if ($('.chat .top span').text() == user) {
         return;
     }
@@ -353,6 +361,10 @@ function loadConvo(user) {
 
             var box = $('.chat .box'); // scroll to bottom of chat
             box.scrollTop(box.prop('scrollHeight'));
+
+            $('.load-old-msgs').animate({ // loading msgs anim
+                marginTop: "-30px"
+            }, 200);
         })
 
         getMessages(user, (messages) => {
@@ -384,6 +396,10 @@ function loadConvo(user) {
 
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
+
+                $('.load-old-msgs').animate({ // loading msgs anim
+                    marginTop: "-30px"
+                }, 200);
             })
         }, newer_than=_msg_cache[user][_msg_cache[user].length - 1].time)
     } else { // fuck you rafi this is the better way of formatting if/else
@@ -413,6 +429,10 @@ function loadConvo(user) {
 
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
+
+                $('.load-old-msgs').animate({ // loading msgs anim
+                    marginTop: "-30px"
+                }, 200);
             })
         })
     }
@@ -761,9 +781,6 @@ function authed() {
                 var scrollTop = $('.chat .box').scrollTop();
                 if (scrollTop <= 0) {
                     loadPrevious();
-                    $('.load-old-msgs').animate({
-                        marginTop: "5px"
-                    }, 200);
                     console.log('loading old messages')
                 }
             });
