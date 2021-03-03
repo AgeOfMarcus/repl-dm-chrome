@@ -706,6 +706,56 @@ function authed() {
 
             $('body').append($(pageHtml));
 
+            // image drop script ----------------------
+            var counter = 0;
+            $('.dmWrapper').bind({
+                dragenter: function(ev) {
+                    ev.preventDefault(); // needed for IE
+                    counter++;
+                    $('.image-drop').addClass('active');
+                },
+
+                dragleave: function() {
+                    counter--;
+                    if (counter === 0) { 
+                        $('.image-drop').removeClass('active');
+                    }
+                },
+
+                dragover: (e) => {
+                    e = e || event;
+                    e.preventDefault();
+                },
+
+                drop: (ev) => { // file dropped
+                    e = ev || event;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    ev.dataTransfer = ev.originalEvent.dataTransfer;
+                    if (ev.dataTransfer.items) {
+                        // Use DataTransferItemList interface to access the file(s)
+                        for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+                            // If dropped items aren't files, reject them
+                            if (ev.dataTransfer.items[i].kind === 'file') {
+                                var file = ev.dataTransfer.items[i].getAsFile();
+                                console.log('... file[' + i + '].name = ' + file.name);
+                            }
+                        }
+                    } else {
+                        // Use DataTransfer interface to access the file(s)
+                        for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+                            var file = ev.dataTransfer.files[i];
+                            console.log('... file[' + i + '].name = ' + file.name);
+                        }
+                    }
+
+                    $('.image-drop').removeClass('active');
+                    counter = 0;
+                }
+            });
+            // /image drop script ----------------------
+
             // scroll script
             $('.chat .box').on('scroll', () => {
                 var scrollTop = $('.chat .box').scrollTop();

@@ -358,7 +358,6 @@
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    z-index: 2;
 }
 .new-msg .top .close-new-msg {
     position: absolute;
@@ -437,6 +436,7 @@
     color: #19191a;
     font-weight: 600;
     position: relative;
+    z-index: 2;
 }
 .chat .top span {
     cursor: pointer;
