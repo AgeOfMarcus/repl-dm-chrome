@@ -260,7 +260,8 @@ function checkReadStatus(user) {
 
 function loadPrevious() { // dis no work ------------------------------------------------------------------
     $('.load-old-msgs').animate({ // loading msgs anim
-        marginTop: "5px"
+        marginTop: "5px",
+        filter: "opacity(1)"
     }, 200);
 
     user = $('.chat .top span').text();
@@ -312,7 +313,8 @@ function loadConvo(user) {
     $('.chat .box').empty() // we gotta clear g
 
     $('.load-old-msgs').animate({ // loading msgs anim
-        marginTop: "5px"
+        marginTop: "5px",
+        filter: "opacity(1)"
     }, 200);
 
     if ($('.chat .top span').text() == user) {
@@ -390,7 +392,8 @@ function loadConvo(user) {
                 `)) //TODO: markdown and filter xss, add time to message
 
                 $('.load-old-msgs').animate({ // loading msgs anim
-                    marginTop: "-30px"
+                    marginTop: "-30px",
+                    filter: "opacity(0)"
                 }, 200);
                 
                 var box = $('.chat .box'); // scroll to bottom of chat
@@ -423,7 +426,8 @@ function loadConvo(user) {
                 `)) //TODO: markdown and filter xss, add time to message
 
                 $('.load-old-msgs').animate({ // loading msgs anim
-                    marginTop: "-30px"
+                    marginTop: "-30px",
+                    filter: "opacity(0)"
                 }, 200);
                 
                 var box = $('.chat .box'); // scroll to bottom of chat
