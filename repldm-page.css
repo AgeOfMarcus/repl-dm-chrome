@@ -972,7 +972,7 @@
     margin-top: -30px;
     animation: spin linear 1s infinite;
     user-select: none;
-    filter: opacity(1);
+    filter: opacity(0);
     transition: filter 100ms;
 }
 .load-old-msgs * {
