@@ -358,10 +358,6 @@ function loadConvo(user) {
                 </div>
             `)) //TODO: markdown and filter xss, add time to message
 
-            $('.load-old-msgs').animate({ // loading msgs anim
-                marginTop: "-30px"
-            }, 200);
-
             var box = $('.chat .box'); // scroll to bottom of chat
             box.scrollTop(box.prop('scrollHeight'));
         })
