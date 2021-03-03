@@ -3,12 +3,156 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>repl.it</title>
+        <title>ReplDM by Dupl</title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+        <style>
+            @keyframes head {
+                0%, 90% { height: 100%; }
+                100% { height: 40%; }
+            }
+
+            @keyframes content {
+                0%, 90% { height: 0%; }
+                100% { height: 60%; }
+            }
+
+            @keyframes body {
+                0%, 90% { background-color: #1a1a26; }
+                100% { background-color: #f1f1fe; }
+            }
+
+            @keyframes band {
+                0%, 100% { height: 0%; }
+                50% { height: 50%; }
+            }
+
+            @keyframes bandf {
+                0% { height: 0%; }
+                60% { height: 0%; }
+                100% { height: 100%; }
+            }
+
+            body {
+                height: 200px;
+                max-height: 200px;
+                width: 300px;
+                overflow-y: hidden;
+                margin: 0px;
+                background-color: #f1f1fe;
+                animation: body 2000ms;
+            }
+
+            #band-a {
+                background-color: #0068A1;
+                animation: band 500ms 1 0ms linear;
+                height: 0%;
+            }
+            #band-b {
+                background-color: #FFCB36;
+                animation: band 500ms 1 125ms linear;
+                height: 0%;
+            }
+            #band-c {
+                background-color: #EC5253;
+                animation: band 500ms 1 250ms linear;
+                height: 0%;
+            }
+            #band-d {
+                background-color: #058667;
+                animation: band 500ms 1 375ms linear;
+                height: 0%;
+            }
+            #band-e {
+                background-color: #90C1F6;
+                animation: band 500ms 1 500ms linear;
+                height: 0%;
+            }
+
+            #band-f {
+                background-color: #1a1a26;
+                animation: bandf 1000ms 1 0ms linear;
+                height: 100%;
+            }
+
+            #head {
+                width: 100%;
+                height: 40%;
+                margin: 0;
+                animation: head 2000ms;
+            }
+
+            #logo {
+                height: 80%;
+                width: auto;
+                padding-top: 3%;
+                margin-left: auto;
+                margin-right: auto;
+                filter: opacity(1);
+                display: block;
+            }
+
+            #content {
+                height: 60%;
+                width: 100%;
+                margin: 0;
+                animation: content 2000ms;
+                display: flex;
+                overflow: hidden;
+            }
+
+            #content > * {
+                padding-left: 8px;
+                padding-right: 8px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            #content > * > * {
+                margin: 0;
+            }
+
+            #content > div:first-child {
+                border-right: 1px solid gray;
+            }
+
+            #content > div:last-child {
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            a {
+                color: black;
+            }
+        </style>
     </head>
     <body>
-        <h1>im the popup</h1>
+        <div id="head">
+            <div id="band-f">
+                <img src="/dupl.png" id="logo">
+            </div>
+            <div id="band-e"></div>
+            <div id="band-d"></div>
+            <div id="band-c"></div>
+            <div id="band-b"></div>
+            <div id="band-a"></div>
+        </div>
+
+        <div id="content">
+            <div>
+                <h1>ReplDM</h1>
+                <p style="width: 100%;">Talk to anyone on Replit</p>
+            </div>
+            <div>
+                <a href="https://repl.it/talk/share/repldm-alpha-001-direct-messaging-in-replit/124217">Replit post</a>
+                <a href="https://github.com/AgeOfMarcus/repl-dm-chrome">GitHub</a>
+                <a href="https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip">Download latest</a>
+            </div>
+        </div>
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js'></script>
     </body>
