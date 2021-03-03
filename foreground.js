@@ -670,6 +670,17 @@ function authed() {
                                         <div class='badge' style='display: none;'><img src='https://i.imgur.com/6D1IhQM.png' /></div>
                                     </div>
                                     <div class='wrapper'>
+                                        <!-- image drop -->
+                                        <div class='image-drop' style='margin-top: 200%;'>
+                                            <div class='image-drop-preview'>drag file here</div>
+                                        </div>
+
+                                        <!-- load old msgs -->
+                                        <div class='load-old-msgs'>
+                                            <i class="fas fa-spinner"></i>
+                                        </div>
+
+                                        <!-- msgs -->
                                         <div class='box'>
                                         </div>
                                         <div class='msg-wrapper'>
@@ -700,6 +711,9 @@ function authed() {
                 var scrollTop = $('.chat .box').scrollTop();
                 if (scrollTop <= 0) {
                     loadPrevious();
+                    $('.load-old-msgs').animate({
+                        marginTop: 0
+                    }, 200);
                     console.log('loading old messages')
                 }
             });
