@@ -187,7 +187,7 @@ function init() {
     })
 }
 
-function renderText(text) {
+function renderText(text) { // ------------------------ i need ur help here marcus, i need to make all img tags be inside a label and a checkbox before the label 
     const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
     return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
@@ -762,7 +762,7 @@ function authed() {
                 if (scrollTop <= 0) {
                     loadPrevious();
                     $('.load-old-msgs').animate({
-                        marginTop: "-5px"
+                        marginTop: "5px"
                     }, 200);
                     console.log('loading old messages')
                 }

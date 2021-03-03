@@ -891,6 +891,37 @@
 }
 
 
+
+/* open image full screen */
+.msg-node img {
+    cursor: pointer;
+}
+.msg-node .image-check {
+    display: none;
+}
+.msg-node label {
+    transition: all 0.5s;
+}
+.msg-node .image-check:checked + label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+.msg-node .image-check:checked + label img {
+    height: 75%;
+    width: auto;
+    cursor: default;
+}
+
+
+
 /* smaller screen widths */
 @media only screen and (max-width: 1000px) {
     .dmWrapper {
