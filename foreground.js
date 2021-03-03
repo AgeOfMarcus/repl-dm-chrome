@@ -301,7 +301,7 @@ function init() {
     console.log("init"); //TEMP
 }
 
-function renderText(text) {
+function renderText(text) { // ------------------------ i need ur help here marcus, i need to make all img tags be inside a label and a checkbox before the label 
     const userRe = /(?<![\w@])@([\w@]+(?:[.!][\w@]+)*)/g;
     return sanitizeHtml(marked(text.replace(userRe, '<a href="https://repl.it/$&">$&</a>')), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
@@ -384,7 +384,11 @@ function checkReadStatus(user) {
     $(`#status-${user}`).attr('status', status);
 }
 
-function loadPrevious() { // dis no work ------------------------------------------------------------------ 
+function loadPrevious() { // dis no work ------------------------------------------------------------------
+    $('.load-old-msgs').animate({ // loading msgs anim
+        marginTop: "5px"
+    }, 200);
+
     user = $('.chat .top span').text();
     var html = '';
     if (user in _msg_cache) {
@@ -443,6 +447,12 @@ function loadPrevious() { // dis no work ---------------------------------------
 }
 
 function loadConvo(user) {
+    $('.chat .box').empty() // we gotta clear g
+
+    $('.load-old-msgs').animate({ // loading msgs anim
+        marginTop: "5px"
+    }, 200);
+
     if ($('.chat .top span').text() == user) {
         return;
     }
@@ -463,9 +473,6 @@ function loadConvo(user) {
     else {
         $('.chat .top .badge').hide();
     }
-    
-
-    $('.chat .box').empty() // we gotta clear g
 
     if (user in _msg_cache) {
         _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
@@ -544,6 +551,11 @@ function loadConvo(user) {
                     ], e.clientX, e.clientY);
                 });
 
+                $('.load-old-msgs').animate({ // loading msgs anim
+                    marginTop: "-30px"
+                }, 200);
+                
+
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
             })
@@ -585,6 +597,10 @@ function loadConvo(user) {
                     ], e.clientX, e.clientY);
                 });
 
+                $('.load-old-msgs').animate({ // loading msgs anim
+                    marginTop: "-30px"
+                }, 200);
+              
                 var box = $('.chat .box'); // scroll to bottom of chat
                 box.scrollTop(box.prop('scrollHeight'));
             })
@@ -839,6 +855,17 @@ function authed() {
                                         <div class='badge' style='display: none;'><img src='https://i.imgur.com/6D1IhQM.png' /></div>
                                     </div>
                                     <div class='wrapper'>
+                                        <!-- image drop -->
+                                        <div class='image-drop' style='margin-top: 200%;'>
+                                            <div class='image-drop-preview'>drag file here</div>
+                                        </div>
+
+                                        <!-- load old msgs -->
+                                        <div class='load-old-msgs'>
+                                            <i class="fas fa-spinner"></i>
+                                        </div>
+
+                                        <!-- msgs -->
                                         <div class='box'>
                                         </div>
                                         <div class='msg-wrapper'>
@@ -863,6 +890,56 @@ function authed() {
                     </div>`;
 
             $('body').append($(pageHtml));
+
+            // image drop script ----------------------
+            var counter = 0;
+            $('.dmWrapper').bind({
+                dragenter: function(ev) {
+                    ev.preventDefault(); // needed for IE
+                    counter++;
+                    $('.image-drop').addClass('active');
+                },
+
+                dragleave: function() {
+                    counter--;
+                    if (counter === 0) { 
+                        $('.image-drop').removeClass('active');
+                    }
+                },
+
+                dragover: (e) => {
+                    e = e || event;
+                    e.preventDefault();
+                },
+
+                drop: (ev) => { // file dropped
+                    e = ev || event;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    ev.dataTransfer = ev.originalEvent.dataTransfer;
+                    if (ev.dataTransfer.items) {
+                        // Use DataTransferItemList interface to access the file(s)
+                        for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+                            // If dropped items aren't files, reject them
+                            if (ev.dataTransfer.items[i].kind === 'file') {
+                                var file = ev.dataTransfer.items[i].getAsFile();
+                                console.log('... file[' + i + '].name = ' + file.name);
+                            }
+                        }
+                    } else {
+                        // Use DataTransfer interface to access the file(s)
+                        for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+                            var file = ev.dataTransfer.files[i];
+                            console.log('... file[' + i + '].name = ' + file.name);
+                        }
+                    }
+
+                    $('.image-drop').removeClass('active');
+                    counter = 0;
+                }
+            });
+            // /image drop script ----------------------
 
             // scroll script
             $('.chat .box').on('scroll', () => {
