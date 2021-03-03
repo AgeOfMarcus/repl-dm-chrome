@@ -567,6 +567,9 @@ function authed() {
             else {
                 dark = '';
             }
+            
+            if (dark) document.documentElement.classList.add("dark");
+            
             var html = `
             <div class='repldmBtn ${dark}'>
                 <i class="fas fa-paper-plane" style='display: none;'></i>
