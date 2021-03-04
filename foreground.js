@@ -147,7 +147,6 @@ function load_pfps() {
     for (i=0; i<$('.node').length; i++) {
         const ele = $(`.node[for="msg-${i}"]`);
         const user = ele.find('.name').text();
-        console.log(user)
         const img = ele.find('.pfp').find('img');
         getProfilePicture(user, (pfp) => {
             img.attr('src', pfp);
@@ -201,15 +200,15 @@ function init() {
                     </label>
                 `));
                 
+                $('.node-radio').bind('click', (event) => {
+                    document.querySelector('.right .no-msg').style.display = 'none';
+                    $(`label[for=${event.target.id}]`).addClass('seen');
+                    loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+                })
+
                 if (first) {
                     $('.loading-msgs').hide();
                     first = false;
-
-                    $('.node-radio').bind('click', (event) => {
-                        document.querySelector('.right .no-msg').style.display = 'none';
-                        $(`label[for=${event.target.id}]`).addClass('seen');
-                        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
-                    })
                 }
                 else if (i >= sorted_users.length-1) { // last iteration
                     load_pfps();
