@@ -149,10 +149,10 @@ function init() {
         getConvos((users) => {
 
             console.log('init')
-            var sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
+            const sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
             for (var i=0; i<sorted_users.length; i++) {
-                var user = sorted_users[i][0];
-                var recent = sorted_users[i][1];
+                const user = sorted_users[i][0];
+                const recent = sorted_users[i][1];
 
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
