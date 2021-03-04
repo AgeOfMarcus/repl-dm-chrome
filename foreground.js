@@ -153,7 +153,7 @@ function init() {
             for (var i=0; i<sorted_users.length; i++) {
                 const user = sorted_users[i][0];
                 const recent = sorted_users[i][1];
-                console.log(recent.time)
+                console.log(time_ago(new Date(recent.time)))
 
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
