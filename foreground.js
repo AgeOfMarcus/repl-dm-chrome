@@ -138,7 +138,7 @@ function sort_dict(dict) {
     items.sort(function(first, second) {
     return second[1].time - first[1].time;
     });
-    return items.reverse();
+    return items;
 }
 
 
