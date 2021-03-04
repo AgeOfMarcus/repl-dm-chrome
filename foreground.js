@@ -127,11 +127,103 @@ function getConvos(callback) {
 }
 
 
+// sorts chat into order 
+function sort_dict(dict) {
+    // Create items array
+    var items = Object.keys(dict).map(function(key) {
+    return [key, dict[key]];
+    });
+
+    // Sort the array based on the second element
+    items.sort(function(first, second) {
+    return second[1].time - first[1].time;
+    });
+    return items;
+}
+
+// loads img src for pfps after theyve been put in
+function load_pfps() {
+    console.log('loading pfps')
+    for (i=0; i<$('.node').length; i++) {
+        const ele = $(`.node[for="msg-${i}"]`);
+        const user = ele.find('.name').text();
+        const img = ele.find('.pfp').find('img');
+        getProfilePicture(user, (pfp) => {
+            img.attr('src', pfp);
+        })
+    }
+}
+
+// adds functionality to open chats
+function addMsgEventListeners() {
+    $('.node-radio').each( () => {
+        $(this).bind('change', (event) => {
+            document.querySelector('.right .no-msg').style.display = 'none';
+            var ele = $(`label[for=${event.target.id}]`);
+            loadConvo(ele.find('div .name').text()); // loadConvo(username)
+        })
+    })
+}
+
 function init() {
-    var first = true;
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
+            var html = '';
+            const sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
+            for (var i=0; i<sorted_users.length; i++) {
+                const user = sorted_users[i][0];
+                const recent = sorted_users[i][1];
+
+                if (recent.from == authToken.username) { // from me
+                    if (recent.read) { // they opened it
+                        status = "read"
+                    } else { // sent successfully to them
+                        status = "sent"
+                    }
+                } else { // to me
+                    if (recent.read) { // i've read it
+                        status = "opened"
+                    } else { // i havent - aka unread
+                        status = "received"
+                    }
+                } 
+
+                // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
+
+                html += `
+                    <input type='radio' class='node-radio' id='msg-${i}' name='msg' />
+                    <label class='node' for='msg-${i}'>
+                        <div class='pfp'>
+                            <img src='' />
+                        </div>
+                        <div class='mid' status='${status}' id="status-${user}"> 
+                            <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
+                            <div class='icons' date='${time_ago(new Date(recent.time))}'>  
+                                <i class="far fa-paper-plane read-icon"></i>
+                                <i class="fas fa-paper-plane sent-icon"></i>
+                                <i class="far fa-comment-alt opened-icon"></i>
+                                <i class="fas fa-comment-alt received-icon"></i>
+                            </div>
+                        </div>
+                    </label>
+                `;
+
+                if (i == 0) {
+                    $('.loading-msgs').hide();
+                }
+                else if (i >= sorted_users.length-1) { // last iteration
+                    $('.left-msgs').html(html);
+                    addMsgEventListeners();
+                    load_pfps();
+                }
+            }
+
+
+
+
+
+            /*
             for (const [user, recent] of Object.entries(users)) {
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
@@ -182,7 +274,7 @@ function init() {
 
                     _msg_node_increment++;
                 })
-            }
+            }*/
         })
     })
 }
@@ -240,7 +332,7 @@ function checkReadStatus(user) {
         })
     }
 
-    recent = elms[elms.length - 1]
+    /*recent = elms[elms.length - 1]
     if (recent.from == authToken.username) { // from me
         if (recent.read) { // they opened it
             status = "read"
@@ -256,6 +348,11 @@ function checkReadStatus(user) {
     }
 
     $(`#status-${user}`).attr('status', status);
+    */  // --------------------------------- this was always setting status to "received"
+
+    if ($(`#status-${user}`).attr('status') == "received") { // my solution
+        $(`#status-${user}`).attr('status', 'opened');
+    }
 }
 
 function loadPrevious() { // dis no work ------------------------------------------------------------------
@@ -1005,12 +1102,6 @@ function authed() {
     // open new message 
     document.querySelector('.write-msg-btn').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
-    })
-
-    // open message
-    $('.node-radio').bind('click', (event) => {
-        document.querySelector('.right .no-msg').style.display = 'none';
-        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
     })
     
     // send msg to user
