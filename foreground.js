@@ -148,7 +148,7 @@ function load_pfps() {
         const ele = $(`.node[for="msg-${i}"]`);
         const user = ele.find('.name').text();
         console.log(user)
-        const img = ele.find('img');
+        const img = ele.find('.pfp').find('img');
         getProfilePicture(user, (pfp) => {
             img.attr('src', pfp);
         })
