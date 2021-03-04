@@ -29,6 +29,5 @@
 
     "web_accessible_resources": [
         ".git/FETCH_HEAD",
-        "Loader.gif"
     ]
 }

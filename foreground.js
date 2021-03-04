@@ -154,7 +154,16 @@ function load_pfps() {
     }
 }
 
-const loaderURL = chrome.runtime.getURL('Loader.gif');
+function addMsgEventListeners() {
+    $('.node-radio').each( () => {
+        $(this).bind('click', (event) => {
+            document.querySelector('.right .no-msg').style.display = 'none';
+            $(`label[for=${event.target.id}]`).addClass('seen');
+            loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+        })
+    })
+}
+
 function init() {
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
@@ -198,18 +207,13 @@ function init() {
                         </div>
                     </label>
                 `;
-                
-                $('.node-radio').bind('click', (event) => {
-                    document.querySelector('.right .no-msg').style.display = 'none';
-                    $(`label[for=${event.target.id}]`).addClass('seen');
-                    loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
-                })
 
                 if (i == 0) {
                     $('.loading-msgs').hide();
                 }
                 else if (i >= sorted_users.length-1) { // last iteration
                     $('.left-msgs').html(html);
+                    addMsgEventListeners();
                     load_pfps();
                 }
             }
