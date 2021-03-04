@@ -185,7 +185,7 @@ function init() {
                     <input type='radio' class='node-radio' id='msg-${i}' name='msg' />
                     <label class='node' for='msg-${i}'>
                         <div class='pfp'>
-                            <img src='${loaderURL}' />
+                            <img src='' />
                         </div>
                         <div class='mid' status='${status}' id="status-${user}"> 
                             <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
