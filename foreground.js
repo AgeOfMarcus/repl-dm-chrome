@@ -153,7 +153,7 @@ function init() {
             for (var i=0; i<sorted_users.length; i++) {
                 const user = sorted_users[i][0];
                 const recent = sorted_users[i][1];
-                console.log(time_ago(new Date(recent.time)))
+                console.log(time_ago(new Date(recent.time)), i, user)
 
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
@@ -174,8 +174,8 @@ function init() {
                     // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
 
                     msgsDiv.append($(`
-                        <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
-                        <label class='node' for='msg-${_msg_node_increment}'>
+                        <input type='radio' class='node-radio' id='msg-${i}' name='msg' />
+                        <label class='node' for='msg-${i}'>
                             <div class='pfp'>
                                 <img src='${pfp}' />
                             </div>
@@ -190,19 +190,17 @@ function init() {
                             </div>
                         </label>
                     `));
-
-                    $('.node-radio').bind('click', (event) => {
-                        document.querySelector('.right .no-msg').style.display = 'none';
-                        $(`label[for=${event.target.id}]`).addClass('seen');
-                        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
-                    })
                     
                     if (first) {
                         $('.loading-msgs').hide();
                         first = false;
-                    }
 
-                    _msg_node_increment++;
+                        $('.node-radio').bind('click', (event) => {
+                            document.querySelector('.right .no-msg').style.display = 'none';
+                            $(`label[for=${event.target.id}]`).addClass('seen');
+                            loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+                        })
+                    }
                 })
             }
 
