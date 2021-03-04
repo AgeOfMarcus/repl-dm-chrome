@@ -145,7 +145,7 @@ function sort_dict(dict) {
 function load_pfps() {
     console.log('loading pfps')
     $('.node').each((ele) => {
-        console.log(ele, $(ele), this, ${this})
+        console.log(ele, $(ele), this, $(this))
         const user = $(this).find('name').text();
         const img = $(this).find('img');
         getProfilePicture(user, (pfp) => {
