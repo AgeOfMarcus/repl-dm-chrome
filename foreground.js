@@ -159,12 +159,6 @@ function addMsgEventListeners() {
         $(this).bind('click', (event) => {
             document.querySelector('.right .no-msg').style.display = 'none';
 
-            var ele = $(`label[for=${event.target.id}]`);
-            if (ele.hasClass('received')) {  // if message is recieved this basically marks it as opened
-                ele.removeClass('received');
-                ele.addClass('opened');
-            }
-
             loadConvo(ele.find('div .name').text()); // loadConvo(username)
         })
     })
@@ -337,7 +331,7 @@ function checkReadStatus(user) {
         })
     }
 
-    recent = elms[elms.length - 1]
+    /*recent = elms[elms.length - 1]
     if (recent.from == authToken.username) { // from me
         if (recent.read) { // they opened it
             status = "read"
@@ -353,6 +347,11 @@ function checkReadStatus(user) {
     }
 
     $(`#status-${user}`).attr('status', status);
+    */  // --------------------------------- this was always setting status to "received"
+
+    if ($(`#status-${user}`).attr('status') == "received") { // my solution
+        $(`#status-${user}`).attr('status', 'opened');
+    }
 }
 
 function loadPrevious() { // dis no work ------------------------------------------------------------------
