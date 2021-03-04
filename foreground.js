@@ -144,7 +144,7 @@ function sort_dict(dict) {
 // loads img src for pfps after theyve been put in
 function load_pfps() {
     console.log('loading pfps')
-    for (i=0; i>$('.node').length; i++) {
+    for (i=0; i<$('.node').length; i++) {
         const ele = $(`.node[for="msg-${i}"]`);
         const user = ele.find('.name').text();
         console.log(user)
