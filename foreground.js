@@ -158,12 +158,14 @@ function addMsgEventListeners() {
     $('.node-radio').each( () => {
         $(this).bind('click', (event) => {
             document.querySelector('.right .no-msg').style.display = 'none';
-            var ele = $(event.target);
-            if (ele.hasClass('received')) {
+
+            var ele = $(`label[for=${event.target.id}]`);
+            if (ele.hasClass('received')) {  // if message is recieved this basically marks it as opened
                 ele.removeClass('received');
                 ele.addClass('opened');
             }
-            loadConvo($(event.target).find('div .name').text()); // loadConvo(username)
+
+            loadConvo(ele.find('div .name').text()); // loadConvo(username)
         })
     })
 }
