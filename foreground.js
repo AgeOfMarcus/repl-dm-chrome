@@ -130,8 +130,8 @@ function getConvos(callback) {
 // sorts chat into order 
 function sort(dict) {
     // Create items array
-    var items = Object.keys(dict1).map(function(key) {
-    return [key, dict1[key]];
+    var items = Object.keys(dict).map(function(key) {
+    return [key, dict[key]];
     });
 
     // Sort the array based on the second element
