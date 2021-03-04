@@ -147,8 +147,10 @@ function load_pfps() {
     $('.node').each(() => {
         const user = $(this).find('name').text();
         const img = $(this).find('img');
+        console.log(user)
         getProfilePicture(user, (pfp) => {
             img.attr('src', pfp);
+            console.log(pfp)
         })
     })
 }
