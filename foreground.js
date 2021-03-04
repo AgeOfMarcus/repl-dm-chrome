@@ -1103,12 +1103,6 @@ function authed() {
     document.querySelector('.write-msg-btn').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
     })
-
-    // open message
-    $('.node-radio').bind('click', (event) => {
-        document.querySelector('.right .no-msg').style.display = 'none';
-        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
-    })
     
     // send msg to user
     document.querySelector('.send-new-msg').addEventListener('click', () => {
