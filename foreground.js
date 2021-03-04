@@ -141,9 +141,14 @@ function sort_dict(dict) {
     return items;
 }
 
+// loads img src for pfps after theyve been put in
 function load_pfps() {
-    getProfilePicture(user, (pfp) => {
-        
+    $('.node').each(() => {
+        const user = $(this).find('name').text();
+        const img = $(this).find('img');
+        getProfilePicture(user, (pfp) => {
+            img.attr('src', pfp);
+        })
     })
 }
 
@@ -153,7 +158,6 @@ function init() {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
 
-            console.log('init')
             msgsDiv = $('.left-msgs');
             const sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
             for (var i=0; i<sorted_users.length; i++) {
@@ -177,10 +181,10 @@ function init() {
                 // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
 
                 msgsDiv.append($(`
-                    <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
-                    <label class='node' for='msg-${_msg_node_increment}'>
+                    <input type='radio' class='node-radio' id='msg-${i}' name='msg' />
+                    <label class='node' for='msg-${i}'>
                         <div class='pfp'>
-                            <img src='https://i.imgur.com/lSi4K50.gif' />
+                            <img src='https://i.imgur.com/m7ux1lr.gif' />
                         </div>
                         <div class='mid' status='${status}' id="status-${user}"> 
                             <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
@@ -204,8 +208,9 @@ function init() {
                         loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
                     })
                 }
-
-                _msg_node_increment++;
+                else if (i >= sorted_users.length-1) { // last iteration
+                    load_pfps();
+                }
             }
 
 
