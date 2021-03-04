@@ -148,7 +148,7 @@ function init() {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
 
-            
+            console.log('init')
             var sorted_users = sort(users); // ------- my new method which makes messages sorted ;)
             for (var i=0; i<sorted_users.length; i++) {
                 var user = i[0];
