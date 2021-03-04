@@ -144,13 +144,12 @@ function sort_dict(dict) {
 // loads img src for pfps after theyve been put in
 function load_pfps() {
     console.log('loading pfps')
-    $('.node').each(() => {
+    $('.node').each((ele) => {
+        console.log(ele, $(ele), this, ${this})
         const user = $(this).find('name').text();
         const img = $(this).find('img');
-        console.log(user)
         getProfilePicture(user, (pfp) => {
             img.attr('src', pfp);
-            console.log(pfp)
         })
     })
 }
