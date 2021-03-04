@@ -154,9 +154,10 @@ function load_pfps() {
     }
 }
 
+// adds functionality to open chats
 function addMsgEventListeners() {
     $('.node-radio').each( () => {
-        $(this).bind('click', (event) => {
+        $(this).bind('change', (event) => {
             document.querySelector('.right .no-msg').style.display = 'none';
             var ele = $(`label[for=${event.target.id}]`);
             loadConvo(ele.find('div .name').text()); // loadConvo(username)
