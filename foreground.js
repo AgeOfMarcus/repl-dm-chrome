@@ -141,6 +141,11 @@ function sort_dict(dict) {
     return items;
 }
 
+function load_pfps() {
+    getProfilePicture(user, (pfp) => {
+        
+    })
+}
 
 function init() {
     var first = true;
@@ -149,59 +154,58 @@ function init() {
         getConvos((users) => {
 
             console.log('init')
+            msgsDiv = $('.left-msgs');
             const sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
             for (var i=0; i<sorted_users.length; i++) {
                 const user = sorted_users[i][0];
                 const recent = sorted_users[i][1];
-                console.log(time_ago(new Date(recent.time)), i, user)
 
-                getProfilePicture(user, (pfp) => {
-                    msgsDiv = $('.left-msgs');
-                    if (recent.from == authToken.username) { // from me
-                        if (recent.read) { // they opened it
-                            status = "read"
-                        } else { // sent successfully to them
-                            status = "sent"
-                        }
-                    } else { // to me
-                        if (recent.read) { // i've read it
-                            status = "opened"
-                        } else { // i havent - aka unread
-                            status = "received"
-                        }
-                    } 
-
-                    // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
-
-                    msgsDiv.append($(`
-                        <input type='radio' class='node-radio' id='msg-${i}' name='msg' />
-                        <label class='node' for='msg-${i}'>
-                            <div class='pfp'>
-                                <img src='${pfp}' />
-                            </div>
-                            <div class='mid' status='${status}' id="status-${user}"> 
-                                <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
-                                <div class='icons' date='${time_ago(new Date(recent.time))}'>  
-                                    <i class="far fa-paper-plane read-icon"></i>
-                                    <i class="fas fa-paper-plane sent-icon"></i>
-                                    <i class="far fa-comment-alt opened-icon"></i>
-                                    <i class="fas fa-comment-alt received-icon"></i>
-                                </div>
-                            </div>
-                        </label>
-                    `));
-                    
-                    if (first) {
-                        $('.loading-msgs').hide();
-                        first = false;
-
-                        $('.node-radio').bind('click', (event) => {
-                            document.querySelector('.right .no-msg').style.display = 'none';
-                            $(`label[for=${event.target.id}]`).addClass('seen');
-                            loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
-                        })
+                if (recent.from == authToken.username) { // from me
+                    if (recent.read) { // they opened it
+                        status = "read"
+                    } else { // sent successfully to them
+                        status = "sent"
                     }
-                })
+                } else { // to me
+                    if (recent.read) { // i've read it
+                        status = "opened"
+                    } else { // i havent - aka unread
+                        status = "received"
+                    }
+                } 
+
+                // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
+
+                msgsDiv.append($(`
+                    <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
+                    <label class='node' for='msg-${_msg_node_increment}'>
+                        <div class='pfp'>
+                            <img src='https://i.imgur.com/lSi4K50.gif' />
+                        </div>
+                        <div class='mid' status='${status}' id="status-${user}"> 
+                            <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
+                            <div class='icons' date='${time_ago(new Date(recent.time))}'>  
+                                <i class="far fa-paper-plane read-icon"></i>
+                                <i class="fas fa-paper-plane sent-icon"></i>
+                                <i class="far fa-comment-alt opened-icon"></i>
+                                <i class="fas fa-comment-alt received-icon"></i>
+                            </div>
+                        </div>
+                    </label>
+                `));
+                
+                if (first) {
+                    $('.loading-msgs').hide();
+                    first = false;
+
+                    $('.node-radio').bind('click', (event) => {
+                        document.querySelector('.right .no-msg').style.display = 'none';
+                        $(`label[for=${event.target.id}]`).addClass('seen');
+                        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+                    })
+                }
+
+                _msg_node_increment++;
             }
 
 
