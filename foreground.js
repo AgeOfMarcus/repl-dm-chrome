@@ -144,14 +144,15 @@ function sort_dict(dict) {
 // loads img src for pfps after theyve been put in
 function load_pfps() {
     console.log('loading pfps')
-    $('.node').each((ele) => {
-        console.log(ele, $(ele), this, $(this))
-        const user = $(this).find('name').text();
-        const img = $(this).find('img');
+    for (i=0; i>$('.node').length; i++) {
+        const ele = $(`.node[for="msg-${i}"]`);
+        const user = ele.find('.name').text();
+        console.log(user)
+        const img = ele.find('img');
         getProfilePicture(user, (pfp) => {
             img.attr('src', pfp);
         })
-    })
+    }
 }
 
 function init() {
