@@ -28,6 +28,7 @@
     },
 
     "web_accessible_resources": [
-        ".git/FETCH_HEAD"
+        ".git/FETCH_HEAD",
+        "Loader.gif"
     ]
 }
