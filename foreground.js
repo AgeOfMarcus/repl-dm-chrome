@@ -128,7 +128,7 @@ function getConvos(callback) {
 
 
 // sorts chat into order 
-function sort(dict) {
+function sort_dict(dict) {
     // Create items array
     var items = Object.keys(dict).map(function(key) {
     return [key, dict[key]];
@@ -149,10 +149,10 @@ function init() {
         getConvos((users) => {
 
             console.log('init')
-            var sorted_users = sort(users); // ------- my new method which makes messages sorted ;)
+            var sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
             for (var i=0; i<sorted_users.length; i++) {
-                var user = i[0];
-                var recent = i[1];
+                var user = sorted_users[i][0];
+                var recent = sorted_users[i][1];
 
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
