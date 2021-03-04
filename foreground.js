@@ -154,6 +154,16 @@ function load_pfps() {
     }
 }
 
+function addMsgEventListeners() {
+    $('.node-radio').each( () => {
+        $(this).bind('click', (event) => {
+            document.querySelector('.right .no-msg').style.display = 'none';
+            var ele = $(`label[for=${event.target.id}]`);
+            loadConvo(ele.find('div .name').text()); // loadConvo(username)
+        })
+    })
+}
+
 function init() {
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
@@ -203,6 +213,7 @@ function init() {
                 }
                 else if (i >= sorted_users.length-1) { // last iteration
                     $('.left-msgs').html(html);
+                    addMsgEventListeners();
                     load_pfps();
                 }
             }
@@ -1092,14 +1103,6 @@ function authed() {
         document.querySelector('.new-msg-cont').style.display = '';
     })
     
-
-    $('.node-radio').bind('change', (event) => {
-        document.querySelector('.right .no-msg').style.display = 'none';
-        var ele = $(`label[for=${event.target.id}]`);
-        loadConvo(ele.find('div .name').text()); // loadConvo(username)
-    })
-
-
     // send msg to user
     document.querySelector('.send-new-msg').addEventListener('click', () => {
         document.querySelector('.new-msg-cont').style.display = '';
