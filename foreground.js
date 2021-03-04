@@ -127,13 +127,33 @@ function getConvos(callback) {
 }
 
 
+// sorts chat into order 
+function sort(dict) {
+    // Create items array
+    var items = Object.keys(dict1).map(function(key) {
+    return [key, dict1[key]];
+    });
+
+    // Sort the array based on the second element
+    items.sort(function(first, second) {
+    return second[1].time - first[1].time;
+    });
+    return items.reverse();
+}
+
+
 function init() {
     var first = true;
     listUnread((unread) => {
         $('repldmBtn').attr('notifications', `${Object.keys(unread).length}`);
         getConvos((users) => {
-            console.log(users)
-            for (const [user, recent] of Object.entries(users)) {
+
+            
+            var sorted_users = sort(users); // ------- my new method which makes messages sorted ;)
+            for (var i=0; i<sorted_users.length; i++) {
+                var user = i[0];
+                var recent = i[1];
+
                 getProfilePicture(user, (pfp) => {
                     msgsDiv = $('.left-msgs');
                     if (recent.from == authToken.username) { // from me
@@ -184,6 +204,63 @@ function init() {
                     _msg_node_increment++;
                 })
             }
+
+
+
+
+
+            /*
+            for (const [user, recent] of Object.entries(users)) {
+                getProfilePicture(user, (pfp) => {
+                    msgsDiv = $('.left-msgs');
+                    if (recent.from == authToken.username) { // from me
+                        if (recent.read) { // they opened it
+                            status = "read"
+                        } else { // sent successfully to them
+                            status = "sent"
+                        }
+                    } else { // to me
+                        if (recent.read) { // i've read it
+                            status = "opened"
+                        } else { // i havent - aka unread
+                            status = "received"
+                        }
+                    } 
+
+                    // because css is stupid as hell we need to have the read class on the last message that has been read ONLY so cant just add read to every message thats been read smh... ive already added the code to remove the class read when you get pinged for a new msg being read
+
+                    msgsDiv.append($(`
+                        <input type='radio' class='node-radio' id='msg-${_msg_node_increment}' name='msg' />
+                        <label class='node' for='msg-${_msg_node_increment}'>
+                            <div class='pfp'>
+                                <img src='${pfp}' />
+                            </div>
+                            <div class='mid' status='${status}' id="status-${user}"> 
+                                <div class='name'>${user}${['rafrafraf', 'MarcusWeinberger'].includes(user) ? "<div class='badge' style='position: absolute; right: -2px; transform: translate(100%, -10%);'><img src='https://i.imgur.com/6D1IhQM.png' /></div>" : ''}</div>
+                                <div class='icons' date='${time_ago(new Date(recent.time))}'>  
+                                    <i class="far fa-paper-plane read-icon"></i>
+                                    <i class="fas fa-paper-plane sent-icon"></i>
+                                    <i class="far fa-comment-alt opened-icon"></i>
+                                    <i class="fas fa-comment-alt received-icon"></i>
+                                </div>
+                            </div>
+                        </label>
+                    `));
+
+                    $('.node-radio').bind('click', (event) => {
+                        document.querySelector('.right .no-msg').style.display = 'none';
+                        $(`label[for=${event.target.id}]`).addClass('seen');
+                        loadConvo($(`label[for=${event.target.id}`).find('div .name').text()); // loadConvo(username)
+                    })
+                    
+                    if (first) {
+                        $('.loading-msgs').hide();
+                        first = false;
+                    }
+
+                    _msg_node_increment++;
+                })
+            }*/
         })
     })
 }
