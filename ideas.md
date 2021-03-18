@@ -3,7 +3,6 @@
     1. delete message
     2. copy to clipboard
 
-* send images
 
 * maybe make chats have the same icons as snapchat to show the paper plane or chat and fill if unseen (hmmm i like this idea)
 

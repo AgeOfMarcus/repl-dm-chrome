@@ -1,21 +1,35 @@
+repldm - bringing direct messaging to replit
+============================================
 
-repldm is a project that aims to bring direct messaging functionality to repl.it
-================================================================================
+[![webstore](https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/repldm/keafnbglbpeinfldadjibfibkaklhceg)
 
-*By me([MarcusWeinberger](https://repl.it/@MarcusWeinberger)) and [@rafrafraf](https://repl.it/@rafrafraf)*
+## What is repldm?
 
-[![](https://i.imgur.com/5pDahEc.gif)](https://i.imgur.com/5pDahEc.gif)
+ReplDM is a chrome extension that injects javascript into replit in order to add direct messaging capabilities. Message any user on replit!
 
-*This is a **very** early version, plenty more to come!*
+[![demo](https://i.imgur.com/5pDahEc.gif)](https://i.imgur.com/5pDahEc.gif)
 
-try it out
-----------
 
-*As this project is in early alpha, bugs are expected - proceed with caution*
 
-### [**follow this guide to install **](https://www.cnet.com/how-to/how-to-install-chrome-extensions-manually/)- download the zip file [from here (from source)](https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip)
 
-[***Also on GitHub (for version management)***](https://github.com/AgeOfMarcus/repl-dm-chrome)
 
-Edit: fixed the [download link](https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip)
-=================================================================================================
+
+
+
+
+ChristopherDai
+EnderMarkoth
+LeoXu2
+YashasShah
+Wilke000
+GalaxyWolfX
+DSAClara20
+sojs
+Myztiq
+Glitterpoop
+arivvid27
+hack88
+IntellectualGuy
+zenYATTaGenji
+peternielsen112
+EnderMarkoth
