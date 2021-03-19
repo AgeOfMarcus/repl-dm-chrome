@@ -588,36 +588,27 @@ function time_ago(time) {
 }
  //test
 function authed() {
-    const url = chrome.runtime.getURL('.git/FETCH_HEAD');
-    fetch(url).then((resp) => {
-        resp.text().then((version) => {
-            $.getJSON('https://api.github.com/repos/AgeOfMarcus/repl-dm-chrome/commits', (res) => {
-                if (version.split('\t')[0] != res[0].sha) {
-                    console.log(version, res[0].sha)
-                    if (_notify_perm && _settings.notifications) {
-                        var notif = new Notification(`An update is available`, {
-                            body: `Click to download new version`,
-                            silent: true
-                        });
-                        
-                        notif.onclick = () => {
-                            window.open(`https://github.com/AgeOfMarcus/repl-dm-chrome/archive/master.zip`);
-                            new Notification(`Archive downloaded`, {
-                                body: `Unzip the file and install it to continue`,
-                                silent: true
-                            });
-                        };
+    chrome.runtime.requestUpdateCheck((status, details) => {
+        console.log(`[checkUpdate] status: ${status}, details: ${details}`);
+        if (status == 'update_available') {
+            if (_notify_perm && _settings.notifications) {
+                var notif = new Notification(`An update is available`, {
+                    body: `Click to update`,
+                    silent: true
+                });
+                
+                notif.onclick = () => {
+                    chrome.runtime.reload();
+                };
 
-                        if (_settings.sound) {
-                            // sound effect
-                            chrome.runtime.sendMessage(
-                                "play sound"
-                            );
-                        }        
-                    }
-                }
-            })
-        })
+                if (_settings.sound) {
+                    // sound effect
+                    chrome.runtime.sendMessage(
+                        "play sound"
+                    );
+                }        
+            }
+        }
     })
     console.log('authed')
     
@@ -1163,7 +1154,9 @@ function getAuth() {
         'color': 'white',
         'font-size': '16px'
     }}, (r) => { console.log("default settings stored") })
-    socket.emit('hello', {auth: authObj}, (r) => { console.log(r) })
+    socket.emit('hello', {auth: authObj}, (r) => {
+        $('repldmBtn').attr('notifications', `${Object.keys(r).length}`);
+    })
     authed();
     init();
 }
