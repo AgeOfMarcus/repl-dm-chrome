@@ -171,6 +171,9 @@ function init() {
         getConvos((users) => {
             var html = '';
             const sorted_users = sort_dict(users); // ------- my new method which makes messages sorted ;)
+            if (sorted_users.length == 0) {
+                $('.loading-msgs').hide();
+            }
             for (var i=0; i<sorted_users.length; i++) {
                 const user = sorted_users[i][0];
                 const recent = sorted_users[i][1];
@@ -622,7 +625,7 @@ function authed() {
             }, 100)
         }
         $('.user-hover-card .user-info-card-header span.jsx-1369737386:not(.user-info-card-full-name)').after().click(() => {
-            var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0];
+            var username = $('.user-hover-card-anchor span.jsx-801033477').text().split(" ")[0].replace('@','');
             newMessageTo(username);
         })
     });

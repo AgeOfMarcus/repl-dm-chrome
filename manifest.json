@@ -1,7 +1,7 @@
 {
     "name": "ReplDM",
-    "description": "Adds direct messaging functionality to repl.it",
-    "version": "0.7.2",
+    "description": "Adds direct messaging functionality to replit.com",
+    "version": "0.7.3",
     "manifest_version": 2,
     "icons": {
         "128": "icon.png"
@@ -25,9 +25,5 @@
     ],
     "background": {
         "page": "index.html"
-    },
-
-    "web_accessible_resources": [
-        ".git/FETCH_HEAD"
-    ]
+    }
 }
