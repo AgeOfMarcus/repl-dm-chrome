@@ -465,7 +465,7 @@ function loadConvo(user) {
         getMessages(user, (messages) => {
             _msg_cache[user].push(...messages) // *messages
 
-            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => { (a.time < b.time) ? 1 : -1 });
+            _msg_cache[user] = _msg_cache[user].slice().sort((a, b) => ((a.time < b.time) ? 1 : -1));
 
             if ($('.chat .top span').text() != user) return;
             $('.chat .box').empty();
