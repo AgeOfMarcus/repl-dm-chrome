@@ -1,7 +1,7 @@
 {
     "name": "ReplDM",
     "description": "Adds direct messaging functionality to replit.com",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "manifest_version": 2,
     "icons": {
         "128": "icon.png"
