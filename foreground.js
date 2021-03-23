@@ -591,6 +591,7 @@ function time_ago(time) {
 }
  //test
 function authed() {
+    /* content scripts cant run this - must be done in bg
     chrome.runtime.requestUpdateCheck((status, details) => {
         console.log(`[checkUpdate] status: ${status}, details: ${details}`);
         if (status == 'update_available') {
@@ -613,6 +614,7 @@ function authed() {
             }
         }
     })
+    */
     console.log('authed')
     
     var path = window.location.pathname;
