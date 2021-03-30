@@ -1168,10 +1168,14 @@ function getAuth() {
 
 chrome.storage.sync.get(['auth'], (res) => { 
     console.log(res)
+    
     if (
-        Object.keys(res).length === 0 &&
-        location.pathname != "/auth_with_repl_site"
-    ) { // no auth object
+        location.pathname === "/auth_with_repl_site" // see #24
+    ) return;
+    
+    if (
+        Object.keys(res).length === 0 // no auth object
+    ) {
         var authHtml = `<div class='auth-wrapper' style='display: none;'> 
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
@@ -1196,8 +1200,7 @@ chrome.storage.sync.get(['auth'], (res) => {
         $('.close-auth').click(() => {
             $('.auth-wrapper').hide();
         })
-    }
-    else {
+    } else {
         globalThis.authToken = res.auth;
         socket.emit('hello', {auth: res.auth}, (r) => { console.log(r) })
         chrome.storage.local.get(['settings'], (res) => {
