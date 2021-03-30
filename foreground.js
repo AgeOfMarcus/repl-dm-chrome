@@ -1168,7 +1168,10 @@ function getAuth() {
 
 chrome.storage.sync.get(['auth'], (res) => { 
     console.log(res)
-    if (Object.keys(res).length === 0) { // no auth object
+    if (
+        Object.keys(res).length === 0 &&
+        location.pathname != "/auth_with_repl_site"
+    ) { // no auth object
         var authHtml = `<div class='auth-wrapper' style='display: none;'> 
             <div class='auth-cont'>
                 <div class='close-auth'><i class="fas fa-times"></i></div>
